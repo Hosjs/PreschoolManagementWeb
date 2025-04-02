@@ -166,60 +166,6 @@ $show_export_btn = $this->show_export_btn;
                                             </span>
                                         </td>
                                     </tr>
-                                    <tr  class="td-school_fee">
-                                        <th class="title"> Học phí: </th>
-                                        <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['school_fee']; ?>" 
-                                                data-pk="<?php echo $data['id'] ?>" 
-                                                data-url="<?php print_link("admission/editfield/" . urlencode($data['id'])); ?>" 
-                                                data-name="school_fee" 
-                                                data-title="Enter School Fee" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="text" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['school_fee']; ?> 
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr  class="td-admission_fee">
-                                        <th class="title"> Phụ phí: </th>
-                                        <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['admission_fee']; ?>" 
-                                                data-pk="<?php echo $data['id'] ?>" 
-                                                data-url="<?php print_link("admission/editfield/" . urlencode($data['id'])); ?>" 
-                                                data-name="admission_fee" 
-                                                data-title="Enter Admission Fee" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="text" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['admission_fee']; ?> 
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr  class="td-graduation_fee">
-                                        <th class="title"> Phí tốt nghiệp: </th>
-                                        <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['graduation_fee']; ?>" 
-                                                data-pk="<?php echo $data['id'] ?>" 
-                                                data-url="<?php print_link("admission/editfield/" . urlencode($data['id'])); ?>" 
-                                                data-name="graduation_fee" 
-                                                data-title="Enter Graduation Fee" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="text" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['graduation_fee']; ?> 
-                                            </span>
-                                        </td>
-                                    </tr>
                                     <tr  class="td-bording">
                                         <th class="title"> Quỹ lớp: </th>
                                         <td class="value">
@@ -236,24 +182,6 @@ $show_export_btn = $this->show_export_btn;
                                                 data-showbuttons="left" 
                                                 class="is-editable" <?php } ?>>
                                                 <?php echo $data['bording']; ?> 
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr  class="td-lunch">
-                                        <th class="title"> Tiền cơm: </th>
-                                        <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['lunch']; ?>" 
-                                                data-pk="<?php echo $data['id'] ?>" 
-                                                data-url="<?php print_link("admission/editfield/" . urlencode($data['id'])); ?>" 
-                                                data-name="lunch" 
-                                                data-title="Enter Lunch" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="text" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['lunch']; ?> 
                                             </span>
                                         </td>
                                     </tr>

@@ -41,10 +41,6 @@ CREATE TABLE `admission` (
   `guardian_contact` varchar(255) DEFAULT NULL,
   `note` varchar(255) NOT NULL,
   `special_need` varchar(255) NOT NULL,
-  `admission_fee` varchar(255) DEFAULT NULL,
-  `school_fee` varchar(255) NOT NULL,
-  `graduation_fee` varchar(255) NOT NULL,
-  `lunch` varchar(255) NOT NULL,
   `bording` varchar(255) NOT NULL,
   `photo` varchar(255) NOT NULL,
   `gender` varchar(255) NOT NULL
@@ -53,10 +49,6 @@ CREATE TABLE `admission` (
 --
 -- Dumping data for table `admission`
 --
-
-INSERT INTO `admission` (`id`, `pupils_full_name`, `idhocsinh`, `age`, `class`, `father_name`, `mother_name`, `father_contact`, `mother_contact`, `guardian_name`, `guardian_contact`, `upi`, `special_need`, `admission_fee`, `school_fee`, `graduation_fee`, `lunch`, `bording`, `photo`, `gender`) VALUES
-(1, 'joshu mbithi kimanzi', 'L0340945494', '6', 'pp2', 'kim', 'glady', '0707333776', '0799807265', 'none', 'none', 'm790877gb', 'no', '500', '600', '120', '200', 'no', 'http://localhost/pre-primaryschoolmanagementsystem/uploads/files/qf8hyjt2o3ea6si.jpg', 'Male');
-
 -- --------------------------------------------------------
 
 --

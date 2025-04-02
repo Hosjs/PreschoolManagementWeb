@@ -31,13 +31,9 @@ class AdmissionController extends SecureController{
 			"mother_name", 
 			"father_contact", 
 			"mother_contact", 
-			"school_fee", 
-			"graduation_fee", 
-			"lunch", 
 			"bording", 
 			"guardian_name", 
-			"guardian_contact", 
-			"admission_fee");
+			"guardian_contact");
 		$pagination = $this->get_pagination(MAX_RECORD_COUNT); // get current pagination e.g array(page_number, page_limit)
 		//search table record
 		if(!empty($request->search)){
@@ -56,16 +52,12 @@ class AdmissionController extends SecureController{
 				admission.mother_name LIKE ? OR 
 				admission.father_contact LIKE ? OR 
 				admission.mother_contact LIKE ? OR 
-				admission.school_fee LIKE ? OR 
-				admission.graduation_fee LIKE ? OR 
-				admission.lunch LIKE ? OR 
 				admission.bording LIKE ? OR 
 				admission.guardian_name LIKE ? OR 
 				admission.guardian_contact LIKE ? OR 
-				admission.admission_fee LIKE ?
 			)";
 			$search_params = array(
-				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
+				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
 			);
 			//setting search conditions
 			$db->where($search_condition, $search_params);
@@ -124,11 +116,7 @@ class AdmissionController extends SecureController{
 			"photo", 
 			"gender", 
 			"note", 
-			"school_fee", 
-			"admission_fee", 
-			"graduation_fee", 
 			"bording", 
-			"lunch", 
 			"father_name", 
 			"mother_name", 
 			"father_contact", 
@@ -172,7 +160,7 @@ class AdmissionController extends SecureController{
 			$tablename = $this->tablename;
 			$request = $this->request;
 			//fillable fields
-			$fields = $this->fields = array("pupils_full_name","idhocsinh","age","photo","gender","class","note","school_fee","graduation_fee","admission_fee","lunch","bording","father_name","mother_name","father_contact","mother_contact","special_need","guardian_name","guardian_contact");
+			$fields = $this->fields = array("pupils_full_name","idhocsinh","age","photo","gender","class","note","bording","father_name","mother_name","father_contact","mother_contact","special_need","guardian_name","guardian_contact");
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'pupils_full_name' => 'required',
@@ -182,10 +170,6 @@ class AdmissionController extends SecureController{
 				'gender' => 'required',
 				'class' => 'required',
 				'note' => 'required',
-				'school_fee' => 'required',
-				'graduation_fee' => 'required',
-				'admission_fee' => 'required',
-				'lunch' => 'required',
 				'bording' => 'required',
 				'father_name' => 'required',
 				'mother_name' => 'required',
@@ -203,10 +187,6 @@ class AdmissionController extends SecureController{
 				'gender' => 'sanitize_string',
 				'class' => 'sanitize_string',
 				'note' => 'sanitize_string',
-				'school_fee' => 'sanitize_string',
-				'graduation_fee' => 'sanitize_string',
-				'admission_fee' => 'sanitize_string',
-				'lunch' => 'sanitize_string',
 				'bording' => 'sanitize_string',
 				'father_name' => 'sanitize_string',
 				'mother_name' => 'sanitize_string',
@@ -244,7 +224,7 @@ class AdmissionController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		 //editable fields
-		$fields = $this->fields = array("id","pupils_full_name","idhocsinh","age","photo","gender","class","note","school_fee","graduation_fee","admission_fee","lunch","bording","father_name","mother_name","father_contact","mother_contact","special_need","guardian_name","guardian_contact");
+		$fields = $this->fields = array("id","pupils_full_name","idhocsinh","age","photo","gender","class","note","bording","father_name","mother_name","father_contact","mother_contact","special_need","guardian_name","guardian_contact");
 		if($formdata){
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
@@ -255,10 +235,6 @@ class AdmissionController extends SecureController{
 				'gender' => 'required',
 				'class' => 'required',
 				'note' => 'required',
-				'school_fee' => 'required',
-				'graduation_fee' => 'required',
-				'admission_fee' => 'required',
-				'lunch' => 'required',
 				'bording' => 'required',
 				'father_name' => 'required',
 				'mother_name' => 'required',
@@ -276,10 +252,6 @@ class AdmissionController extends SecureController{
 				'gender' => 'sanitize_string',
 				'class' => 'sanitize_string',
 				'note' => 'sanitize_string',
-				'school_fee' => 'sanitize_string',
-				'graduation_fee' => 'sanitize_string',
-				'admission_fee' => 'sanitize_string',
-				'lunch' => 'sanitize_string',
 				'bording' => 'sanitize_string',
 				'father_name' => 'sanitize_string',
 				'mother_name' => 'sanitize_string',
@@ -331,7 +303,7 @@ class AdmissionController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		//editable fields
-		$fields = $this->fields = array("id","pupils_full_name","idhocsinh","age","photo","gender","class","upi","school_fee","graduation_fee","admission_fee","lunch","bording","father_name","mother_name","father_contact","mother_contact","special_need","guardian_name","guardian_contact");
+		$fields = $this->fields = array("id","pupils_full_name","idhocsinh","age","photo","gender","class","upi","bording","father_name","mother_name","father_contact","mother_contact","special_need","guardian_name","guardian_contact");
 		$page_error = null;
 		if($formdata){
 			$postdata = array();
@@ -347,10 +319,6 @@ class AdmissionController extends SecureController{
 				'gender' => 'required',
 				'class' => 'required',
 				'note' => 'required',
-				'school_fee' => 'required',
-				'graduation_fee' => 'required',
-				'admission_fee' => 'required',
-				'lunch' => 'required',
 				'bording' => 'required',
 				'father_name' => 'required',
 				'mother_name' => 'required',
@@ -368,10 +336,6 @@ class AdmissionController extends SecureController{
 				'gender' => 'sanitize_string',
 				'class' => 'sanitize_string',
 				'note' => 'sanitize_string',
-				'school_fee' => 'sanitize_string',
-				'graduation_fee' => 'sanitize_string',
-				'admission_fee' => 'sanitize_string',
-				'lunch' => 'sanitize_string',
 				'bording' => 'sanitize_string',
 				'father_name' => 'sanitize_string',
 				'mother_name' => 'sanitize_string',

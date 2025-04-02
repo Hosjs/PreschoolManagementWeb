@@ -331,60 +331,7 @@ $show_pagination = $this->show_pagination;
                                                         <?php echo $data['mother_contact']; ?> 
                                                     </span>
                                                 </div>
-                                                <div class="mb-2">  
-                                                    <span <?php if($can_edit){ ?> data-value="<?php echo $data['school_fee']; ?>" 
-                                                        data-pk="<?php echo $data['id'] ?>" 
-                                                        data-url="<?php print_link("admission/editfield/" . urlencode($data['id'])); ?>" 
-                                                        data-name="school_fee" 
-                                                        data-title="Enter School Fee" 
-                                                        data-placement="left" 
-                                                        data-toggle="click" 
-                                                        data-type="text" 
-                                                        data-mode="popover" 
-                                                        data-showbuttons="left" 
-                                                        class="is-editable" <?php } ?>>
-                                                        <span class="font-weight-light text-muted ">
-                                                            Học phí:  
-                                                        </span>
-                                                        <?php echo $data['school_fee']; ?> 
-                                                    </span>
-                                                </div>
-                                                <div class="mb-2">  
-                                                    <span <?php if($can_edit){ ?> data-value="<?php echo $data['graduation_fee']; ?>" 
-                                                        data-pk="<?php echo $data['id'] ?>" 
-                                                        data-url="<?php print_link("admission/editfield/" . urlencode($data['id'])); ?>" 
-                                                        data-name="graduation_fee" 
-                                                        data-title="Enter Graduation Fee" 
-                                                        data-placement="left" 
-                                                        data-toggle="click" 
-                                                        data-type="text" 
-                                                        data-mode="popover" 
-                                                        data-showbuttons="left" 
-                                                        class="is-editable" <?php } ?>>
-                                                        <span class="font-weight-light text-muted ">
-                                                            Phí tốt nghiệp:  
-                                                        </span>
-                                                        <?php echo $data['graduation_fee']; ?> 
-                                                    </span>
-                                                </div>
-                                                <div class="mb-2">  
-                                                    <span <?php if($can_edit){ ?> data-value="<?php echo $data['lunch']; ?>" 
-                                                        data-pk="<?php echo $data['id'] ?>" 
-                                                        data-url="<?php print_link("admission/editfield/" . urlencode($data['id'])); ?>" 
-                                                        data-name="lunch" 
-                                                        data-title="Enter Lunch" 
-                                                        data-placement="left" 
-                                                        data-toggle="click" 
-                                                        data-type="text" 
-                                                        data-mode="popover" 
-                                                        data-showbuttons="left" 
-                                                        class="is-editable" <?php } ?>>
-                                                        <span class="font-weight-light text-muted ">
-                                                            Tiền cơm:  
-                                                        </span>
-                                                        <?php echo $data['lunch']; ?> 
-                                                    </span>
-                                                </div>
+                                                
                                                 <div class="mb-2">  
                                                     <span <?php if($can_edit){ ?> data-source='<?php echo json_encode_quote(Menu :: $bording); ?>' 
                                                         data-value="<?php echo $data['bording']; ?>" 
@@ -440,24 +387,7 @@ $show_pagination = $this->show_pagination;
                                                         <?php echo $data['guardian_contact']; ?> 
                                                     </span>
                                                 </div>
-                                                <div class="mb-2">  
-                                                    <span <?php if($can_edit){ ?> data-value="<?php echo $data['admission_fee']; ?>" 
-                                                        data-pk="<?php echo $data['id'] ?>" 
-                                                        data-url="<?php print_link("admission/editfield/" . urlencode($data['id'])); ?>" 
-                                                        data-name="admission_fee" 
-                                                        data-title="Enter Admission Fee" 
-                                                        data-placement="left" 
-                                                        data-toggle="click" 
-                                                        data-type="text" 
-                                                        data-mode="popover" 
-                                                        data-showbuttons="left" 
-                                                        class="is-editable" <?php } ?>>
-                                                        <span class="font-weight-light text-muted ">
-                                                            Phụ phí:  
-                                                        </span>
-                                                        <?php echo $data['admission_fee']; ?> 
-                                                    </span>
-                                                </div>
+                                    
                                                 <div class="td-btn">
                                                     <?php if($can_view){ ?>
                                                     <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("admission/view/$rec_id"); ?>">

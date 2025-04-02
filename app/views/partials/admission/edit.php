@@ -158,54 +158,6 @@ $redirect_to = $this->redirect_to;
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group ">
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <label class="control-label" for="school_fee">Phí trường <span class="text-danger">*</span></label>
-                                                                </div>
-                                                                <div class="col-sm-8">
-                                                                    <div class="">
-                                                                        <input id="ctrl-school_fee"  value="<?php  echo $data['school_fee']; ?>" type="text" placeholder="Enter School Fee"  required="" name="school_fee"  class="form-control " />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group ">
-                                                                <div class="row">
-                                                                    <div class="col-sm-4">
-                                                                        <label class="control-label" for="graduation_fee">Phí tốt nghiệp <span class="text-danger">*</span></label>
-                                                                    </div>
-                                                                    <div class="col-sm-8">
-                                                                        <div class="">
-                                                                            <input id="ctrl-graduation_fee"  value="<?php  echo $data['graduation_fee']; ?>" type="text" placeholder="Enter Graduation Fee"  required="" name="graduation_fee"  class="form-control " />
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group ">
-                                                                    <div class="row">
-                                                                        <div class="col-sm-4">
-                                                                            <label class="control-label" for="admission_fee">Quỹ lớp <span class="text-danger">*</span></label>
-                                                                        </div>
-                                                                        <div class="col-sm-8">
-                                                                            <div class="">
-                                                                                <input id="ctrl-admission_fee"  value="<?php  echo $data['admission_fee']; ?>" type="text" placeholder="Enter Admission Fee"  required="" name="admission_fee"  class="form-control " />
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group ">
-                                                                        <div class="row">
-                                                                            <div class="col-sm-4">
-                                                                                <label class="control-label" for="lunch">Cơm <span class="text-danger">*</span></label>
-                                                                            </div>
-                                                                            <div class="col-sm-8">
-                                                                                <div class="">
-                                                                                    <input id="ctrl-lunch"  value="<?php  echo $data['lunch']; ?>" type="text" placeholder="Enter Lunch"  required="" name="lunch"  class="form-control " />
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
                                                                         <div class="form-group ">
                                                                             <div class="row">
                                                                                 <div class="col-sm-4">
