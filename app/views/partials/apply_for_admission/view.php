@@ -186,21 +186,21 @@ $show_export_btn = $this->show_export_btn;
                                             </span>
                                         </td>
                                     </tr>
-                                    <tr  class="td-upi">
+                                    <tr  class="td-note">
                                         <th class="title"> Ghi chú: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['upi']; ?>" 
+                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['note']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("apply_for_admission/editfield/" . urlencode($data['id'])); ?>" 
-                                                data-name="upi" 
-                                                data-title="Enter Upi" 
+                                                data-name="note" 
+                                                data-title="Enter note" 
                                                 data-placement="left" 
                                                 data-toggle="click" 
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
                                                 class="is-editable" <?php } ?>>
-                                                <?php echo $data['upi']; ?> 
+                                                <?php echo $data['note']; ?> 
                                             </span>
                                         </td>
                                     </tr>

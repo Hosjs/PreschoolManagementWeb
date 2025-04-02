@@ -45,7 +45,7 @@ $show_pagination = $this->show_pagination;
                         <div class="input-group">
                             <input value="<?php echo get_value('search'); ?>" class="form-control" type="text" name="search"  placeholder="Search" />
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary"><i class="material-icons">Tìm  kiếm</i></button>
+                                    <button class="btn btn-primary"><i class="material-icons"></i>Tìm  kiếm</button>
                                 </div>
                             </div>
                         </form>
@@ -145,11 +145,11 @@ $show_pagination = $this->show_pagination;
                                                     </span>
                                                 </div>
                                                 <div class="mb-2">  
-                                                    <span <?php if($can_edit){ ?> data-value="<?php echo $data['birth_certificate_no']; ?>" 
+                                                    <span <?php if($can_edit){ ?> data-value="<?php echo $data['idhocsinh']; ?>" 
                                                         data-pk="<?php echo $data['id'] ?>" 
                                                         data-url="<?php print_link("admission/editfield/" . urlencode($data['id'])); ?>" 
-                                                        data-name="birth_certificate_no" 
-                                                        data-title="Enter Birth Certificate No" 
+                                                        data-name="idhocsinh" 
+                                                        data-title="Enter Student Id" 
                                                         data-placement="left" 
                                                         data-toggle="click" 
                                                         data-type="text" 
@@ -159,7 +159,7 @@ $show_pagination = $this->show_pagination;
                                                         <span class="font-weight-light text-muted ">
                                                             Mã học sinh:  
                                                         </span>
-                                                        <?php echo $data['birth_certificate_no']; ?> 
+                                                        <?php echo $data['idhocsinh']; ?> 
                                                     </span>
                                                 </div>
                                                 <div class="mb-2">  
@@ -223,11 +223,11 @@ $show_pagination = $this->show_pagination;
                                                     <td class=""><img class="img img-thumbnail" alt="nngf" width="150" height="150" src="<?php echo $data['photo']; ?>"></img></td>
                                                 </tr>
                                                 <div class="mb-2">  
-                                                    <span <?php if($can_edit){ ?> data-value="<?php echo $data['upi']; ?>" 
+                                                    <span <?php if($can_edit){ ?> data-value="<?php echo $data['note']; ?>" 
                                                         data-pk="<?php echo $data['id'] ?>" 
                                                         data-url="<?php print_link("admission/editfield/" . urlencode($data['id'])); ?>" 
-                                                        data-name="upi" 
-                                                        data-title="Enter Upi" 
+                                                        data-name="note" 
+                                                        data-title="Enter note" 
                                                         data-placement="left" 
                                                         data-toggle="click" 
                                                         data-type="text" 
@@ -237,7 +237,7 @@ $show_pagination = $this->show_pagination;
                                                         <span class="font-weight-light text-muted ">
                                                             Ghi chú:  
                                                         </span>
-                                                        <?php echo $data['upi']; ?> 
+                                                        <?php echo $data['note']; ?> 
                                                     </span>
                                                 </div>
                                                 <div class="mb-2">  
@@ -471,7 +471,7 @@ $show_pagination = $this->show_pagination;
                                                     <?php } ?>
                                                     <?php if($can_delete){ ?>
                                                     <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" title="Delete this record" href="<?php print_link("admission/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
-                                                        <i class="material-icons">Clear</i>
+                                                        <i class="material-icons">delete</i>
                                                         Xóa
                                                     </a>
                                                     <?php } ?>

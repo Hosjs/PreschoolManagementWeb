@@ -193,11 +193,11 @@ $redirect_to = $this->redirect_to;
                                                             <div class="form-group ">
                                                                 <div class="row">
                                                                     <div class="col-sm-4">
-                                                                        <label class="control-label" for="upi">Ghi chú <span class="text-danger">*</span></label>
+                                                                        <label class="control-label" for="note">Ghi chú <span class="text-danger">*</span></label>
                                                                     </div>
                                                                     <div class="col-sm-8">
                                                                         <div class="">
-                                                                            <input id="ctrl-upi"  value="<?php  echo $data['upi']; ?>" type="text" placeholder="Enter Upi"  required="" name="upi"  class="form-control " />
+                                                                            <input id="ctrl-note"  value="<?php  echo $data['note']; ?>" type="text" placeholder="Enter note"  required="" name="note"  class="form-control " />
                                                                             </div>
                                                                         </div>
                                                                     </div>

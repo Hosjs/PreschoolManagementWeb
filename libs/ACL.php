@@ -36,7 +36,8 @@ class ACL
 							'apply_for_admission' => array('list','add'),
 							'assignment' => array('list','view'),
 							'event' => array('list','view'),
-							'how_to_make_payment' => array('list','add')
+							'how_to_make_payment' => array('list','add'),
+							'message' => array('list','view','add','edit', 'editfield','delete','import_data','group'),
 						)
 		);
 

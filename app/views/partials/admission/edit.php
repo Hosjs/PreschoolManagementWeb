@@ -49,11 +49,11 @@ $redirect_to = $this->redirect_to;
                                     <div class="form-group ">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <label class="control-label" for="birth_certificate_no">Mã học sinh <span class="text-danger">*</span></label>
+                                                <label class="control-label" for="idhocsinh">Mã học sinh <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="">
-                                                    <input id="ctrl-birth_certificate_no"  value="<?php  echo $data['birth_certificate_no']; ?>" type="text" placeholder="Enter Birth Certificate No"  required="" name="birth_certificate_no"  class="form-control " />
+                                                    <input id="ctrl-idhocsinh"  value="<?php  echo $data['idhocsinh']; ?>" type="text" placeholder="Enter Student ID"  required="" name="idhocsinh"  class="form-control " />
                                                     </div>
                                                 </div>
                                             </div>
@@ -149,11 +149,11 @@ $redirect_to = $this->redirect_to;
                                                     <div class="form-group ">
                                                         <div class="row">
                                                             <div class="col-sm-4">
-                                                                <label class="control-label" for="upi">Ghi chú <span class="text-danger">*</span></label>
+                                                                <label class="control-label" for="note">Ghi chú <span class="text-danger">*</span></label>
                                                             </div>
                                                             <div class="col-sm-8">
                                                                 <div class="">
-                                                                    <input id="ctrl-upi"  value="<?php  echo $data['upi']; ?>" type="text" placeholder="Enter Upi"  required="" name="upi"  class="form-control " />
+                                                                    <input id="ctrl-note"  value="<?php  echo $data['note']; ?>" type="text" placeholder="Enter note"  required="" name="note"  class="form-control " />
                                                                     </div>
                                                                 </div>
                                                             </div>

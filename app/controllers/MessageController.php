@@ -1,9 +1,12 @@
 <?php
 /**
- * MessagesController - Quản lý tin nhắn nhóm
+ * MessageController - Quản lý tin nhắn nhóm
  */
-class MessageController extends SecureController {
-    function index($field_name = null, $field_value = null) {
+class MessageController extends SecureController
+{
+    // Hiển thị danh sách tin nhắn (phân trang, tìm kiếm nếu cần)
+    function index($field_name = null, $field_value = null)
+    {
         $db = $this->GetModel();
         $this->tablename = "messages";
 
@@ -24,21 +27,13 @@ class MessageController extends SecureController {
 
         $messages = $db->get("messages", null, $fields);
 
-        // Debug: In kết quả SQL và dữ liệu
-        echo "<pre style='background:#f0f0f0;padding:10px'>";
-        echo " DEBUG - KẾT QUẢ SQL:\n";
-        print_r($db->getLastQuery());
-        echo "\n DEBUG - DỮ LIỆU:\n";
-        print_r($messages);
-        echo "\n LỖI (nếu có): " . $db->getLastError();
-        echo "</pre>";
-
         $this->view_data = $messages ?? [];
         $this->render_view("Message/list.php");
-
     }
 
-    function group() {
+    // Phòng chat nhóm công khai
+    function group()
+    {
         $db = $this->GetModel();
         $this->tablename = "messages";
 
@@ -55,20 +50,13 @@ class MessageController extends SecureController {
 
         $messages = $db->get("messages", null, $fields);
 
-        // DEBUG để kiểm tra dữ liệu được trả ra
-        echo "<pre style='background:#f0f0f0;padding:10px'>";
-        echo "DEBUG - KẾT QUẢ SQL:\n";
-        print_r($db->getLastQuery());
-        echo "\n DEBUG - DỮ LIỆU:\n";
-        print_r($messages);
-        echo "\n LỖI (nếu có): " . $db->getLastError();
-        echo "</pre>";
-
         $this->view_data = $messages ?? [];
         $this->render_view("Message/list.php");
     }
 
-    function sendgroup() {
+    // Gửi tin nhắn vào nhóm
+    function sendgroup()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $db = $this->GetModel();
             $this->tablename = "messages";
@@ -80,8 +68,9 @@ class MessageController extends SecureController {
 
             if (!empty($data['message'])) {
                 $insert_id = $db->insert($this->tablename, $data);
+
                 if (!$insert_id) {
-                    echo "<pre style='color:red'>Lỗi khi chèn tin nhắn: " . $db->getLastError() . "</pre>";
+                    echo "<pre style='color:red'>❌ Lỗi khi chèn tin nhắn: " . $db->getLastError() . "</pre>";
                 }
             }
 
@@ -89,7 +78,41 @@ class MessageController extends SecureController {
         }
     }
 
-    function delete($id = null) {
+    // Xem chi tiết một tin nhắn
+    function view($id = null)
+    {
+        $db = $this->GetModel();
+        $this->tablename = "messages";
+
+        if (!empty($id)) {
+            $db->join("users u", "messages.sender_id = u.id", "LEFT");
+            $db->where("messages.id", $id);
+
+            $fields = [
+                "messages.id",
+                "messages.message",
+                "messages.sent_at",
+                "u.last_name AS sender_name",
+                "u.photo AS sender_avatar"
+            ];
+
+            $data = $db->getOne("messages", $fields);
+
+            if ($data) {
+                $this->view_data = $data;
+                $this->render_view("Message/view.php");
+            } else {
+                $this->set_page_error("Không tìm thấy tin nhắn!");
+                $this->render_view("Message/view.php");
+            }
+        } else {
+            $this->set_page_error("ID tin nhắn không hợp lệ!");
+            $this->render_view("Message/view.php");
+        }
+    }
+
+    function delete($id = null)
+    {
         $db = $this->GetModel();
 
         if (!empty($id)) {
@@ -104,6 +127,8 @@ class MessageController extends SecureController {
         } else {
             set_flash_msg("ID tin nhắn không hợp lệ!", "danger");
         }
+
         redirect_to("Message");
     }
 }
+?>

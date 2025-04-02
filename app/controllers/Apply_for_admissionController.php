@@ -27,7 +27,7 @@ class Apply_for_admissionController extends SecureController{
 			"gender", 
 			"class", 
 			"with_birth_certificate", 
-			"upi", 
+			"note", 
 			"resdence", 
 			"special_conditions", 
 			"parent_contact_no", 
@@ -48,7 +48,7 @@ class Apply_for_admissionController extends SecureController{
 				apply_for_admission.gender LIKE ? OR 
 				apply_for_admission.class LIKE ? OR 
 				apply_for_admission.with_birth_certificate LIKE ? OR 
-				apply_for_admission.upi LIKE ? OR 
+				apply_for_admission.note LIKE ? OR 
 				apply_for_admission.resdence LIKE ? OR 
 				apply_for_admission.special_conditions LIKE ? OR 
 				apply_for_admission.parent_contact_no LIKE ? OR 
@@ -117,7 +117,7 @@ class Apply_for_admissionController extends SecureController{
 			"gender", 
 			"class", 
 			"with_birth_certificate", 
-			"upi", 
+			"note", 
 			"resdence", 
 			"special_conditions", 
 			"parent_contact_no", 
@@ -160,7 +160,7 @@ class Apply_for_admissionController extends SecureController{
 			$tablename = $this->tablename;
 			$request = $this->request;
 			//fillable fields
-			$fields = $this->fields = array("surname","last_name","first_name","year_of_birth","photo","gender","class","with_birth_certificate","upi","resdence","special_conditions","parent_contact_no","father_full_name","mother_full_name","home_county");
+			$fields = $this->fields = array("surname","last_name","first_name","year_of_birth","photo","gender","class","with_birth_certificate","note","resdence","special_conditions","parent_contact_no","father_full_name","mother_full_name","home_county");
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'surname' => 'required',
@@ -171,7 +171,7 @@ class Apply_for_admissionController extends SecureController{
 				'gender' => 'required',
 				'class' => 'required',
 				'with_birth_certificate' => 'required',
-				'upi' => 'required',
+				'note' => 'required',
 				'resdence' => 'required',
 				'special_conditions' => 'required',
 				'parent_contact_no' => 'required',
@@ -188,7 +188,7 @@ class Apply_for_admissionController extends SecureController{
 				'gender' => 'sanitize_string',
 				'class' => 'sanitize_string',
 				'with_birth_certificate' => 'sanitize_string',
-				'upi' => 'sanitize_string',
+				'note' => 'sanitize_string',
 				'resdence' => 'sanitize_string',
 				'special_conditions' => 'sanitize_string',
 				'parent_contact_no' => 'sanitize_string',
@@ -224,7 +224,7 @@ class Apply_for_admissionController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		 //editable fields
-		$fields = $this->fields = array("id","surname","last_name","first_name","year_of_birth","photo","gender","class","with_birth_certificate","upi","resdence","special_conditions","parent_contact_no","father_full_name","mother_full_name","home_county");
+		$fields = $this->fields = array("id","surname","last_name","first_name","year_of_birth","photo","gender","class","with_birth_certificate","note","resdence","special_conditions","parent_contact_no","father_full_name","mother_full_name","home_county");
 		if($formdata){
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
@@ -236,7 +236,7 @@ class Apply_for_admissionController extends SecureController{
 				'gender' => 'required',
 				'class' => 'required',
 				'with_birth_certificate' => 'required',
-				'upi' => 'required',
+				'note' => 'required',
 				'resdence' => 'required',
 				'special_conditions' => 'required',
 				'parent_contact_no' => 'required',
@@ -253,7 +253,7 @@ class Apply_for_admissionController extends SecureController{
 				'gender' => 'sanitize_string',
 				'class' => 'sanitize_string',
 				'with_birth_certificate' => 'sanitize_string',
-				'upi' => 'sanitize_string',
+				'note' => 'sanitize_string',
 				'resdence' => 'sanitize_string',
 				'special_conditions' => 'sanitize_string',
 				'parent_contact_no' => 'sanitize_string',
@@ -303,7 +303,7 @@ class Apply_for_admissionController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		//editable fields
-		$fields = $this->fields = array("id","surname","last_name","first_name","year_of_birth","photo","gender","class","with_birth_certificate","upi","resdence","special_conditions","parent_contact_no","father_full_name","mother_full_name","home_county");
+		$fields = $this->fields = array("id","surname","last_name","first_name","year_of_birth","photo","gender","class","with_birth_certificate","note","resdence","special_conditions","parent_contact_no","father_full_name","mother_full_name","home_county");
 		$page_error = null;
 		if($formdata){
 			$postdata = array();
@@ -320,7 +320,7 @@ class Apply_for_admissionController extends SecureController{
 				'gender' => 'required',
 				'class' => 'required',
 				'with_birth_certificate' => 'required',
-				'upi' => 'required',
+				'note' => 'required',
 				'resdence' => 'required',
 				'special_conditions' => 'required',
 				'parent_contact_no' => 'required',
@@ -337,7 +337,7 @@ class Apply_for_admissionController extends SecureController{
 				'gender' => 'sanitize_string',
 				'class' => 'sanitize_string',
 				'with_birth_certificate' => 'sanitize_string',
-				'upi' => 'sanitize_string',
+				'note' => 'sanitize_string',
 				'resdence' => 'sanitize_string',
 				'special_conditions' => 'sanitize_string',
 				'parent_contact_no' => 'sanitize_string',

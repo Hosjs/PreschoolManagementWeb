@@ -70,21 +70,21 @@ $show_export_btn = $this->show_export_btn;
                                             </span>
                                         </td>
                                     </tr>
-                                    <tr  class="td-birth_certificate_no">
+                                    <tr  class="td-idhocsinh">
                                         <th class="title"> Mã học sinh: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['birth_certificate_no']; ?>" 
+                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['idhocsinh']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("admission/editfield/" . urlencode($data['id'])); ?>" 
-                                                data-name="birth_certificate_no" 
-                                                data-title="Enter Birth Certificate No" 
+                                                data-name="idhocsinh" 
+                                                data-title="Enter Student ID" 
                                                 data-placement="left" 
                                                 data-toggle="click" 
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
                                                 class="is-editable" <?php } ?>>
-                                                <?php echo $data['birth_certificate_no']; ?> 
+                                                <?php echo $data['idhocsinh']; ?> 
                                             </span>
                                         </td>
                                     </tr>
@@ -148,21 +148,21 @@ $show_export_btn = $this->show_export_btn;
                                             </span>
                                         </td>
                                     </tr>
-                                    <tr  class="td-upi">
+                                    <tr  class="td-note">
                                         <th class="title"> Ghi chú: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['upi']; ?>" 
+                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['note']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("admission/editfield/" . urlencode($data['id'])); ?>" 
-                                                data-name="upi" 
-                                                data-title="Enter Upi" 
+                                                data-name="note" 
+                                                data-title="Enter note" 
                                                 data-placement="left" 
                                                 data-toggle="click" 
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
                                                 class="is-editable" <?php } ?>>
-                                                <?php echo $data['upi']; ?> 
+                                                <?php echo $data['note']; ?> 
                                             </span>
                                         </td>
                                     </tr>
@@ -423,7 +423,7 @@ $show_export_btn = $this->show_export_btn;
                                                 <?php } ?>
                                                 <?php if($can_delete){ ?>
                                                 <a class="btn btn-sm btn-danger record-delete-btn mx-1"  href="<?php print_link("admission/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
-                                                    <i class="material-icons">Xóa</i>
+                                                    <i class="material-icons"></i>Xóa
                                                 </a>
                                                 <?php } ?>
                                             </div>

@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `admission` (
   `id` int(11) NOT NULL,
   `pupils_full_name` varchar(255) NOT NULL,
-  `birth_certificate_no` varchar(255) NOT NULL,
+  `idhocsinh` varchar(255) NOT NULL,
   `age` varchar(255) NOT NULL,
   `class` varchar(255) NOT NULL,
   `father_name` varchar(255) NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE `admission` (
   `mother_contact` varchar(255) NOT NULL,
   `guardian_name` varchar(255) DEFAULT NULL,
   `guardian_contact` varchar(255) DEFAULT NULL,
-  `upi` varchar(255) NOT NULL,
+  `note` varchar(255) NOT NULL,
   `special_need` varchar(255) NOT NULL,
   `admission_fee` varchar(255) DEFAULT NULL,
   `school_fee` varchar(255) NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE `admission` (
 -- Dumping data for table `admission`
 --
 
-INSERT INTO `admission` (`id`, `pupils_full_name`, `birth_certificate_no`, `age`, `class`, `father_name`, `mother_name`, `father_contact`, `mother_contact`, `guardian_name`, `guardian_contact`, `upi`, `special_need`, `admission_fee`, `school_fee`, `graduation_fee`, `lunch`, `bording`, `photo`, `gender`) VALUES
+INSERT INTO `admission` (`id`, `pupils_full_name`, `idhocsinh`, `age`, `class`, `father_name`, `mother_name`, `father_contact`, `mother_contact`, `guardian_name`, `guardian_contact`, `upi`, `special_need`, `admission_fee`, `school_fee`, `graduation_fee`, `lunch`, `bording`, `photo`, `gender`) VALUES
 (1, 'joshu mbithi kimanzi', 'L0340945494', '6', 'pp2', 'kim', 'glady', '0707333776', '0799807265', 'none', 'none', 'm790877gb', 'no', '500', '600', '120', '200', 'no', 'http://localhost/pre-primaryschoolmanagementsystem/uploads/files/qf8hyjt2o3ea6si.jpg', 'Male');
 
 -- --------------------------------------------------------
@@ -92,7 +92,7 @@ CREATE TABLE `apply_for_admission` (
   `gender` varchar(80) DEFAULT NULL,
   `class` varchar(80) DEFAULT NULL,
   `special_conditions` varchar(255) NOT NULL,
-  `upi` varchar(80) DEFAULT NULL,
+  `note` varchar(80) DEFAULT NULL,
   `parent_contact_no` varchar(255) NOT NULL,
   `resdence` varchar(255) NOT NULL,
   `home_county` varchar(255) NOT NULL,

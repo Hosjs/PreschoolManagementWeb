@@ -260,11 +260,11 @@ $show_pagination = $this->show_pagination;
                                                                                                 </span>
                                                                                             </div>
                                                                                             <div class="mb-2">  
-                                                                                                <span <?php if($can_edit){ ?> data-value="<?php echo $data['upi']; ?>" 
+                                                                                                <span <?php if($can_edit){ ?> data-value="<?php echo $data['note']; ?>" 
                                                                                                     data-pk="<?php echo $data['id'] ?>" 
                                                                                                     data-url="<?php print_link("apply_for_admission/editfield/" . urlencode($data['id'])); ?>" 
-                                                                                                    data-name="upi" 
-                                                                                                    data-title="Enter Upi" 
+                                                                                                    data-name="note" 
+                                                                                                    data-title="Enter note" 
                                                                                                     data-placement="left" 
                                                                                                     data-toggle="click" 
                                                                                                     data-type="text" 
@@ -274,7 +274,7 @@ $show_pagination = $this->show_pagination;
                                                                                                     <span class="font-weight-light text-muted ">
                                                                                                         Ghi chú:  
                                                                                                     </span>
-                                                                                                    <?php echo $data['upi']; ?> 
+                                                                                                    <?php echo $data['note']; ?> 
                                                                                                 </span>
                                                                                             </div>
                                                                                             <div class="mb-2">  
