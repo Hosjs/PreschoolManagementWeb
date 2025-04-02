@@ -102,7 +102,6 @@ class ACL
 				}
 				return FORBIDDEN;
 			} else {
-				//User does not have any role.
 				return NOROLE;
 			}
 		}

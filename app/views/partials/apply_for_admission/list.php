@@ -44,7 +44,7 @@ $show_pagination = $this->show_pagination;
                                                                 <div class="input-group">
                                                                     <input value="<?php echo get_value('search'); ?>" class="form-control" type="text" name="search"  placeholder="Search" />
                                                                         <div class="input-group-append">
-                                                                            <button class="btn btn-primary"><i class="material-icons">Tìm kiếm</i></button>
+                                                                            <button class="btn btn-primary"><i class="material-icons"></i>Tìm kiếm</button>
                                                                         </div>
                                                                     </div>
                                                                 </form>
