@@ -99,7 +99,7 @@ CREATE TABLE `apply_for_admission` (
 -- Dumping data for table `apply_for_admission`
 --
 
-INSERT INTO `apply_for_admission` (`id`, `surname`, `last_name`, `photo`, `gender`, `class`, `special_conditions`, `upi`, `parent_contact_no`, `resdence`, `home_county`, `year_of_birth`, `first_name`, `with_birth_certificate`, `father_full_name`, `mother_full_name`) VALUES
+INSERT INTO `apply_for_admission` (`id`, `surname`, `last_name`, `photo`, `gender`, `class`, `special_conditions`, `note`, `parent_contact_no`, `resdence`, `home_county`, `year_of_birth`, `first_name`, `with_birth_certificate`, `father_full_name`, `mother_full_name`) VALUES
 (1, 'sonko', 'mbuvi', 'http://localhost/pre-primaryschoolmanagementsystem/uploads/files/m6_g7nsw41phtxu.jpg', 'Male', 'grade 2', 'no', 'none', '07073333776', 'voi', 'taita', '2021-01-21', 'michael', 'yes', 'sonko j .m', 'glays m .m');
 
 -- --------------------------------------------------------

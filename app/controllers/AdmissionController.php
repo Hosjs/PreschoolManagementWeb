@@ -303,7 +303,7 @@ class AdmissionController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		//editable fields
-		$fields = $this->fields = array("id","pupils_full_name","idhocsinh","age","photo","gender","class","upi","bording","father_name","mother_name","father_contact","mother_contact","special_need","guardian_name","guardian_contact");
+		$fields = $this->fields = array("id","pupils_full_name","idhocsinh","age","photo","gender","class","note","bording","father_name","mother_name","father_contact","mother_contact","special_need","guardian_name","guardian_contact");
 		$page_error = null;
 		if($formdata){
 			$postdata = array();
