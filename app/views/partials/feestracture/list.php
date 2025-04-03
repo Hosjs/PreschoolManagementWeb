@@ -34,7 +34,7 @@ $show_pagination = $this->show_pagination;
                                                         <?php if($can_add){ ?>
                                                         <a  class="btn btn btn-primary my-1" href="<?php print_link("feestracture/add") ?>">
                                                             <i class="material-icons">add</i>                               
-                                                            Add New Feestracture 
+                                                            Thêm môn học 
                                                         </a>
                                                         <?php } ?>
                                                     </div>
@@ -137,7 +137,7 @@ $show_pagination = $this->show_pagination;
                                                                                             data-showbuttons="left" 
                                                                                             class="is-editable" <?php } ?>>
                                                                                             <span class="font-weight-light text-muted ">
-                                                                                                Title:  
+                                                                                                TTên môn học:  
                                                                                             </span>
                                                                                             <?php echo $data['title']; ?> 
                                                                                         </span>
@@ -157,7 +157,7 @@ $show_pagination = $this->show_pagination;
                                                                                             data-showbuttons="left" 
                                                                                             class="is-editable" <?php } ?>>
                                                                                             <span class="font-weight-light text-muted ">
-                                                                                                Date:  
+                                                                                                Ngày kết thúc:  
                                                                                             </span>
                                                                                             <?php echo $data['date']; ?> 
                                                                                         </span>

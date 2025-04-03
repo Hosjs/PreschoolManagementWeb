@@ -15,7 +15,7 @@ $redirect_to = $this->redirect_to;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">Add New Feestracture</h4>
+                    <h4 class="record-title">Thêm môn học</h4>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@ $redirect_to = $this->redirect_to;
                                 <div class="form-group ">
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <label class="control-label" for="title">Title <span class="text-danger">*</span></label>
+                                            <label class="control-label" for="title">Tên môn học <span class="text-danger">*</span></label>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="">
@@ -46,7 +46,7 @@ $redirect_to = $this->redirect_to;
                                     <div class="form-group ">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <label class="control-label" for="content">Fee structure <span class="text-danger">*</span></label>
+                                                <label class="control-label" for="content">Nội dung <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="">
@@ -62,7 +62,7 @@ $redirect_to = $this->redirect_to;
                                         <div class="form-group ">
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label class="control-label" for="date">Date <span class="text-danger">*</span></label>
+                                                    <label class="control-label" for="date">Ngày kết thúc <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="input-group">
@@ -78,8 +78,7 @@ $redirect_to = $this->redirect_to;
                                         <div class="form-group form-submit-btn-holder text-center mt-3">
                                             <div class="form-ajax-status"></div>
                                             <button class="btn btn-primary" type="submit">
-                                                Submit
-                                                <i class="material-icons">send</i>
+                                                Xác nhận
                                             </button>
                                         </div>
                                     </form>

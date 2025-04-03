@@ -28,7 +28,7 @@ $show_export_btn = $this->show_export_btn;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">View  Feestracture</h4>
+                    <h4 class="record-title">Xem thông tin môn học</h4>
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@ $show_export_btn = $this->show_export_btn;
                                 <!-- Table Body Start -->
                                 <tbody class="page-data" id="page-data-<?php echo $page_element_id; ?>">
                                     <tr  class="td-title">
-                                        <th class="title"> Title: </th>
+                                        <th class="title"> Tên môn học: </th>
                                         <td class="value">
                                             <span <?php if($can_edit){ ?> data-value="<?php echo $data['title']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
@@ -71,11 +71,11 @@ $show_export_btn = $this->show_export_btn;
                                         </td>
                                     </tr>
                                     <tr  class="td-content">
-                                        <th class="title"> Content: </th>
+                                        <th class="title"> Nội dung: </th>
                                         <td class="value"> <a class="btn btn-sm btn-light" href="<?php echo $data['content']; ?>"><i class ="fa fa-file"></i><?php echo " ".$data['title']; ?></a></td>
                                     </tr>
                                     <tr  class="td-date">
-                                        <th class="title"> Date: </th>
+                                        <th class="title"> Ngày kết thúc: </th>
                                         <td class="value">
                                             <span <?php if($can_edit){ ?> data-flatpickr="{altFormat: 'Y-m-d', minDate: '', maxDate: ''}" 
                                                 data-value="<?php echo $data['date']; ?>" 
