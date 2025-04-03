@@ -331,26 +331,6 @@ $show_pagination = $this->show_pagination;
                                                         <?php echo $data['mother_contact']; ?> 
                                                     </span>
                                                 </div>
-                                                
-                                                <div class="mb-2">  
-                                                    <span <?php if($can_edit){ ?> data-source='<?php echo json_encode_quote(Menu :: $bording); ?>' 
-                                                        data-value="<?php echo $data['bording']; ?>" 
-                                                        data-pk="<?php echo $data['id'] ?>" 
-                                                        data-url="<?php print_link("admission/editfield/" . urlencode($data['id'])); ?>" 
-                                                        data-name="bording" 
-                                                        data-title="Select a value ..." 
-                                                        data-placement="left" 
-                                                        data-toggle="click" 
-                                                        data-type="select" 
-                                                        data-mode="popover" 
-                                                        data-showbuttons="left" 
-                                                        class="is-editable" <?php } ?>>
-                                                        <span class="font-weight-light text-muted ">
-                                                            Quỹ lớp:  
-                                                        </span>
-                                                        <?php echo $data['bording']; ?> 
-                                                    </span>
-                                                </div>
                                                 <div class="mb-2">  
                                                     <span <?php if($can_edit){ ?> data-value="<?php echo $data['guardian_name']; ?>" 
                                                         data-pk="<?php echo $data['id'] ?>" 

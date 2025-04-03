@@ -165,18 +165,18 @@ $show_pagination = $this->show_pagination;
                                                                                     <div class="td-btn">
                                                                                         <?php if($can_view){ ?>
                                                                                         <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("feestracture/view/$rec_id"); ?>">
-                                                                                            <i class="material-icons">visibility</i> View
+                                                                                            <i class="material-icons">visibility</i> Xem
                                                                                         </a>
                                                                                         <?php } ?>
                                                                                         <?php if($can_edit){ ?>
                                                                                         <a class="btn btn-sm btn-info has-tooltip" title="Edit This Record" href="<?php print_link("feestracture/edit/$rec_id"); ?>">
-                                                                                            <i class="material-icons">edit</i> Edit
+                                                                                            <i class="material-icons">edit</i> Sửa
                                                                                         </a>
                                                                                         <?php } ?>
                                                                                         <?php if($can_delete){ ?>
                                                                                         <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" title="Delete this record" href="<?php print_link("feestracture/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
                                                                                             <i class="material-icons">clear</i>
-                                                                                            Delete
+                                                                                            Xóa
                                                                                         </a>
                                                                                         <?php } ?>
                                                                                     </div>

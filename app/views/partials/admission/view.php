@@ -166,25 +166,6 @@ $show_export_btn = $this->show_export_btn;
                                             </span>
                                         </td>
                                     </tr>
-                                    <tr  class="td-bording">
-                                        <th class="title"> Quỹ lớp: </th>
-                                        <td class="value">
-                                            <span <?php if($can_edit){ ?> data-source='<?php echo json_encode_quote(Menu :: $bording); ?>' 
-                                                data-value="<?php echo $data['bording']; ?>" 
-                                                data-pk="<?php echo $data['id'] ?>" 
-                                                data-url="<?php print_link("admission/editfield/" . urlencode($data['id'])); ?>" 
-                                                data-name="bording" 
-                                                data-title="Select a value ..." 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="select" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['bording']; ?> 
-                                            </span>
-                                        </td>
-                                    </tr>
                                     <tr  class="td-father_name">
                                         <th class="title"> Tên bố: </th>
                                         <td class="value">

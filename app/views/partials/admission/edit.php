@@ -161,36 +161,6 @@ $redirect_to = $this->redirect_to;
                                                                         <div class="form-group ">
                                                                             <div class="row">
                                                                                 <div class="col-sm-4">
-                                                                                    <label class="control-label" for="bording">Phụ phí <span class="text-danger">*</span></label>
-                                                                                </div>
-                                                                                <div class="col-sm-8">
-                                                                                    <div class="">
-                                                                                        <select required=""  id="ctrl-bording" name="bording"  placeholder="Select a value ..."    class="custom-select" >
-                                                                                            <option value="">Select a value ...</option>
-                                                                                            <?php
-                                                                                            $bording_options = Menu :: $bording;
-                                                                                            $field_value = $data['bording'];
-                                                                                            if(!empty($bording_options)){
-                                                                                            foreach($bording_options as $option){
-                                                                                            $value = $option['value'];
-                                                                                            $label = $option['label'];
-                                                                                            $selected = ( $value == $field_value ? 'selected' : null );
-                                                                                            ?>
-                                                                                            <option <?php echo $selected ?> value="<?php echo $value ?>">
-                                                                                                <?php echo $label ?>
-                                                                                            </option>                                   
-                                                                                            <?php
-                                                                                            }
-                                                                                            }
-                                                                                            ?>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group ">
-                                                                            <div class="row">
-                                                                                <div class="col-sm-4">
                                                                                     <label class="control-label" for="father_name">Tên bố <span class="text-danger">*</span></label>
                                                                                 </div>
                                                                                 <div class="col-sm-8">
