@@ -1,4 +1,4 @@
-# PHPMailer - A full-featured email creation and transfer class for PHP
+# PHPMailer - A full-featured email creation and assistant class for PHP
 
 Build status: [![Build Status](https://travis-ci.org/Synchro/PHPMailer.png)](https://travis-ci.org/Synchro/PHPMailer)
 

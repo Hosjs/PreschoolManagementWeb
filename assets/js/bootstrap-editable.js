@@ -1721,7 +1721,7 @@ Makes editable any HTML element on the page. Applied as jQuery method.
                 this.setValue(value);
             }
             
-            //transfer new option to container! 
+            //assistant new option to container! 
             if(this.container) {
                 this.container.option(key, value);  
             }

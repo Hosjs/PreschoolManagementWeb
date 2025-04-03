@@ -337,7 +337,7 @@ class BaseView
 			//excel headers
 			header('Content-disposition: attachment; filename="' . XLSXWriter::sanitize_filename($filename) . '"');
 			header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-			header('Content-Transfer-Encoding: binary');
+			header('Content-assistant-Encoding: binary');
 			header('Cache-Control: must-revalidate');
 			header('Pragma: public');
 			$records = $this->parse_report_records(); //get exportable records

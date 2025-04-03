@@ -30,13 +30,13 @@ $show_pagination = $this->show_pagination;
         <div class="container-fluid">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">Assignment</h4>
+                    <h4 class="record-title">Bài tập</h4>
                 </div>
                 <div class="col-sm-3 ">
                     <?php if($can_add){ ?>
                     <a  class="btn btn btn-primary my-1" href="<?php print_link("assignment/add") ?>">
                         <i class="material-icons">add</i>                               
-                        Add New Assignment 
+                        Thêm bài tập 
                     </a>
                     <?php } ?>
                 </div>
@@ -125,10 +125,10 @@ $show_pagination = $this->show_pagination;
                                                 </th>
                                                 <?php } ?>
                                                 <th class="td-sno">#</th>
-                                                <th  class="td-assignment_name"> Assignment Name</th>
-                                                <th  class="td-assignment_type"> Assignment Type</th>
+                                                <th  class="td-assignment_name"> Tên bài tập</th>
+                                                <th  class="td-assignment_type"> Loại bài tập</th>
                                                 <th  class="td-download"> Download</th>
-                                                <th  class="td-date"> Date</th>
+                                                <th  class="td-date"> Hạn</th>
                                                 <th class="td-btn"></th>
                                             </tr>
                                         </thead>
@@ -204,18 +204,18 @@ $show_pagination = $this->show_pagination;
                                                     <th class="td-btn">
                                                         <?php if($can_view){ ?>
                                                         <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("assignment/view/$rec_id"); ?>">
-                                                            <i class="material-icons">visibility</i> View
+                                                            <i class="material-icons">visibility</i> Xem
                                                         </a>
                                                         <?php } ?>
                                                         <?php if($can_edit){ ?>
                                                         <a class="btn btn-sm btn-info has-tooltip" title="Edit This Record" href="<?php print_link("assignment/edit/$rec_id"); ?>">
-                                                            <i class="material-icons">edit</i> Edit
+                                                            <i class="material-icons">edit</i> Sửa
                                                         </a>
                                                         <?php } ?>
                                                         <?php if($can_delete){ ?>
                                                         <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" title="Delete this record" href="<?php print_link("assignment/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
                                                             <i class="material-icons">clear</i>
-                                                            Delete
+                                                            Xóa
                                                         </a>
                                                         <?php } ?>
                                                     </th>

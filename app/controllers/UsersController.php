@@ -22,7 +22,6 @@ class UsersController extends SecureController{
 			"first_name", 
 			"last_name", 
 			"email", 
-			"class", 
 			"photo", 
 			"birth_day", 
 			"resdence", 
@@ -39,7 +38,6 @@ class UsersController extends SecureController{
 				users.first_name LIKE ? OR 
 				users.last_name LIKE ? OR 
 				users.email LIKE ? OR 
-				users.class LIKE ? OR 
 				users.photo LIKE ? OR 
 				users.birth_day LIKE ? OR 
 				users.resdence LIKE ? OR 
@@ -50,7 +48,7 @@ class UsersController extends SecureController{
 				users.account_status LIKE ?
 			)";
 			$search_params = array(
-				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
+				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
 			);
 			//setting search conditions
 			$db->where($search_condition, $search_params);
@@ -106,7 +104,6 @@ class UsersController extends SecureController{
 			"last_name", 
 			"email", 
 			"photo", 
-			"class", 
 			"birth_day", 
 			"resdence", 
 			"username", 
@@ -148,7 +145,7 @@ class UsersController extends SecureController{
 			$tablename = $this->tablename;
 			$request = $this->request;
 			//fillable fields
-			$fields = $this->fields = array("first_name","last_name","email","photo","birth_day","resdence","phone","username","password","role","class","account_status");
+			$fields = $this->fields = array("first_name","last_name","email","photo","birth_day","resdence","phone","username","password","role","account_status");
 			$postdata = $this->format_request_data($formdata);
 			$cpassword = $postdata['confirm_password'];
 			$password = $postdata['password'];
@@ -166,7 +163,6 @@ class UsersController extends SecureController{
 				'username' => 'required',
 				'password' => 'required',
 				'role' => 'required',
-				'class' => 'required',
 				'account_status' => 'required',
 			);
 			$this->sanitize_array = array(
@@ -179,7 +175,6 @@ class UsersController extends SecureController{
 				'phone' => 'sanitize_string',
 				'username' => 'sanitize_string',
 				'role' => 'sanitize_string',
-				'class' => 'sanitize_string',
 				'account_status' => 'sanitize_string',
 			);
 			$this->filter_vals = true; //set whether to remove empty fields
@@ -223,7 +218,7 @@ class UsersController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		 //editable fields
-		$fields = $this->fields = array("id","first_name","last_name","photo","birth_day","resdence","phone","username","role","class","account_status");
+		$fields = $this->fields = array("id","first_name","last_name","photo","birth_day","resdence","phone","username","role","account_status");
 		if($formdata){
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
@@ -235,7 +230,6 @@ class UsersController extends SecureController{
 				'phone' => 'required',
 				'username' => 'required',
 				'role' => 'required',
-				'class' => 'required',
 				'account_status' => 'required',
 			);
 			$this->sanitize_array = array(
@@ -247,7 +241,6 @@ class UsersController extends SecureController{
 				'phone' => 'sanitize_string',
 				'username' => 'sanitize_string',
 				'role' => 'sanitize_string',
-				'class' => 'sanitize_string',
 				'account_status' => 'sanitize_string',
 			);
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
@@ -299,7 +292,7 @@ class UsersController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		//editable fields
-		$fields = $this->fields = array("id","first_name","last_name","photo","birth_day","resdence","phone","username","role","class","account_status");
+		$fields = $this->fields = array("id","first_name","last_name","photo","birth_day","resdence","phone","username","role","account_status");
 		$page_error = null;
 		if($formdata){
 			$postdata = array();
@@ -316,7 +309,6 @@ class UsersController extends SecureController{
 				'phone' => 'required',
 				'username' => 'required',
 				'role' => 'required',
-				'class' => 'required',
 				'account_status' => 'required',
 			);
 			$this->sanitize_array = array(
@@ -328,7 +320,6 @@ class UsersController extends SecureController{
 				'phone' => 'sanitize_string',
 				'username' => 'sanitize_string',
 				'role' => 'sanitize_string',
-				'class' => 'sanitize_string',
 				'account_status' => 'sanitize_string',
 			);
 			$this->filter_rules = true; //filter validation rules by excluding fields not in the formdata

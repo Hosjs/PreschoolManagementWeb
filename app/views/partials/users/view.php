@@ -96,24 +96,7 @@ $show_export_btn = $this->show_export_btn;
                                         <th class="title"> Photo: </th>
                                         <td class=""><img class="img img-thumbnail" alt="nngf" width="150" height="150" src="<?php echo $data['photo']; ?>"></img></td>
                                     </tr>
-                                    <tr  class="td-class">
-                                        <th class="title"> Class: </th>
-                                        <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['class']; ?>" 
-                                                data-pk="<?php echo $data['id'] ?>" 
-                                                data-url="<?php print_link("users/editfield/" . urlencode($data['id'])); ?>" 
-                                                data-name="class" 
-                                                data-title="Enter Class" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="text" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['class']; ?> 
-                                            </span>
-                                        </td>
-                                    </tr>
+                                   
                                     <tr  class="td-birth_day">
                                         <th class="title"> Birth Day: </th>
                                         <td class="value">

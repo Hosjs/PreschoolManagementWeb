@@ -211,24 +211,7 @@ $show_export_btn = $this->show_export_btn;
                                                             </span>
                                                         </td>
                                                     </tr>
-                                                    <tr  class="td-class">
-                                                        <th class="title"> Lớp: </th>
-                                                        <td class="value">
-                                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['class']; ?>" 
-                                                                data-pk="<?php echo $data['id'] ?>" 
-                                                                data-url="<?php print_link("users/editfield/" . urlencode($data['id'])); ?>" 
-                                                                data-name="class" 
-                                                                data-title="Enter Class" 
-                                                                data-placement="left" 
-                                                                data-toggle="click" 
-                                                                data-type="text" 
-                                                                data-mode="popover" 
-                                                                data-showbuttons="left" 
-                                                                class="is-editable" <?php } ?>>
-                                                                <?php echo $data['class']; ?> 
-                                                            </span>
-                                                        </td>
-                                                    </tr>
+                                                
                                                     <tr  class="td-account_status">
                                                         <th class="title"> Trạng thái tài khoản: </th>
                                                         <td class="value">

@@ -304,9 +304,9 @@ function download_file($file_path, $savename = null, $showsavedialog = false)
 			$savename = basename($file_path);
 		}
 
-		header('Content-Transfer-Encoding: binary');
+		header('Content-assistant-Encoding: binary');
 		header('Content-disposition: attachment; filename="' . $savename . '"');
-		header('Content-Description: File Transfer');
+		header('Content-Description: File assistant');
 		header('Expires: 0');
 		header('Cache-Control: must-revalidate');
 		header('Pragma: public');
@@ -329,7 +329,7 @@ function http_get($url)
 {
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_RETURNassistant, true);
 	//curl_setopt($ch,CURLOPT_HEADER, false); 
 	$output = curl_exec($ch);
 	curl_close($ch);
@@ -352,7 +352,7 @@ function http_post($url, $params = array())
 	$postData = rtrim($postData, '&');
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_RETURNassistant, true);
 	curl_setopt($ch, CURLOPT_HEADER, false);
 	curl_setopt($ch, CURLOPT_POST, count($postData));
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);

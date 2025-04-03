@@ -45,12 +45,12 @@ class SharedController extends BaseController{
 	}
 
 	/**
-     * getcount_admission Model Action
+     * getcount_student Model Action
      * @return Value
      */
-	function getcount_admission(){
+	function getcount_student(){
 		$db = $this->GetModel();
-		$sqltext = "SELECT COUNT(*) AS num FROM admission";
+		$sqltext = "SELECT COUNT(*) AS num FROM student";
 		$queryparams = null;
 		$val = $db->rawQueryValue($sqltext, $queryparams);
 		
@@ -82,7 +82,7 @@ class SharedController extends BaseController{
      */
 	function getcount_feestructure(){
 		$db = $this->GetModel();
-		$sqltext = "SELECT COUNT(*) AS num FROM feestracture";
+		$sqltext = "SELECT COUNT(*) AS num FROM subject";
 		$queryparams = null;
 		$val = $db->rawQueryValue($sqltext, $queryparams);
 		
@@ -93,12 +93,12 @@ class SharedController extends BaseController{
 	}
 
 	/**
-     * getcount_applyforadmission Model Action
+     * getcount_applyforstudent Model Action
      * @return Value
      */
-	function getcount_applyforadmission(){
+	function getcount_applyforstudent(){
 		$db = $this->GetModel();
-		$sqltext = "SELECT COUNT(*) AS num FROM apply_for_admission";
+		$sqltext = "SELECT COUNT(*) AS num FROM student_list";
 		$queryparams = null;
 		$val = $db->rawQueryValue($sqltext, $queryparams);
 		
@@ -146,7 +146,7 @@ class SharedController extends BaseController{
      */
 	function getcount_enrollment(){
 		$db = $this->GetModel();
-		$sqltext = "SELECT COUNT(*) AS num FROM enrolment";
+		$sqltext = "SELECT COUNT(*) AS num FROM class";
 		$queryparams = null;
 		$val = $db->rawQueryValue($sqltext, $queryparams);
 		
@@ -173,12 +173,12 @@ class SharedController extends BaseController{
 	}
 
 	/**
-     * getcount_perfomance Model Action
+     * getcount_health_care Model Action
      * @return Value
      */
-	function getcount_perfomance(){
+	function getcount_health_care(){
 		$db = $this->GetModel();
-		$sqltext = "SELECT COUNT(*) AS num FROM perfomance";
+		$sqltext = "SELECT COUNT(*) AS num FROM health_care";
 		$queryparams = null;
 		$val = $db->rawQueryValue($sqltext, $queryparams);
 		

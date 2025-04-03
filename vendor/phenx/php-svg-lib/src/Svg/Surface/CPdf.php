@@ -3259,7 +3259,7 @@ EOT;
             }
         }
 
-        // and if there has been a stroke or fill color set, then transfer them
+        // and if there has been a stroke or fill color set, then assistant them
         if (isset($this->currentColor)) {
             $this->setColor($this->currentColor, true);
         }

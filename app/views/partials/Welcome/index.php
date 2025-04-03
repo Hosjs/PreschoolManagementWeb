@@ -2,33 +2,36 @@
 <html>
 <head>
 <style>
-        <meta charset="UTF-8">
-    <title>Giới thiệu trường Mầm Non</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <style>
         body {
-            background: url("assets/images/bg-side.png") repeat-y left top,
-                        url("assets/images/bg-side.png") repeat-y right top;
-            background-color: #d0eaff;
-            font-size: 20px;
-            line-height: 1.6;
+            background: url("assets/images/Nen_Web.jpg") no-repeat center center fixed;
+            background-size: cover;
+            font-size: 22px;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
         }
-        .content-wrapper {
+        .overlay {
+            background-color: rgba(255, 255, 255, 0.9);
             max-width: 900px;
             margin: auto;
-            background-color: white;
-            padding: 40px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            border-radius: 10px;
+            padding: 60px 40px;
+            margin-top: 80px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
         }
         h1 {
-            color: #007bff;
+            color: #ff6f61;
+            font-weight: bold;
+        }
+        .btn-start {
+            font-size: 20px;
+            padding: 10px 30px;
         }
     </style>
 </head>
 <body class="bg-light">
-    <div class="container mt-5 text-center">
-        <h1 class="mb-4">Trường Mầm Non</h1>
+<div class="overlay text-center">
+<h1 class="mb-4">Trường Mầm Non</h1>
         <p class="lead">Chào mừng bạn đến với cổng thông tin trường mầm non thân thiện và sáng tạo!</p>
         <p>Trong hệ thống giáo dục nước nhà nói chung và Huyện thủy nguyên nói riêng, GD mầm non luôn là cấp học rất được quan tâm, bởi đây là cấp học đầu tiên đóng vai trò quan trọng đối với sự hình thành nhân cách và phát triển năng lực của trẻ. Cũng bởi vậy, trong năm học vừa qua, các trường MN trên địa bàn huyện luôn được quan tâm tạo điều kiện phát triển cả về CSVC và chất lượng GD đáp ứng nhu cầu CS-ND-GD trẻ em, trở thành điểm sáng trong giáo dục MN toàn thành phố. Trường MN Thủy Đường cũng là một trong những ngôi trường điển hình vì sự phát triển của trẻ thơ.</p>
 

@@ -76,18 +76,6 @@ $redirect_to = $this->redirect_to;
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group ">
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                        <label class="control-label" for="class">Lớp <span class="text-danger">*</span></label>
-                                                    </div>
-                                                    <div class="col-sm-8">
-                                                        <div class="">
-                                                            <input id="ctrl-class"  value="<?php  echo $this->set_field_value('class',""); ?>" type="text" placeholder="Enter Class"  required="" name="class"  class="form-control " />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <div class="form-group ">
                                                     <div class="row">
                                                         <div class="col-sm-4">
@@ -227,7 +215,7 @@ $redirect_to = $this->redirect_to;
                                                                     <div class="form-group form-submit-btn-holder text-center mt-3">
                                                                         <button class="btn btn-primary" type="submit">
                                                                             Xác nhận
-                                                                            <i class="material-icons">Gửi</i>
+                                                                            <i class="material-icons"></i>
                                                                         </button>
                                                                     </div>
                                                                 </form>

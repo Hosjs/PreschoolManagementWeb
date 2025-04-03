@@ -67,7 +67,7 @@ class EventController extends SecureController{
 		if($db->getLastError()){
 			$this->set_page_error();
 		}
-		$page_title = $this->view->page_title = "Event";
+		$page_title = $this->view->page_title = "Sự kiện";
 		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
 		$this->view->report_title = $page_title;
 		$this->view->report_layout = "report_layout.php";
@@ -99,7 +99,7 @@ class EventController extends SecureController{
 		}
 		$record = $db->getOne($tablename, $fields );
 		if($record){
-			$page_title = $this->view->page_title = "View  Event";
+			$page_title = $this->view->page_title = "Xem sự kiện";
 		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
 		$this->view->report_title = $page_title;
 		$this->view->report_layout = "report_layout.php";
@@ -153,7 +153,7 @@ class EventController extends SecureController{
 				}
 			}
 		}
-		$page_title = $this->view->page_title = "Add New Event";
+		$page_title = $this->view->page_title = "Thêm sự kiện";
 		$this->render_view("event/add.php");
 	}
 	/**
@@ -207,7 +207,7 @@ class EventController extends SecureController{
 		}
 		$db->where("event.id", $rec_id);;
 		$data = $db->getOne($tablename, $fields);
-		$page_title = $this->view->page_title = "Edit  Event";
+		$page_title = $this->view->page_title = "Sửa sự kiện";
 		if(!$data){
 			$this->set_page_error();
 		}

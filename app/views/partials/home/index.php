@@ -28,8 +28,8 @@ $current_page = $this->set_current_page_link();
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-4 comp-grid">
-                    <?php $rec_count = $comp_model->getcount_admission();  ?>
-                    <a class="animated rubberBand record-count card bg-success text-white"  href="<?php print_link("admission/") ?>">
+                    <?php $rec_count = $comp_model->getcount_student();  ?>
+                    <a class="animated rubberBand record-count card bg-success text-white"  href="<?php print_link("student/") ?>">
                         <div class="row">
                             <div class="col-2">
                                 <i class="material-icons mi-xxxlg">face</i>
@@ -45,7 +45,7 @@ $current_page = $this->set_current_page_link();
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-4 comp-grid">
-                    <?php $rec_count = $comp_model->getcount_admission();  ?>
+                    <?php $rec_count = $comp_model->getcount_student();  ?>
                     <a class="animated rubberBand record-count card bg-light text-dark"  href="<?php print_link("Message/") ?>">
                         <div class="row">
                             <div class="col-2">
@@ -80,7 +80,7 @@ $current_page = $this->set_current_page_link();
                 </div>
                 <div class="col-md-3 col-sm-4 comp-grid">
                     <?php $rec_count = $comp_model->getcount_feestructure();  ?>
-                    <a class="animated rubberBand record-count alert alert-primary"  href="<?php print_link("feestracture/") ?>">
+                    <a class="animated rubberBand record-count alert alert-primary"  href="<?php print_link("subject/") ?>">
                         <div class="row">
                             <div class="col-2">
                                 <i class="material-icons mi-xxxlg">share</i>
@@ -96,8 +96,8 @@ $current_page = $this->set_current_page_link();
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-4 comp-grid">
-                    <?php $rec_count = $comp_model->getcount_applyforadmission();  ?>
-                    <a class="animated zoomIn record-count alert alert-info"  href="<?php print_link("apply_for_admission/") ?>">
+                    <?php $rec_count = $comp_model->getcount_applyforstudent();  ?>
+                    <a class="animated zoomIn record-count alert alert-info"  href="<?php print_link("student_list/") ?>">
                         <div class="row">
                             <div class="col-2">
                                 <i class="material-icons mi-xxxlg">archive</i>
@@ -150,7 +150,7 @@ $current_page = $this->set_current_page_link();
                 </div>
                 <div class="col-md-3 col-sm-4 comp-grid">
                     <?php $rec_count = $comp_model->getcount_enrollment();  ?>
-                    <a class="animated zoomIn record-count card bg-danger text-white"  href="<?php print_link("enrolment/") ?>">
+                    <a class="animated zoomIn record-count card bg-danger text-white"  href="<?php print_link("class/") ?>">
                         <div class="row">
                             <div class="col-2">
                                 <i class="material-icons mi-xxxlg">assignment_ind</i>
@@ -183,15 +183,15 @@ $current_page = $this->set_current_page_link();
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-4 comp-grid">
-                    <?php $rec_count = $comp_model->getcount_perfomance();  ?>
-                    <a class="animated slideInRight record-count card bg-info text-white card-white"  href="<?php print_link("perfomance/") ?>">
+                    <?php $rec_count = $comp_model->getcount_health_care();  ?>
+                    <a class="animated slideInRight record-count card bg-info text-white card-white"  href="<?php print_link("health_care/") ?>">
                     <div class="row">
                             <div class="col-2">
                                 <i class="material-icons mi-xxxlg">assignment_turned_in</i>
                             </div>
                             <div class="col-10">
                                 <div class="flex-column justify-content align-center">
-                                    <div class="title">Thành tích</div>
+                                    <div class="title">Theo dõi sức khỏe</div>
                                     <small class=""></small>
                                 </div>
                             </div>

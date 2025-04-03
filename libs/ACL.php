@@ -17,14 +17,14 @@ class ACL
 			'headteacher' =>
 						array(
 							'users' => array('list','view','userregister','accountedit','accountview','add','edit', 'editfield','delete','import_data'),
-							'admission' => array('list','view','add','edit', 'editfield','delete','import_data'),
+							'student' => array('list','view','add','edit', 'editfield','delete','import_data'),
 							'announcement' => array('list','view','add','edit', 'editfield','delete','import_data'),
-							'feestracture' => array('list','view','add','edit', 'editfield','delete','import_data'),
-							'apply_for_admission' => array('list','view','add','edit', 'editfield','delete','import_data'),
+							'subject' => array('list','view','add','edit', 'editfield','delete','import_data'),
+							'student_list' => array('list','view','add','edit', 'editfield','delete','import_data'),
 							'assignment' => array('list','view','add','edit', 'editfield','delete','import_data'),
 							'event' => array('list','view','add','edit', 'editfield','delete','import_data'),
-							'enrolment' => array('list','view','add','edit', 'editfield','delete','import_data'),
-							'perfomance' => array('list','view','add','edit', 'editfield','delete','import_data'),
+							'class' => array('list','view','add','edit', 'editfield','delete','import_data'),
+							'health_care' => array('list','view','add','edit', 'editfield','delete','import_data'),
 							'how_to_make_payment' => array('list','view','add','edit', 'editfield','delete'),
 							'message' => array('list','view','add','edit', 'editfield','delete','import_data','group'),
 						),
@@ -32,8 +32,8 @@ class ACL
 			'pupils' =>
 						array(
 							'announcement' => array('list','view'),
-							'feestracture' => array('list','view'),
-							'apply_for_admission' => array('list','add'),
+							'subject' => array('list','view'),
+							'student_list' => array('list','add'),
 							'assignment' => array('list','view'),
 							'event' => array('list','view'),
 							'how_to_make_payment' => array('list','add'),

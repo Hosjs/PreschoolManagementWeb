@@ -67,7 +67,7 @@ class AnnouncementController extends SecureController{
 		if($db->getLastError()){
 			$this->set_page_error();
 		}
-		$page_title = $this->view->page_title = "Announcement";
+		$page_title = $this->view->page_title = "Thông báo";
 		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
 		$this->view->report_title = $page_title;
 		$this->view->report_layout = "report_layout.php";
@@ -99,7 +99,7 @@ class AnnouncementController extends SecureController{
 		}
 		$record = $db->getOne($tablename, $fields );
 		if($record){
-			$page_title = $this->view->page_title = "View  Announcement";
+			$page_title = $this->view->page_title = "Xem thông báo";
 		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
 		$this->view->report_title = $page_title;
 		$this->view->report_layout = "report_layout.php";
@@ -153,7 +153,7 @@ class AnnouncementController extends SecureController{
 				}
 			}
 		}
-		$page_title = $this->view->page_title = "Add New Announcement";
+		$page_title = $this->view->page_title = "Thêm thông báo";
 		$this->render_view("announcement/add.php");
 	}
 	/**
@@ -207,7 +207,7 @@ class AnnouncementController extends SecureController{
 		}
 		$db->where("announcement.id", $rec_id);;
 		$data = $db->getOne($tablename, $fields);
-		$page_title = $this->view->page_title = "Edit  Announcement";
+		$page_title = $this->view->page_title = "Sửa thông báo";
 		if(!$data){
 			$this->set_page_error();
 		}

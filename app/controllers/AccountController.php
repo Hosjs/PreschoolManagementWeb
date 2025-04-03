@@ -25,11 +25,10 @@ class AccountController extends SecureController{
 			"username", 
 			"email", 
 			"role", 
-			"class", 
 			"account_status");
 		$user = $db->getOne($tablename , $fields);
 		if(!empty($user)){
-			$page_title = $this->view->page_title = "My Account";
+			$page_title = $this->view->page_title = "Tài khoản của tôi";
 			$this->render_view("account/view.php", $user);
 		}
 		else{
@@ -48,7 +47,7 @@ class AccountController extends SecureController{
 		$rec_id = $this->rec_id = USER_ID;
 		$tablename = $this->tablename;
 		 //editable fields
-		$fields = $this->fields = array("id","first_name","last_name","photo","birth_day","resdence","phone","username","role","class","account_status");
+		$fields = $this->fields = array("id","first_name","last_name","photo","birth_day","resdence","phone","username","role","account_status");
 		if($formdata){
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
@@ -60,7 +59,6 @@ class AccountController extends SecureController{
 				'phone' => 'required',
 				'username' => 'required',
 				'role' => 'required',
-				'class' => 'required',
 				'account_status' => 'required',
 			);
 			$this->sanitize_array = array(
@@ -72,7 +70,6 @@ class AccountController extends SecureController{
 				'phone' => 'sanitize_string',
 				'username' => 'sanitize_string',
 				'role' => 'sanitize_string',
-				'class' => 'sanitize_string',
 				'account_status' => 'sanitize_string',
 			);
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
@@ -108,7 +105,7 @@ class AccountController extends SecureController{
 		}
 		$db->where("users.id", $rec_id);;
 		$data = $db->getOne($tablename, $fields);
-		$page_title = $this->view->page_title = "My Account";
+		$page_title = $this->view->page_title = "Tài khoản của tôi";
 		if(!$data){
 			$this->set_page_error();
 		}

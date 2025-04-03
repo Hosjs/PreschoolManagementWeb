@@ -15,7 +15,7 @@ $redirect_to = $this->redirect_to;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">Add New Assignment</h4>
+                    <h4 class="record-title">Thêm bài tập</h4>
                 </div>
             </div>
         </div>
@@ -34,11 +34,11 @@ $redirect_to = $this->redirect_to;
                                 <div class="form-group ">
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <label class="control-label" for="assignment_name">Assignment Name <span class="text-danger">*</span></label>
+                                            <label class="control-label" for="assignment_name">Tên bài tập <span class="text-danger">*</span></label>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="">
-                                                <input id="ctrl-assignment_name"  value="<?php  echo $this->set_field_value('assignment_name',""); ?>" type="text" placeholder="Enter Assignment Name"  required="" name="assignment_name"  class="form-control " />
+                                                <input id="ctrl-assignment_name"  value="<?php  echo $this->set_field_value('assignment_name',""); ?>" type="text" placeholder="Nhập tên bài tập"  required="" name="assignment_name"  class="form-control " />
                                                 </div>
                                             </div>
                                         </div>
@@ -46,11 +46,11 @@ $redirect_to = $this->redirect_to;
                                     <div class="form-group ">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <label class="control-label" for="assignment_type">Assignment Type <span class="text-danger">*</span></label>
+                                                <label class="control-label" for="assignment_type">Loại bài tập <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="">
-                                                    <select required=""  id="ctrl-assignment_type" name="assignment_type"  placeholder="Select a value ..."    class="custom-select" >
+                                                    <select required=""  id="ctrl-assignment_type" name="assignment_type"  placeholder="Chọn 1 giá trị"    class="custom-select" >
                                                         <option value="">Select a value ...</option>
                                                         <?php
                                                         $assignment_type_options = Menu :: $assignment_type;
@@ -79,7 +79,7 @@ $redirect_to = $this->redirect_to;
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="">
-                                                    <div class="dropzone required" input="#ctrl-download" fieldname="download"    data-multiple="false" dropmsg="Choose files or drag and drop files to upload"    btntext="Browse" filesize="3" maximum="1">
+                                                    <div class="dropzone required" input="#ctrl-download" fieldname="download"    data-multiple="false" dropmsg="Chọn hoặc gửi file"    btntext="Browse" filesize="3" maximum="1">
                                                         <input name="download" id="ctrl-download" required="" class="dropzone-input form-control" value="<?php  echo $this->set_field_value('download',""); ?>" type="text"  />
                                                             <!--<div class="invalid-feedback animated bounceIn text-center">Please a choose file</div>-->
                                                             <div class="dz-file-limit animated bounceIn text-center text-danger"></div>
@@ -91,11 +91,11 @@ $redirect_to = $this->redirect_to;
                                         <div class="form-group ">
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label class="control-label" for="date">Date <span class="text-danger">*</span></label>
+                                                    <label class="control-label" for="date">Hạn nộp <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="input-group">
-                                                        <input id="ctrl-date" class="form-control datepicker  datepicker"  required="" value="<?php  echo $this->set_field_value('date',""); ?>" type="datetime" name="date" placeholder="Enter Date" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
+                                                        <input id="ctrl-date" class="form-control datepicker  datepicker"  required="" value="<?php  echo $this->set_field_value('date',""); ?>" type="datetime" name="date" placeholder="Nhập hạn nộp" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
                                                             <div class="input-group-append">
                                                                 <span class="input-group-text"><i class="material-icons">date_range</i></span>
                                                             </div>
@@ -107,7 +107,7 @@ $redirect_to = $this->redirect_to;
                                         <div class="form-group form-submit-btn-holder text-center mt-3">
                                             <div class="form-ajax-status"></div>
                                             <button class="btn btn-primary" type="submit">
-                                                Submit
+                                                Gửi 
                                                 <i class="material-icons">send</i>
                                             </button>
                                         </div>

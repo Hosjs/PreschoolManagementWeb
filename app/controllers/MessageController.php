@@ -70,7 +70,7 @@ class MessageController extends SecureController
                 $insert_id = $db->insert($this->tablename, $data);
 
                 if (!$insert_id) {
-                    echo "<pre style='color:red'>❌ Lỗi khi chèn tin nhắn: " . $db->getLastError() . "</pre>";
+                    echo "<pre style='color:red'>Lỗi khi chèn tin nhắn: " . $db->getLastError() . "</pre>";
                 }
             }
 

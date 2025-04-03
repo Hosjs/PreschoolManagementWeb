@@ -71,7 +71,7 @@ class How_to_make_paymentController extends SecureController{
 		if($db->getLastError()){
 			$this->set_page_error();
 		}
-		$page_title = $this->view->page_title = "How To Make Payment";
+		$page_title = $this->view->page_title = "Cách thức thanh toán";
 		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
 		$this->view->report_title = $page_title;
 		$this->view->report_layout = "report_layout.php";
@@ -105,7 +105,7 @@ class How_to_make_paymentController extends SecureController{
 		}
 		$record = $db->getOne($tablename, $fields );
 		if($record){
-			$page_title = $this->view->page_title = "View  How To Make Payment";
+			$page_title = $this->view->page_title = "Xem cách thức thanh toán";
 		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
 		$this->view->report_title = $page_title;
 		$this->view->report_layout = "report_layout.php";
@@ -164,7 +164,7 @@ class How_to_make_paymentController extends SecureController{
 				}
 			}
 		}
-		$page_title = $this->view->page_title = "Add New How To Make Payment";
+		$page_title = $this->view->page_title = "Thêm cách thức thanh toán";
 		$this->render_view("how_to_make_payment/add.php");
 	}
 	/**
@@ -223,7 +223,7 @@ class How_to_make_paymentController extends SecureController{
 		}
 		$db->where("how_to_make_payment.id", $rec_id);;
 		$data = $db->getOne($tablename, $fields);
-		$page_title = $this->view->page_title = "Edit  How To Make Payment";
+		$page_title = $this->view->page_title = "Chỉnh sửa cách thức thanh toán";
 		if(!$data){
 			$this->set_page_error();
 		}

@@ -1710,7 +1710,7 @@ class PHPMailer
         }
         //RFC1341 part 5 says 7bit is assumed if not specified
         if ($this->Encoding != '7bit') {
-            $result .= $this->headerLine('Content-Transfer-Encoding', $this->Encoding);
+            $result .= $this->headerLine('Content-assistant-Encoding', $this->Encoding);
         }
 
         if ($this->Mailer != 'mail') {
@@ -1907,7 +1907,7 @@ class PHPMailer
         $result .= $this->textLine('--' . $boundary);
         $result .= sprintf("Content-Type: %s; charset=%s", $contentType, $charSet);
         $result .= $this->LE;
-        $result .= $this->headerLine('Content-Transfer-Encoding', $encoding);
+        $result .= $this->headerLine('Content-assistant-Encoding', $encoding);
         $result .= $this->LE;
 
         return $result;
@@ -2082,7 +2082,7 @@ class PHPMailer
                     $this->encodeHeader($this->secureHeader($name)),
                     $this->LE
                 );
-                $mime[] = sprintf("Content-Transfer-Encoding: %s%s", $encoding, $this->LE);
+                $mime[] = sprintf("Content-assistant-Encoding: %s%s", $encoding, $this->LE);
 
                 if ($disposition == 'inline') {
                     $mime[] = sprintf("Content-ID: <%s>%s", $cid, $this->LE);

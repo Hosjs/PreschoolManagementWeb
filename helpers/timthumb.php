@@ -1193,7 +1193,7 @@ class timthumb {
 			$curl = curl_init($url);
 			curl_setopt ($curl, CURLOPT_TIMEOUT, CURL_TIMEOUT);
 			curl_setopt ($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30");
-			curl_setopt ($curl, CURLOPT_RETURNTRANSFER, TRUE);
+			curl_setopt ($curl, CURLOPT_RETURNassistant, TRUE);
 			curl_setopt ($curl, CURLOPT_HEADER, 0);
 			curl_setopt ($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
 			curl_setopt ($curl, CURLOPT_WRITEFUNCTION, 'timthumb::curlWrite');

@@ -27,7 +27,7 @@ class Menu{
 		),
 
 		array(
-			'path' => 'admission', 
+			'path' => 'student', 
 			'label' => 'Học sinh', 
 			'icon' => '<i class="material-icons mi-sm">airline_seat_recline_extra</i>'
 		),
@@ -39,13 +39,13 @@ class Menu{
 		),
 		
 		array(
-			'path' => 'feestracture', 
+			'path' => 'subject', 
 			'label' => 'Các môn học', 
 			'icon' => '<i class="material-icons mi-md">attach_file</i>'
 		),
 		
 		array(
-			'path' => 'apply_for_admission', 
+			'path' => 'student_list', 
 			'label' => 'Quản lý học sinh', 
 			'icon' => '<i class="material-icons mi-md">touch_app</i>'
 		),
@@ -63,14 +63,14 @@ class Menu{
 		),
 		
 		array(
-			'path' => 'enrolment', 
+			'path' => 'class', 
 			'label' => 'Thông tin lớp', 
 			'icon' => '<i class="material-icons mi-md">bubble_chart</i>'
 		),
 		
 		array(
-			'path' => 'perfomance', 
-			'label' => 'Thành tích', 
+			'path' => 'health_care', 
+			'label' => 'Theo dõi sức khỏe', 
 			'icon' => '<i class="material-icons mi-md">call_merge</i>'
 		),
 		array(
@@ -144,16 +144,6 @@ class Menu{
 		array(
 			"value" => "Có", 
 			"label" => "Có", 
-		),);
-		
-			public static $bording = array(
-		array(
-			"value" => "yes", 
-			"label" => "Yes", 
-		),
-		array(
-			"value" => "no", 
-			"label" => "No", 
 		),);
 		
 			public static $author = array(

@@ -167,24 +167,7 @@ $show_pagination = $this->show_pagination;
                                                         Email:  
                                                     </span>
                                                 <?php echo $data['email']; ?></a></div>
-                                                <div class="mb-2">  
-                                                    <span <?php if($can_edit){ ?> data-value="<?php echo $data['class']; ?>" 
-                                                        data-pk="<?php echo $data['id'] ?>" 
-                                                        data-url="<?php print_link("users/editfield/" . urlencode($data['id'])); ?>" 
-                                                        data-name="class" 
-                                                        data-title="Enter Class" 
-                                                        data-placement="left" 
-                                                        data-toggle="click" 
-                                                        data-type="text" 
-                                                        data-mode="popover" 
-                                                        data-showbuttons="left" 
-                                                        class="is-editable" <?php } ?>>
-                                                        <span class="font-weight-light text-muted ">
-                                                            Class:  
-                                                        </span>
-                                                        <?php echo $data['class']; ?> 
-                                                    </span>
-                                                </div>
+                                                
                                                 <tr  class="td-photo">
                                                     <th class="title"> Photo: </th>
                                                     <td class=""><img class="img img-thumbnail" alt="pic" width="150" height="150" src="<?php echo $data['photo']; ?>"></img></td>

@@ -2934,7 +2934,7 @@ class HTML5_TreeBuilder {
                         'clippath' => 'clipPath',
                         'feblend' => 'feBlend',
                         'fecolormatrix' => 'feColorMatrix',
-                        'fecomponenttransfer' => 'feComponentTransfer',
+                        'fecomponentassistant' => 'feComponentassistant',
                         'fecomposite' => 'feComposite',
                         'feconvolvematrix' => 'feConvolveMatrix',
                         'fediffuselighting' => 'feDiffuseLighting',

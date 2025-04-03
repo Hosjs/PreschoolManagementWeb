@@ -108,7 +108,7 @@ class IndexController extends BaseController{
 			$request = $this->request;
 			$db = $this->GetModel();
 			$tablename = $this->tablename;
-			$fields = $this->fields = array("first_name","last_name","email","class","photo","birth_day","resdence","phone","username","password","role","account_status"); //registration fields
+			$fields = $this->fields = array("first_name","last_name","email","photo","birth_day","resdence","phone","username","password","role","account_status"); //registration fields
 			$postdata = $this->format_request_data($formdata);
 			$cpassword = $postdata['confirm_password'];
 			$password = $postdata['password'];
@@ -119,7 +119,6 @@ class IndexController extends BaseController{
 				'first_name' => 'required',
 				'last_name' => 'required',
 				'email' => 'required|valid_email',
-				'class' => 'required',
 				'photo' => 'required',
 				'birth_day' => 'required',
 				'resdence' => 'required',
@@ -132,7 +131,6 @@ class IndexController extends BaseController{
 				'first_name' => 'sanitize_string',
 				'last_name' => 'sanitize_string',
 				'email' => 'sanitize_string',
-				'class' => 'sanitize_string',
 				'photo' => 'sanitize_string',
 				'birth_day' => 'sanitize_string',
 				'resdence' => 'sanitize_string',
@@ -167,7 +165,7 @@ class IndexController extends BaseController{
 				}
 			}
 		}
-		$page_title = $this->view->page_title = "Add New Users";
+		$page_title = $this->view->page_title = "Thêm tài khoản";
 		return $this->render_view("index/register.php");
 	}
 	/**

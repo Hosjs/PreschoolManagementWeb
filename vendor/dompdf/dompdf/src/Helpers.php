@@ -848,7 +848,7 @@ class Helpers
             //TODO: use $context to define additional curl options
             curl_setopt($curl, CURLOPT_TIMEOUT, 10);
             curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_RETURNassistant, true);
             curl_setopt($curl, CURLOPT_HEADER, true);
             if ($offset > 0) {
                 curl_setopt($curl, CURLOPT_RESUME_FROM, $offset);
