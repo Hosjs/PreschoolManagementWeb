@@ -22,7 +22,7 @@ class subjectController extends SecureController{
 			"title", 
 			"content", 
 			"date");
-		$pagination = $this->get_pagination(MAX_RECORD_COUNT); // get current pagination e.g array(page_number, page_limit)
+		$pagination = $this->get_pagination(MAX_RECORD_COUNT);
 		//search table record
 		if(!empty($request->search)){
 			$text = trim($request->search); 
@@ -35,9 +35,7 @@ class subjectController extends SecureController{
 			$search_params = array(
 				"%$text%","%$text%","%$text%","%$text%"
 			);
-			//setting search conditions
 			$db->where($search_condition, $search_params);
-			 //template to use when ajax search
 			$this->view->search_template = "subject/search.php";
 		}
 		if(!empty($request->orderby)){
@@ -49,7 +47,7 @@ class subjectController extends SecureController{
 			$db->orderBy("subject.id", ORDER_TYPE);
 		}
 		if($fieldname){
-			$db->where($fieldname , $fieldvalue); //filter by a single field name
+			$db->where($fieldname , $fieldvalue);
 		}
 		$tc = $db->withTotalCount();
 		$records = $db->get($tablename, $pagination, $fields);
@@ -71,7 +69,7 @@ class subjectController extends SecureController{
 		$this->view->report_layout = "report_layout.php";
 		$this->view->report_paper_size = "A4";
 		$this->view->report_orientation = "portrait";
-		$this->render_view("subject/list.php", $data); //render the full page
+		$this->render_view("subject/list.php", $data);
 	}
 	/**
      * View record detail 
@@ -89,10 +87,10 @@ class subjectController extends SecureController{
 			"content", 
 			"date");
 		if($value){
-			$db->where($rec_id, urldecode($value)); //select record based on field name
+			$db->where($rec_id, urldecode($value));
 		}
 		else{
-			$db->where("subject.id", $rec_id);; //select record based on primary key
+			$db->where("subject.id", $rec_id);;
 		}
 		$record = $db->getOne($tablename, $fields );
 		if($record){
@@ -123,7 +121,6 @@ class subjectController extends SecureController{
 			$db = $this->GetModel();
 			$tablename = $this->tablename;
 			$request = $this->request;
-			//fillable fields
 			$fields = $this->fields = array("title","content","date");
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
@@ -136,7 +133,7 @@ class subjectController extends SecureController{
 				'content' => 'sanitize_string',
 				'date' => 'sanitize_string',
 			);
-			$this->filter_vals = true; //set whether to remove empty fields
+			$this->filter_vals = true;
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
 			if($this->validated()){
 				$rec_id = $this->rec_id = $db->insert($tablename, $modeldata);
@@ -163,7 +160,6 @@ class subjectController extends SecureController{
 		$db = $this->GetModel();
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
-		 //editable fields
 		$fields = $this->fields = array("id","title","content","date");
 		if($formdata){
 			$postdata = $this->format_request_data($formdata);
@@ -181,7 +177,7 @@ class subjectController extends SecureController{
 			if($this->validated()){
 				$db->where("subject.id", $rec_id);;
 				$bool = $db->update($tablename, $modeldata);
-				$numRows = $db->getRowCount(); //number of affected rows. 0 = no record field updated
+				$numRows = $db->getRowCount();
 				if($bool && $numRows){
 					$this->set_flash_msg("Record updated successfully", "success");
 					return $this->redirect("subject");
@@ -191,7 +187,6 @@ class subjectController extends SecureController{
 						$this->set_page_error();
 					}
 					elseif(!$numRows){
-						//not an error, but no record was updated
 						$page_error = "No record updated";
 						$this->set_page_error($page_error);
 						$this->set_flash_msg($page_error, "warning");
@@ -218,7 +213,6 @@ class subjectController extends SecureController{
 		$db = $this->GetModel();
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
-		//editable fields
 		$fields = $this->fields = array("id","title","content","date");
 		$page_error = null;
 		if($formdata){
@@ -237,7 +231,7 @@ class subjectController extends SecureController{
 				'content' => 'sanitize_string',
 				'date' => 'sanitize_string',
 			);
-			$this->filter_rules = true; //filter validation rules by excluding fields not in the formdata
+			$this->filter_rules = true;
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
 			if($this->validated()){
 				$db->where("subject.id", $rec_id);;

@@ -102,13 +102,5 @@ class InfoController extends BaseController
 	 * Display Change default language page
 	 * @return Html View
 	 */
-	function change_language($lang = null)
-	{
-		if (!empty($lang)) {
-			set_cookie('lang', $lang);
-			redirect_to_page(DEFAULT_PAGE);
-		} else {
-			$this->render_view("info/change_language.php", null, "info_layout.php");
-		}
-	}
+
 }

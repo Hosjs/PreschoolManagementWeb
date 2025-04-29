@@ -97,7 +97,7 @@ $current_page = $this->set_current_page_link();
                 </div>
                 <div class="col-md-3 col-sm-4 comp-grid">
                     <?php $rec_count = $comp_model->getcount_applyforstudent();  ?>
-                    <a class="animated zoomIn record-count alert alert-info"  href="<?php print_link("student_list/") ?>">
+                    <a class="animated zoomIn record-count alert alert-info"  href="<?php print_link("class_detail/") ?>">
                         <div class="row">
                             <div class="col-2">
                                 <i class="material-icons mi-xxxlg">archive</i>

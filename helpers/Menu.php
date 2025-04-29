@@ -45,8 +45,8 @@ class Menu{
 		),
 		
 		array(
-			'path' => 'student_list', 
-			'label' => 'Quản lý học sinh', 
+			'path' => 'class_detail', 
+			'label' => 'Chi tiết lớp', 
 			'icon' => '<i class="material-icons mi-md">touch_app</i>'
 		),
 		
@@ -107,24 +107,24 @@ class Menu{
 			"label" => "Blocked", 
 		),);
 		
-			public static $class = array(
-		array(
-			"value" => "Lớp 1 tuổi", 
-			"label" => "Lớp 1 tuổi", 
-		),
-		array(
-			"value" => "Lớp 2 tuổi", 
-			"label" => "Lớp 2 tuổi", 
-		),
-		array(
-			"value" => "Lớp 3 tuổi", 
-			"label" => "Lớp 3 tuổi", 
-		),
-		array(
-			"value" => "Lớp 4 tuổi", 
-			"label" => "Lớp 4 tuổi", 
-		),
-		);
+				public static $class = array(
+			array(
+				"value" => "Lớp 1 tuổi", 
+				"label" => "Lớp 1 tuổi", 
+			),
+			array(
+				"value" => "Lớp 2 tuổi", 
+				"label" => "Lớp 2 tuổi", 
+			),
+			array(
+				"value" => "Lớp 3 tuổi", 
+				"label" => "Lớp 3 tuổi", 
+			),
+			array(
+				"value" => "Lớp 4 tuổi", 
+				"label" => "Lớp 4 tuổi", 
+			),
+			);
 		
 			public static $gender = array(
 		array(

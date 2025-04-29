@@ -14,7 +14,7 @@ class FilehelperController extends BaseController
 	 */
 	function uploadfile()
 	{
-		if (!empty($this->post->fieldname)) { // Get Upload field name from post request
+		if (!empty($this->post->fieldname)) {
 			$fieldname = $this->post->fieldname;
 			if (!empty($this->file_upload_settings[$fieldname])) {
 				$upload_settings = $this->file_upload_settings[$fieldname];
@@ -27,7 +27,7 @@ class FilehelperController extends BaseController
 				if ($upload_data['isComplete']) {
 					$arr_files = $upload_data['data']['files'];
 					if (!empty($upload_settings['returnfullpath'])) {
-						$arr_files = array_map("set_url", $arr_files); // set files with complete url of the website
+						$arr_files = array_map("set_url", $arr_files);
 					}
 					$uploaded_files = implode(",", $arr_files);
 					echo $uploaded_files;

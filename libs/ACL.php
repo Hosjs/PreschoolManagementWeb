@@ -20,7 +20,7 @@ class ACL
 							'student' => array('list','view','add','edit', 'editfield','delete','import_data'),
 							'announcement' => array('list','view','add','edit', 'editfield','delete','import_data'),
 							'subject' => array('list','view','add','edit', 'editfield','delete','import_data'),
-							'student_list' => array('list','view','add','edit', 'editfield','delete','import_data'),
+							'class_detail' => array('list','attendance_yes','attendance_no','mark_attendance'),
 							'assignment' => array('list','view','add','edit', 'editfield','delete','import_data'),
 							'event' => array('list','view','add','edit', 'editfield','delete','import_data'),
 							'class' => array('list','view','add','edit', 'editfield','delete','import_data'),
@@ -33,11 +33,12 @@ class ACL
 						array(
 							'announcement' => array('list','view'),
 							'subject' => array('list','view'),
-							'student_list' => array('list','add'),
+							'class_detail' => array('list','add'),
 							'assignment' => array('list','view'),
 							'event' => array('list','view'),
 							'how_to_make_payment' => array('list','add'),
 							'message' => array('list','view','add','edit', 'editfield','delete','import_data','group'),
+							'health_care' => array('list','view')
 						)
 		);
 

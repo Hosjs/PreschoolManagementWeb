@@ -98,7 +98,7 @@ class SharedController extends BaseController{
      */
 	function getcount_applyforstudent(){
 		$db = $this->GetModel();
-		$sqltext = "SELECT COUNT(*) AS num FROM student_list";
+		$sqltext = "SELECT COUNT(*) AS num FROM class_detail";
 		$queryparams = null;
 		$val = $db->rawQueryValue($sqltext, $queryparams);
 		

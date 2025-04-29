@@ -53,18 +53,13 @@
 				$this->render_view('appheader.php'); 
 			?>
 			<div id="main-content">
-				<!-- Page Main Content Start -->
 					<div id="page-content">
 						<?php $this->render_body();?>
 					</div>	
-				<!-- Page Main Content [End] -->
-				<!-- Page Footer Start -->
 					<?php 
 						$this->render_view('appfooter.php'); 
 					?>
-				<!-- Page Footer Ends -->
 				<div class="flash-msg-container"><?php show_flash_msg(); ?></div>
-				<!-- Modal page for displaying ajax page -->
 				<div id="main-page-modal" class="modal fade" role="dialog">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">

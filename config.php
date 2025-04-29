@@ -83,7 +83,6 @@ define("SMTP_PORT", "");
 define("DEFAULT_EMAIL", "");
 define("DEFAULT_EMAIL_ACCOUNT_NAME", "");
 
-// Database Configuration Settings
 define("DB_HOST", "localhost");
 define("DB_USERNAME", "root");
 define("DB_PASSWORD", "");
