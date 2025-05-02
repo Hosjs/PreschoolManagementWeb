@@ -156,9 +156,11 @@ class studentController extends SecureController{
 			$db = $this->GetModel();
 			$tablename = $this->tablename;
 			$request = $this->request;
+			
 			//fillable fields
 			$fields = $this->fields = array("pupils_full_name","pupils_ID","age","photo","gender","class","note","father_name","mother_name","father_contact","mother_contact","special_need","guardian_name","guardian_contact");
 			$postdata = $this->format_request_data($formdata);
+			
 			$this->rules_array = array(
 				'pupils_full_name' => 'required',
 				'pupils_ID' => 'required',
@@ -175,6 +177,7 @@ class studentController extends SecureController{
 				'guardian_name' => 'required',
 				'guardian_contact' => 'required',
 			);
+			
 			$this->sanitize_array = array(
 				'pupils_full_name' => 'sanitize_string',
 				'pupils_ID' => 'sanitize_string',
@@ -191,22 +194,37 @@ class studentController extends SecureController{
 				'guardian_name' => 'sanitize_string',
 				'guardian_contact' => 'sanitize_string',
 			);
-			$this->filter_vals = true; //set whether to remove empty fields
+			
+			$this->filter_vals = true;
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
+			
 			if($this->validated()){
 				$rec_id = $this->rec_id = $db->insert($tablename, $modeldata);
 				if($rec_id){
-					$this->set_flash_msg("Record added successfully", "success");
-					return	$this->redirect("student");
+	
+					$student = $db->rawQueryOne("SELECT * FROM student WHERE id = ?", [$rec_id]);
+	
+					$class_detail_data = [
+						"id_student" => $student['id'],
+						"student_name" => $student['pupils_full_name'],
+						"gender" => $student['gender'],
+						"class" => $student['class'],
+					];
+	
+					$db->insert("class_detail", $class_detail_data);
+	
+					return $this->redirect("student");
 				}
 				else{
 					$this->set_page_error();
 				}
 			}
 		}
+	
 		$page_title = $this->view->page_title = "Thêm học sinh";
 		$this->render_view("student/add.php");
 	}
+	
 	/**
      * Update table record with formdata
 	 * @param $rec_id (select record by table primary key)

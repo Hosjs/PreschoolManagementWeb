@@ -18,11 +18,13 @@ class class_detailController extends SecureController{
 		$db = $this->GetModel();
 		$today = date('Y-m-d');
 	
+		// Kiểm tra đã có điểm danh hôm nay chưa
 		$db->where("id_class_detail", $id);
 		$db->where("attendance_date", $today);
 		$exists = $db->has("attendance_log");
 	
 		if ($exists) {
+			// Cập nhật lại trạng thái điểm danh
 			$db->where("id_class_detail", $id);
 			$db->where("attendance_date", $today);
 			$updated = $db->update("attendance_log", ["status" => $status]);
@@ -35,7 +37,11 @@ class class_detailController extends SecureController{
 		}
 	
 		if ($updated) {
-			$msg = $status == 'yes' ? "Điểm danh thành công" : "Đã ghi vắng";
+			// Cập nhật trạng thái vào class_detail.attendance
+			$db->where("id", $id);
+			$db->update("class_detail", ["attendance" => $status]);
+	
+			$msg = ($status == 'yes') ? "Điểm danh thành công" : "Đã ghi vắng";
 			$this->set_flash_msg($msg, "success");
 		} else {
 			$this->set_flash_msg("Lỗi khi ghi điểm danh: " . $db->getLastError(), "danger");
@@ -44,6 +50,7 @@ class class_detailController extends SecureController{
 		return $this->redirect("class_detail");
 	}
 	
+	
 
 	function index($fieldname = null, $fieldvalue = null){
 		$request = $this->request;
@@ -51,15 +58,12 @@ class class_detailController extends SecureController{
 		$pagination = $this->get_pagination(MAX_RECORD_COUNT);
 		$offset = $pagination[0];
 		$limit = $pagination[1];
-		$user = $this->get_current_user();
-		if($user && $user['role'] == 'headteacher'){
-    	$db->where("cd.assigned_teacher", $user['username']);
-		}
-
-
+		
+		
 		$fields = [
 			"s.id",
 			"s.pupils_full_name AS first_name",
+			"s.pupils_full_name AS student_name",
 			"s.gender",
 			"s.class",
 			"YEAR(CURDATE()) - s.age AS year_of_birth",
