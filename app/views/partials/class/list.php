@@ -199,24 +199,6 @@ $show_pagination = $this->show_pagination;
                                                     </span>
                                                 </div>
                                                 <div class="mb-2">  
-                                                    <span <?php if($can_edit){ ?> data-value="<?php echo $data['head_teacher']; ?>" 
-                                                        data-pk="<?php echo $data['id'] ?>" 
-                                                        data-url="<?php print_link("class/editfield/" . urlencode($data['id'])); ?>" 
-                                                        data-name="head_teacher" 
-                                                        data-title="Giáo viên chủ nhiệm" 
-                                                        data-placement="left" 
-                                                        data-toggle="click" 
-                                                        data-type="text" 
-                                                        data-mode="popover" 
-                                                        data-showbuttons="left" 
-                                                        class="is-editable" <?php } ?>>
-                                                        <span class="font-weight-light text-muted ">
-                                                            Giáo viên chủ nghiệm:  
-                                                        </span>
-                                                        <?php echo $data['head_teacher']; ?> 
-                                                    </span>
-                                                </div>
-                                                <div class="mb-2">  
                                                     <span <?php if($can_edit){ ?> data-value="<?php echo $data['assistant']; ?>" 
                                                         data-pk="<?php echo $data['id'] ?>" 
                                                         data-url="<?php print_link("class/editfield/" . urlencode($data['id'])); ?>" 
@@ -286,6 +268,24 @@ $show_pagination = $this->show_pagination;
                                                             Thời gian học:  
                                                         </span>
                                                         <?php echo $data['study_time']; ?> 
+                                                    </span>
+                                                </div>
+                                                <div class="mb-2">  
+                                                    <span <?php if($can_edit){ ?> data-value="<?php echo $data['assigned_teacher']; ?>" 
+                                                        data-pk="<?php echo $data['id'] ?>" 
+                                                        data-url="<?php print_link("class/editfield/" . urlencode($data['id'])); ?>" 
+                                                        data-name="assigned_teacher" 
+                                                        data-title="Giáo viên chủ nhiệm" 
+                                                        data-placement="left" 
+                                                        data-toggle="click" 
+                                                        data-type="text" 
+                                                        data-mode="popover" 
+                                                        data-showbuttons="left" 
+                                                        class="is-editable" <?php } ?>>
+                                                        <span class="font-weight-light text-muted ">
+                                                            Giáo viên chủ nhiệm
+                                                        </span>
+                                                        <?php echo $data['assigned_teacher']; ?> 
                                                     </span>
                                                 </div>
                                                 <div class="mb-2">  

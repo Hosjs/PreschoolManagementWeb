@@ -23,11 +23,11 @@ class classController extends SecureController{
 			"class_name", 
 			"age", 
 			"number_of_pupil", 
-			"head_teacher", 
 			"assistant", 
 			"room", 
 			"class_score", 
-			"study_time", 
+			"study_time",
+			"assigned_teacher", 
 			"note");
 		$pagination = $this->get_pagination(MAX_RECORD_COUNT); // get current pagination e.g array(page_number, page_limit)
 		//search table record
@@ -39,11 +39,11 @@ class classController extends SecureController{
 				class.class_name LIKE ? OR 
 				class.age LIKE ? OR 
 				class.number_of_pupil LIKE ? OR 
-				class.head_teacher LIKE ? OR 
 				class.assistant LIKE ? OR 
 				class.room LIKE ? OR 
 				class.class_score LIKE ? OR 
 				class.study_time LIKE ? OR 
+				class.assigned_teacher ? OR
 				class.note LIKE ?
 			)";
 			$search_params = array(
@@ -103,11 +103,11 @@ class classController extends SecureController{
 			"class_name", 
 			"age", 
 			"number_of_pupil", 
-			"head_teacher", 
 			"assistant", 
 			"room", 
 			"class_score", 
 			"study_time", 
+			"assigned_teacher",
 			"note");
 		if($value){
 			$db->where($rec_id, urldecode($value)); //select record based on field name
@@ -145,18 +145,18 @@ class classController extends SecureController{
 			$tablename = $this->tablename;
 			$request = $this->request;
 			//fillable fields
-			$fields = $this->fields = array("class_ID","class_name","age","number_of_pupil","head_teacher","assistant","room","class_score","study_time","note");
+			$fields = $this->fields = array("class_ID","class_name","age","number_of_pupil","assistant","room","class_score","study_time","assigned_teacher","note");
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'class_ID' => 'required',
 				'class_name' => 'required',
 				'age' => 'required',
 				'number_of_pupil' => 'required',
-				'head_teacher' => 'required',
 				'assistant' => 'required',
 				'room' => 'required',
 				'class_score' => 'required',
 				'study_time' => 'required',
+				'assigned_teacher' => 'required',
 				'note' => 'required',
 			);
 			$this->sanitize_array = array(
@@ -164,11 +164,11 @@ class classController extends SecureController{
 				'class_name' => 'sanitize_string',
 				'age' => 'sanitize_string',
 				'number_of_pupil' => 'sanitize_string',
-				'head_teacher' => 'sanitize_string',
 				'assistant' => 'sanitize_string',
 				'room' => 'sanitize_string',
 				'class_score' => 'sanitize_string',
 				'study_time' => 'sanitize_string',
+				'assigned_teacher' => 'sanitize_string',
 				'note' => 'sanitize_string',
 			);
 			$this->filter_vals = true; //set whether to remove empty fields
@@ -199,7 +199,7 @@ class classController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		 //editable fields
-		$fields = $this->fields = array("id","class_ID","class_name","age","number_of_pupil","head_teacher","assistant","room","class_score","study_time","note");
+		$fields = $this->fields = array("id","class_ID","class_name","age","number_of_pupil","assistant","room","class_score","study_time","note");
 		if($formdata){
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
@@ -207,11 +207,11 @@ class classController extends SecureController{
 				'class_name' => 'required',
 				'age' => 'required',
 				'number_of_pupil' => 'required',
-				'head_teacher' => 'required',
 				'assistant' => 'required',
 				'room' => 'required',
 				'class_score' => 'required',
 				'study_time' => 'required',
+				'assigned_teacher' => 'required',
 				'note' => 'required',
 			);
 			$this->sanitize_array = array(
@@ -219,11 +219,11 @@ class classController extends SecureController{
 				'class_name' => 'sanitize_string',
 				'age' => 'sanitize_string',
 				'number_of_pupil' => 'sanitize_string',
-				'head_teacher' => 'sanitize_string',
 				'assistant' => 'sanitize_string',
 				'room' => 'sanitize_string',
 				'class_score' => 'sanitize_string',
 				'study_time' => 'sanitize_string',
+				'assigned_teacher' => 'sanitize_string',
 				'note' => 'sanitize_string',
 			);
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
@@ -268,7 +268,7 @@ class classController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		//editable fields
-		$fields = $this->fields = array("id","class_ID","class_name","age","number_of_pupil","head_teacher","assistant","room","class_score","study_time","note");
+		$fields = $this->fields = array("id","class_ID","class_name","age","number_of_pupil","assistant","room","class_score","study_time","note");
 		$page_error = null;
 		if($formdata){
 			$postdata = array();
@@ -281,11 +281,11 @@ class classController extends SecureController{
 				'class_name' => 'required',
 				'age' => 'required',
 				'number_of_pupil' => 'required',
-				'head_teacher' => 'required',
 				'assistant' => 'required',
 				'room' => 'required',
 				'class_score' => 'required',
 				'study_time' => 'required',
+				'assigned_teacher' => 'required',
 				'note' => 'required',
 			);
 			$this->sanitize_array = array(
@@ -293,11 +293,11 @@ class classController extends SecureController{
 				'class_name' => 'sanitize_string',
 				'age' => 'sanitize_string',
 				'number_of_pupil' => 'sanitize_string',
-				'head_teacher' => 'sanitize_string',
 				'assistant' => 'sanitize_string',
 				'room' => 'sanitize_string',
 				'class_score' => 'sanitize_string',
 				'study_time' => 'sanitize_string',
+				'assigned_teacher' => 'sanitize_string',
 				'note' => 'sanitize_string',
 			);
 			$this->filter_rules = true; //filter validation rules by excluding fields not in the formdata

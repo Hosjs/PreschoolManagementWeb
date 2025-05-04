@@ -18,6 +18,14 @@ class studentController extends SecureController{
 		$request = $this->request;
 		$db = $this->GetModel();
 		$tablename = $this->tablename;
+	
+		$current_user = $this->get_current_user();
+		if($current_user && $current_user['role'] == 'headteacher'){
+			if(!empty($current_user['assigned_teacher'])){
+				$db->where("student.assigned_teacher", $current_user['assigned_teacher']);
+			}
+		}
+	
 		$fields = array("id", 
 			"pupils_full_name", 
 			"pupils_ID", 
@@ -32,9 +40,11 @@ class studentController extends SecureController{
 			"father_contact", 
 			"mother_contact", 
 			"guardian_name", 
-			"guardian_contact");
-		$pagination = $this->get_pagination(MAX_RECORD_COUNT); // get current pagination e.g array(page_number, page_limit)
-		//search table record
+			"guardian_contact",
+			"assigned_teacher"
+		);
+		$pagination = $this->get_pagination(MAX_RECORD_COUNT); 
+	
 		if(!empty($request->search)){
 			$text = trim($request->search); 
 			$search_condition = "(
@@ -51,17 +61,14 @@ class studentController extends SecureController{
 				student.mother_name LIKE ? OR 
 				student.father_contact LIKE ? OR 
 				student.mother_contact LIKE ? OR 
-\				student.guardian_name LIKE ? OR 
-				student.guardian_contact LIKE ? OR 
+				student.guardian_name LIKE ? OR 
+				student.guardian_contact LIKE ?
 			)";
-			$search_params = array(
-				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
-			);
-			//setting search conditions
+			$search_params = array_fill(0, 15, "%$text%");
 			$db->where($search_condition, $search_params);
-			 //template to use when ajax search
 			$this->view->search_template = "student/search.php";
 		}
+	
 		if(!empty($request->orderby)){
 			$orderby = $request->orderby;
 			$ordertype = (!empty($request->ordertype) ? $request->ordertype : ORDER_TYPE);
@@ -70,9 +77,11 @@ class studentController extends SecureController{
 		else{
 			$db->orderBy("student.id", ORDER_TYPE);
 		}
+	
 		if($fieldname){
-			$db->where($fieldname , $fieldvalue); //filter by a single field name
+			$db->where($fieldname , $fieldvalue); 
 		}
+	
 		$tc = $db->withTotalCount();
 		$records = $db->get($tablename, $pagination, $fields);
 		$records_count = count($records);
@@ -84,17 +93,20 @@ class studentController extends SecureController{
 		$data->record_count = $records_count;
 		$data->total_records = $total_records;
 		$data->total_page = $total_pages;
+	
 		if($db->getLastError()){
 			$this->set_page_error();
 		}
+	
 		$page_title = $this->view->page_title = "Học sinh";
 		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
 		$this->view->report_title = $page_title;
 		$this->view->report_layout = "report_layout.php";
 		$this->view->report_paper_size = "A4";
 		$this->view->report_orientation = "portrait";
-		$this->render_view("student/list.php", $data); //render the full page
+		$this->render_view("student/list.php", $data); 
 	}
+	
 	/**
      * View record detail 
 	 * @param $rec_id (select record by table primary key) 
@@ -146,6 +158,11 @@ class studentController extends SecureController{
 		}
 		return $this->render_view("student/view.php", $record);
 	}
+
+	protected function get_current_user(){
+		return $_SESSION[APP_ID.'user'] ?? null;
+	}
+	
 	/**
      * Insert new record to the database table
 	 * @param $formdata array() from $_POST
@@ -156,11 +173,14 @@ class studentController extends SecureController{
 			$db = $this->GetModel();
 			$tablename = $this->tablename;
 			$request = $this->request;
-			
-			//fillable fields
-			$fields = $this->fields = array("pupils_full_name","pupils_ID","age","photo","gender","class","note","father_name","mother_name","father_contact","mother_contact","special_need","guardian_name","guardian_contact");
+	
+			$fields = $this->fields = array(
+				"pupils_full_name", "pupils_ID", "age", "photo", "gender", "class", 
+				"note", "father_name", "mother_name", "father_contact", "mother_contact", 
+				"special_need", "guardian_name", "guardian_contact", "assigned_teacher"
+			);
+	
 			$postdata = $this->format_request_data($formdata);
-			
 			$this->rules_array = array(
 				'pupils_full_name' => 'required',
 				'pupils_ID' => 'required',
@@ -176,8 +196,9 @@ class studentController extends SecureController{
 				'special_need' => 'required',
 				'guardian_name' => 'required',
 				'guardian_contact' => 'required',
+				'assigned_teacher' => 'notrequired'
 			);
-			
+	
 			$this->sanitize_array = array(
 				'pupils_full_name' => 'sanitize_string',
 				'pupils_ID' => 'sanitize_string',
@@ -193,15 +214,26 @@ class studentController extends SecureController{
 				'special_need' => 'sanitize_string',
 				'guardian_name' => 'sanitize_string',
 				'guardian_contact' => 'sanitize_string',
+				'assigned_teacher' => 'sanitize_string'
 			);
-			
+	
 			$this->filter_vals = true;
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
-			
+	
 			if($this->validated()){
+	
+				// BƯỚC QUAN TRỌNG NHẤT → Lấy assigned_teacher từ bảng class
+				$class_name = $modeldata['class'];
+				$assigned_teacher = $db->rawQueryOne("SELECT assigned_teacher FROM class WHERE class_name = ?", [$class_name]);
+	
+				if($assigned_teacher){
+					$modeldata['assigned_teacher'] = $assigned_teacher['assigned_teacher'];
+				}
+	
 				$rec_id = $this->rec_id = $db->insert($tablename, $modeldata);
 				if($rec_id){
 	
+					// Fetch student again để insert vào class_detail
 					$student = $db->rawQueryOne("SELECT * FROM student WHERE id = ?", [$rec_id]);
 	
 					$class_detail_data = [
@@ -209,10 +241,12 @@ class studentController extends SecureController{
 						"student_name" => $student['pupils_full_name'],
 						"gender" => $student['gender'],
 						"class" => $student['class'],
+						"assigned_teacher" => $student['assigned_teacher']
 					];
 	
 					$db->insert("class_detail", $class_detail_data);
 	
+					$this->set_flash_msg("Học sinh đã được thêm thành công", "success");
 					return $this->redirect("student");
 				}
 				else{
@@ -223,7 +257,8 @@ class studentController extends SecureController{
 	
 		$page_title = $this->view->page_title = "Thêm học sinh";
 		$this->render_view("student/add.php");
-	}
+	}	
+	
 	
 	/**
      * Update table record with formdata
@@ -237,7 +272,7 @@ class studentController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		 //editable fields
-		$fields = $this->fields = array("id","pupils_full_name","pupils_ID","age","photo","gender","class","note","father_name","mother_name","father_contact","mother_contact","special_need","guardian_name","guardian_contact");
+		$fields = $this->fields = array("id","pupils_full_name","pupils_ID","age","photo","gender","class","note","father_name","mother_name","father_contact","mother_contact","special_need","guardian_name","guardian_contact","assigned_teacher");
 		if($formdata){
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
@@ -255,6 +290,7 @@ class studentController extends SecureController{
 				'special_need' => 'required',
 				'guardian_name' => 'required',
 				'guardian_contact' => 'required',
+				'assigned_teacher' => 'notrequired'
 			);
 			$this->sanitize_array = array(
 				'pupils_full_name' => 'sanitize_string',
@@ -271,6 +307,7 @@ class studentController extends SecureController{
 				'special_need' => 'sanitize_string',
 				'guardian_name' => 'sanitize_string',
 				'guardian_contact' => 'sanitize_string',
+				'assigned_teacher' => 'sanitize_string'
 			);
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
 			if($this->validated()){
@@ -314,7 +351,7 @@ class studentController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		//editable fields
-		$fields = $this->fields = array("id","pupils_full_name","pupils_ID","age","photo","gender","class","note","father_name","mother_name","father_contact","mother_contact","special_need","guardian_name","guardian_contact");
+		$fields = $this->fields = array("id","pupils_full_name","pupils_ID","age","photo","gender","class","note","father_name","mother_name","father_contact","mother_contact","special_need","guardian_name","guardian_contact","assigned_teacher");
 		$page_error = null;
 		if($formdata){
 			$postdata = array();
@@ -337,6 +374,7 @@ class studentController extends SecureController{
 				'special_need' => 'required',
 				'guardian_name' => 'required',
 				'guardian_contact' => 'required',
+				'assigned_teacher' => 'notrequired'
 			);
 			$this->sanitize_array = array(
 				'pupils_full_name' => 'sanitize_string',
@@ -353,6 +391,7 @@ class studentController extends SecureController{
 				'special_need' => 'sanitize_string',
 				'guardian_name' => 'sanitize_string',
 				'guardian_contact' => 'sanitize_string',
+				'assigned_teacher' => 'sanitize_string'
 			);
 			$this->filter_rules = true; //filter validation rules by excluding fields not in the formdata
 			$modeldata = $this->modeldata = $this->validate_form($postdata);

@@ -82,18 +82,6 @@ $redirect_to = $this->redirect_to;
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group ">
-                                                        <div class="row">
-                                                            <div class="col-sm-4">
-                                                                <label class="control-label" for="head_teacher">Giáo viên chủ nghiệm <span class="text-danger">*</span></label>
-                                                            </div>
-                                                            <div class="col-sm-8">
-                                                                <div class="">
-                                                                    <input id="ctrl-head_teacher"  value="<?php  echo $data['head_teacher']; ?>" type="text" placeholder="Giáo viên chủ nhiệm"  required="" name="head_teacher"  class="form-control " />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                         <div class="form-group ">
                                                             <div class="row">
                                                                 <div class="col-sm-4">

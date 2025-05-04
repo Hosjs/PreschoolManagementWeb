@@ -70,7 +70,7 @@ $redirect_to = $this->redirect_to;
                                                 <div class="form-group ">
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <label class="control-label" for="number_of_pupil">number_of_pupil lớp <span class="text-danger">*</span></label>
+                                                            <label class="control-label" for="number_of_pupil">sĩ số lớp <span class="text-danger">*</span></label>
                                                         </div>
                                                         <div class="col-sm-8">
                                                             <div class="">
@@ -79,18 +79,6 @@ $redirect_to = $this->redirect_to;
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group ">
-                                                        <div class="row">
-                                                            <div class="col-sm-4">
-                                                                <label class="control-label" for="head_teacher">Giáo viên chủ nghiệm <span class="text-danger">*</span></label>
-                                                            </div>
-                                                            <div class="col-sm-8">
-                                                                <div class="">
-                                                                    <input id="ctrl-head_teacher"  value="<?php  echo $this->set_field_value('head_teacher',""); ?>" type="text" placeholder="Giáo viên chủ nhiệm"  required="" name="head_teacher"  class="form-control " />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                         <div class="form-group ">
                                                             <div class="row">
                                                                 <div class="col-sm-4">
@@ -136,6 +124,18 @@ $redirect_to = $this->redirect_to;
                                                                                 <div class="">
                                                                                     <input id="ctrl-study_time"  value="<?php  echo $this->set_field_value('study_time',""); ?>" type="text" placeholder="Thời gian học"  required="" name="study_time"  class="form-control " />
                                                                                     </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group ">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-4">
+                                                                                <label class="control-label" for="assigned_teacher">Giáo viên đứng lớp<span class="text-danger">*</span></label>
+                                                                            </div>
+                                                                            <div class="col-sm-8">
+                                                                                <div class="">
+                                                                                <input id="ctrl-assigned_teacher"  value="<?php echo $this->set_field_value('assigned_teacher', ''); ?>" type="text" placeholder="Giáo viên đứng lớp" required name="assigned_teacher" class="form-control" />
+                                                                                </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>

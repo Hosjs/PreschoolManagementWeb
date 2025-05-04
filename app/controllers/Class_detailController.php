@@ -18,13 +18,11 @@ class class_detailController extends SecureController{
 		$db = $this->GetModel();
 		$today = date('Y-m-d');
 	
-		// Kiểm tra đã có điểm danh hôm nay chưa
 		$db->where("id_class_detail", $id);
 		$db->where("attendance_date", $today);
 		$exists = $db->has("attendance_log");
 	
 		if ($exists) {
-			// Cập nhật lại trạng thái điểm danh
 			$db->where("id_class_detail", $id);
 			$db->where("attendance_date", $today);
 			$updated = $db->update("attendance_log", ["status" => $status]);
@@ -32,12 +30,11 @@ class class_detailController extends SecureController{
 			$updated = $db->insert("attendance_log", [
 				"id_class_detail" => $id,
 				"attendance_date" => $today,
-				"status" => $status
+				"status" => $status,
 			]);
 		}
-	
+						
 		if ($updated) {
-			// Cập nhật trạng thái vào class_detail.attendance
 			$db->where("id", $id);
 			$db->update("class_detail", ["attendance" => $status]);
 	
@@ -50,11 +47,14 @@ class class_detailController extends SecureController{
 		return $this->redirect("class_detail");
 	}
 	
-	
+	protected function get_current_user(){
+		return $_SESSION[APP_ID.'user'] ?? null;
+	}
 
 	function index($fieldname = null, $fieldvalue = null){
 		$request = $this->request;
 		$db = $this->GetModel();
+		$db -> groupBy("s.id");
 		$pagination = $this->get_pagination(MAX_RECORD_COUNT);
 		$offset = $pagination[0];
 		$limit = $pagination[1];
@@ -76,6 +76,12 @@ class class_detailController extends SecureController{
 		$db->join("class_detail cd", "s.id = cd.id_student", "LEFT");
 		$db->join("attendance_log al", "cd.id = al.id_class_detail AND al.attendance_date = CURDATE()", "LEFT");
 	
+		
+		$user = $this->get_current_user();
+
+		if($user && $user['role'] == 'headteacher'){
+    	$db->where("cd.assigned_teacher", $user['username']);
+		}
 
 		if (!empty($request->search)) {
 			$text = "%" . trim($request->search) . "%";
@@ -84,6 +90,7 @@ class class_detailController extends SecureController{
 				s.gender LIKE ? OR 
 				s.class LIKE ? OR 
 				s.note LIKE ?
+				s.attendance LIKE ? OR
 			)";
 			$search_params = array_fill(0, 4, $text);
 			$db->where($search_condition, $search_params);
@@ -114,7 +121,7 @@ class class_detailController extends SecureController{
 		$data->record_count = $records_count;
 		$data->total_records = $total_records;
 		$data->total_page = $total_pages;
-	
+		
 		if ($db->getLastError()) {
 			$this->set_page_error();
 		}

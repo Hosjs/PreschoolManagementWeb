@@ -125,24 +125,6 @@ $show_export_btn = $this->show_export_btn;
                                             </span>
                                         </td>
                                     </tr>
-                                    <tr  class="td-head_teacher">
-                                        <th class="title"> Giáo viên chủ nghiệm: </th>
-                                        <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['head_teacher']; ?>" 
-                                                data-pk="<?php echo $data['id'] ?>" 
-                                                data-url="<?php print_link("class/editfield/" . urlencode($data['id'])); ?>" 
-                                                data-name="head_teacher" 
-                                                data-title="Giáo viên chủ nhiệm" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="text" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['head_teacher']; ?> 
-                                            </span>
-                                        </td>
-                                    </tr>
                                     <tr  class="td-assistant">
                                         <th class="title"> Trợ giảng: </th>
                                         <td class="value">
@@ -212,6 +194,24 @@ $show_export_btn = $this->show_export_btn;
                                                 data-showbuttons="left" 
                                                 class="is-editable" <?php } ?>>
                                                 <?php echo $data['study_time']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-assigned_teacher">
+                                        <th class="title"> Giáo viên đứng lớp </th>
+                                        <td class="value">
+                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['assigned_teacher']; ?>" 
+                                                data-pk="<?php echo $data['id'] ?>" 
+                                                data-url="<?php print_link("class/editfield/" . urlencode($data['id'])); ?>" 
+                                                data-name="assigned_teacher" 
+                                                data-title="Nhập GVDL" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="text" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" <?php } ?>>
+                                                <?php echo $data['assigned_teacher']; ?> 
                                             </span>
                                         </td>
                                     </tr>
