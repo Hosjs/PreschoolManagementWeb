@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 04, 2025 lúc 03:28 PM
+-- Thời gian đã tạo: Th5 12, 2025 lúc 06:33 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -78,6 +78,16 @@ CREATE TABLE `attendance_log` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `attendance_log`
+--
+
+INSERT INTO `attendance_log` (`id`, `id_class_detail`, `attendance_date`, `status`, `note`, `created_at`) VALUES
+(83, 112, '2025-05-09', 'yes', NULL, '2025-05-09 13:26:07'),
+(84, 108, '2025-05-09', 'yes', NULL, '2025-05-09 13:26:08'),
+(85, 106, '2025-05-09', 'yes', NULL, '2025-05-09 13:26:08'),
+(86, 104, '2025-05-09', 'yes', NULL, '2025-05-09 13:26:10');
+
 -- --------------------------------------------------------
 
 --
@@ -103,10 +113,14 @@ CREATE TABLE `class` (
 --
 
 INSERT INTO `class` (`id`, `class_ID`, `class_name`, `age`, `number_of_pupil`, `assistant`, `Room`, `class_score`, `study_time`, `note`, `assigned_teacher`) VALUES
-(14, '123', 'Lớp 1 Tuổi', '1', '10', 'qưeqaw', '112', '12', '7h-16h', '12312412412', 'Nhi'),
-(15, '123', 'Lớp 2 Tuổi', '2', '22', 'sads', '113', '66', '7h-16h', 'dsfawed', 'Tùng'),
-(16, '124', 'Lớp 3 Tuổi', '3', '22', 'sads', '114', '99', '7h-16h', 'dsfawed', 'Phương'),
-(17, '125', 'Lớp 4 Tuổi', '4', '22', 'sads', '115', '11', '7h-16h', 'dsfawed', 'Hạnh');
+(14, '1', 'Lớp 2A', '1', '10', 'qưeqaw', '112', '12', '7h-16h', '12312412412', 'Nhi'),
+(15, '2', 'Lớp 2B', '2', '22', 'sads', '113', '66', '7h-16h', 'dsfawed', 'Tùng'),
+(16, '3', 'Lớp 3A', '3', '22', 'sads', '114', '99', '7h-16h', 'dsfawed', 'Phương'),
+(17, '4', 'Lớp 3B', '3', '22', 'sads', '115', '11', '7h-16h', 'dsfawed', 'Hạnh'),
+(18, '5', 'Lớp 4A', '4', '39', 'ằefwgawrg', '523', '52', '5h-17h', 'qừq3g', 'Đạt'),
+(19, '6', 'Lớp 4B', '4', '22', 'sads', '115', '11', '7h-16h', 'dsfawed', 'Quang'),
+(20, '7', 'Lớp 5A', '4', '22', 'sads', '115', '11', '7h-16h', 'dsfawed', 'Liêm'),
+(21, '8', 'Lớp 5B', '4', '22', 'sads', '115', '11', '7h-16h', 'dsfawed', 'Duy');
 
 -- --------------------------------------------------------
 
@@ -133,23 +147,12 @@ CREATE TABLE `class_detail` (
 --
 
 INSERT INTO `class_detail` (`id`, `photo`, `gender`, `class`, `note`, `attendance`, `id_student`, `assigned_teacher`, `student_name`, `id_class`, `year`) VALUES
-(24, '', NULL, NULL, NULL, 'yes', 27, NULL, NULL, 1, 2025),
-(27, '', 'Female', 'Lớp 1 tuổi', NULL, 'yes', 28, NULL, 'Vũ Hồng Ngọc', NULL, NULL),
-(29, '', 'Female', 'Lớp 1 tuổi', NULL, 'yes', 29, NULL, 'Bùi Thị Huệ', NULL, NULL),
-(31, '', 'Male', 'Lớp 1 tuổi', NULL, 'yes', 30, NULL, 'Bùi Thị Huệ', NULL, NULL),
-(33, '', 'Male', 'Lớp 1 tuổi', NULL, 'yes', 31, NULL, 'Phạm Nhật Vượng', NULL, NULL),
-(35, '', 'Male', 'Lớp 2 tuổi', NULL, 'no', 32, NULL, 'Phạm Xuân Tùng', NULL, NULL),
-(37, '', 'Male', 'Lớp 2 tuổi', NULL, 'no', 33, NULL, 'Phạm Xuân Tùng', NULL, NULL),
-(39, '', 'Male', 'Lớp 3 tuổi', NULL, 'no', 34, NULL, 'Đại ca', NULL, NULL),
-(41, '', 'Male', 'Lớp 2 tuổi', NULL, 'no', 35, NULL, 'Đại ca', NULL, NULL),
-(43, '', 'Male', 'Lớp 1 tuổi', NULL, 'no', 36, NULL, 'Eminem', NULL, NULL),
-(45, '', 'Male', 'Lớp 1 tuổi', NULL, 'no', 37, NULL, 'Eminem', NULL, NULL),
-(48, '', NULL, NULL, NULL, 'no', 39, NULL, NULL, 1, 2025),
-(49, '', 'Male', 'Lớp 1 tuổi', NULL, 'no', 39, NULL, 'Biggie', NULL, NULL),
-(50, '', NULL, NULL, NULL, 'no', 40, NULL, NULL, 1, 2025),
-(51, '', 'Female', 'Lớp 3 tuổi', NULL, 'no', 40, 'Phương', 'Cardi B', NULL, NULL),
-(52, '', NULL, NULL, NULL, 'no', 41, NULL, NULL, 1, 2025),
-(53, '', 'Female', 'Lớp 1 tuổi', NULL, 'no', 41, 'Nhi', 'Cardi B', NULL, NULL);
+(104, '', 'Male', 'Lớp 2A', '123', 'yes', 70, 'Nhi', 'DMX', 14, 2025),
+(106, '', 'Male', 'Lớp 2A', '123', 'yes', 71, 'Nhi', 'Tupac', 14, 2025),
+(108, '', 'Male', 'Lớp 2A', '123', 'yes', 72, 'Nhi', 'Biggie', 14, 2025),
+(110, '', 'Male', 'Lớp 2B', '123', 'no', 73, 'Tùng', 'Eminem', 15, 2025),
+(112, '', 'Male', 'Lớp 2A', 'dsfawed', 'yes', 74, 'Nhi', 'Andre 3000', 14, 2025),
+(114, '', 'Male', 'Lớp 2B', 'dsfawed', 'no', 75, 'Tùng', 'DMX', 15, 2025);
 
 -- --------------------------------------------------------
 
@@ -180,23 +183,28 @@ INSERT INTO `event` (`id`, `title`, `content`, `author`, `date`) VALUES
 
 CREATE TABLE `health_care` (
   `id` int(11) NOT NULL,
-  `year` varchar(255) NOT NULL,
-  `term` varchar(255) NOT NULL,
-  `name_of_pupil` varchar(255) NOT NULL,
-  `class_teacher_report` varchar(255) NOT NULL,
-  `comment` varchar(255) NOT NULL,
-  `date` date NOT NULL,
-  `class` varchar(255) NOT NULL
+  `student_id` int(11) NOT NULL,
+  `year` int(11) NOT NULL,
+  `height` int(11) DEFAULT NULL,
+  `weight` int(11) DEFAULT NULL,
+  `eye_sight` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `health_care`
 --
 
-INSERT INTO `health_care` (`id`, `year`, `term`, `name_of_pupil`, `class_teacher_report`, `comment`, `date`, `class`) VALUES
-(2, '2025-2026', 'term 1', 'Phạm Xuân Tùng', '<p>ádawda</p>', 'Ngu', '2025-03-12', '1'),
-(3, '2025-2026', 'Đạt yêu cầu', 'Đặng Tuấn Đạt', '<p>qưeqs</p>', 'Ngu hơn', '2025-03-12', '1'),
-(4, '2025-2026', 'Xuất sắc', 'Phạm Xuân Tùng', '<p>àasfas</p>', 'Ngu', '2025-04-02', '1');
+INSERT INTO `health_care` (`id`, `student_id`, `year`, `height`, `weight`, `eye_sight`) VALUES
+(1, 74, 2022, 123, 40, 10),
+(2, 74, 2023, 125, 41, 9),
+(3, 74, 2023, 160, 56, 10),
+(4, 74, 2024, 182, 75, 10),
+(5, 73, 2022, 100, 40, 10),
+(6, 73, 2023, 125, 45, 10),
+(7, 73, 2024, 145, 100, 10),
+(8, 70, 2022, 100, 100, 10),
+(9, 72, 2025, 100, 120, 100),
+(10, 70, 2025, 100, 101, 1);
 
 -- --------------------------------------------------------
 
@@ -220,6 +228,32 @@ CREATE TABLE `how_to_make_payment` (
 
 INSERT INTO `how_to_make_payment` (`id`, `fullname_of_depositor`, `payment_method`, `transaction_code`, `amount`, `transaction_date`, `comments`) VALUES
 (2, 'Trường mầm non ABC', 'bank', '12245678765432345', '4.500.000đ', '2025-03-12 08:59:07', 'Phụ huynh ghi rõ họ tên, mã học sinh vào trong thông tin chuyển khoản');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `meal`
+--
+
+CREATE TABLE `meal` (
+  `id_meal` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `lunch` text DEFAULT NULL,
+  `lunch_img` varchar(255) DEFAULT NULL,
+  `afternoon` text DEFAULT NULL,
+  `afternoon_img` varchar(255) DEFAULT NULL,
+  `created_by` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `meal`
+--
+
+INSERT INTO `meal` (`id_meal`, `date`, `lunch`, `lunch_img`, `afternoon`, `afternoon_img`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, '2025-05-11', 'cut', NULL, 'cut', NULL, 'Tao', '2025-05-12 14:23:36', '2025-05-12 14:23:36'),
+(2, '2025-05-14', '123', NULL, '123', NULL, '123', '2025-05-12 16:33:13', '2025-05-12 16:33:13');
 
 -- --------------------------------------------------------
 
@@ -273,21 +307,12 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`id`, `pupils_full_name`, `pupils_ID`, `age`, `class`, `father_name`, `mother_name`, `father_contact`, `mother_contact`, `guardian_name`, `guardian_contact`, `note`, `special_need`, `photo`, `gender`, `assigned_teacher`) VALUES
-(27, 'Vũ Hồng Ngọc', '123', '1', 'Lớp 1 tuổi', '123', '123', '123', '123', '123', '123', '123', 'Không', 'http://localhost/Nhi/uploads/files/76dx2h83oit14la.png', 'Female', NULL),
-(28, 'Vũ Hồng Ngọc', '999', '1', 'Lớp 1 tuổi', '123', '123', '123', '123', '123', '123', '123', 'Không', 'http://localhost/Nhi/uploads/files/h8tir57k1jasgdw.png', 'Female', NULL),
-(29, 'Bùi Thị Huệ', '998', '1', 'Lớp 1 tuổi', '123', '123', '123', '123', '123', '123', '123', 'Không', 'http://localhost/Nhi/uploads/files/7lph6a905utfrqc.png', 'Female', NULL),
-(30, 'Bùi Thị Huệ', '997', '1', 'Lớp 1 tuổi', '123', '123', '123', '123', '123', '123', '123', 'Không', 'http://localhost/Nhi/uploads/files/ba5mjx8flypo09_.png', 'Male', NULL),
-(31, 'Phạm Nhật Vượng', '996', '1', 'Lớp 1 tuổi', '123', '123', '123', '123', '123', '123', '123', 'Không', 'http://localhost/Nhi/uploads/files/m9bolzqewp8af0h.png', 'Male', NULL),
-(32, 'Phạm Xuân Tùng', '4343', '2', 'Lớp 2 tuổi', '123', '123', '123', '123', '123', '123', '123', 'Không', 'http://localhost/Nhi/uploads/files/u8paweynctg0qif.png', 'Male', NULL),
-(33, 'Phạm Xuân Tùng', '4343', '2', 'Lớp 2 tuổi', '123', '123', '123', '123', '123', '123', '123', 'Không', 'http://localhost/Nhi/uploads/files/h76a3lpmk90yfvx.png', 'Male', NULL),
-(34, 'Đại ca', '12314', '2', 'Lớp 3 tuổi', '123', '123', '123', '123', '123', '123', '123', 'Không', 'http://localhost/Nhi/uploads/files/ri0te8h6anc572x.png', 'Male', NULL),
-(35, 'Đại ca', '12314', '2', 'Lớp 2 tuổi', '123', '123', '123', '123', '123', '123', '123', 'Không', 'http://localhost/Nhi/uploads/files/gn3xlm6ifsd15h8.jpg', 'Male', NULL),
-(36, 'Eminem', '12314', '2', 'Lớp 1 tuổi', '123', '123', '123', '123', '123', '123', '123', 'Không', 'http://localhost/Nhi/uploads/files/i49z8epylcb0q5g.jpg', 'Male', NULL),
-(37, 'Eminem', '12314', '2', 'Lớp 1 tuổi', '123', '123', '123', '123', '123', '123', '123', 'Không', 'http://localhost/Nhi/uploads/files/unyjtrv3418egs0.jpg', 'Male', NULL),
-(38, 'Tupac', '763', '1', 'Lớp 1 tuổi', '123', '123', '123', '123', '123', '123', '123', 'Không', 'http://localhost/Nhi/uploads/files/14easdtkfm9z2_v.jpg', 'Male', NULL),
-(39, 'Biggie', '5324', '1', 'Lớp 1 tuổi', '123', '123', '123', '123', '123', '123', '123', 'Có', 'http://localhost/Nhi/uploads/files/lx3osg0ybu8_pzd.jpg', 'Male', NULL),
-(40, 'Cardi B', '5322', '3', 'Lớp 3 tuổi', '123', '123', '123', '123', '123', '123', '2222222222222222222222', 'Có', 'http://localhost/Nhi/uploads/files/mu0r_f8w4z125lo.jpg', 'Female', 'Phương'),
-(41, 'Cardi B', '123446342', '1', 'Lớp 1 tuổi', '123', '123', '123', '123', '123', '123', '2222222222222222222222', 'Có', 'http://localhost/Nhi/uploads/files/a84dcly5rs_woh3.jpg', 'Female', 'Nhi');
+(70, 'DMX', '2445', '2', 'Lớp 2A', '123', '123', '123', '123', '123', '123', '123', 'Không', 'http://localhost/Nhi/uploads/files/7p5hovzbc8l69tk.jpg', 'Male', 'Nhi'),
+(71, 'Tupac', '24455', '2', 'Lớp 2A', '123', '123', '123', '123', '123', '123', '123', 'Có', 'http://localhost/Nhi/uploads/files/d5hnk_gjrsf4zva.jpg', 'Male', 'Nhi'),
+(72, 'Biggie', '244555', '2', 'Lớp 2A', '123', '123', '123', '123', '123', '123', '123', 'Có', 'http://localhost/Nhi/uploads/files/ex2tjr3b7oi9_p8.jpg', 'Male', 'Nhi'),
+(73, 'Eminem', '9082374', '2', 'Lớp 2B', '123', '123', '123', '123', '123', '123', '123', 'Có', 'http://localhost/Nhi/uploads/files/3z245afxcvmtuhi.jpg', 'Male', 'Tùng'),
+(74, 'Andre 3000', '9082374123', '2', 'Lớp 2A', '123', 'ádf', '1212412', '132134', '123', '123', 'dsfawed', 'Có', 'http://localhost/Nhi/uploads/files/5_tkwpih4a3ugo2.jpg', 'Male', 'Nhi'),
+(75, 'DMX', '9082374123', '2', 'Lớp 2B', '123', 'ádf', '1212412', '132134', '123', '123', 'dsfawed', 'Không', 'http://localhost/Nhi/uploads/files/gep95n1ijq8rw2d.jpg', 'Male', 'Tùng');
 
 --
 -- Bẫy `student`
@@ -320,7 +345,7 @@ CREATE TABLE `subject` (
 INSERT INTO `subject` (`id`, `title`, `content`, `date`) VALUES
 (5, 'Toán', 'http://localhost/Nhi1/uploads/files/tslcav_u90xkbde.xlsx', '2025-03-12 06:12:08'),
 (6, 'Tiếng Anh', 'http://localhost/Nhi1/uploads/files/jke0trq4_3965dh.jpg', '2025-03-12 06:12:57'),
-(7, 'Hội khỏe phù đổng', 'http://localhost/Nhi1/uploads/files/z9f4ahm7qnoyvgp.xlsx', '2025-04-03 16:34:22');
+(7, 'Boxing', 'http://localhost/Nhi1/uploads/files/z9f4ahm7qnoyvgp.xlsx', '2025-04-03 16:34:22');
 
 -- --------------------------------------------------------
 
@@ -354,11 +379,17 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `photo`, `birth_day`, `resdence`, `phone`, `username`, `password`, `email`, `login_session_key`, `email_status`, `password_expire_date`, `password_reset_key`, `role`, `account_status`, `assigned_teacher`) VALUES
 (1, 'Pha', 'Tùng', 'http://localhost/Nhi1/uploads/files/u8lghnjdk2w7o_i.jpg', '2003-05-29', 'None', '0707333776', 'Nhi', '$2y$10$F2br6Zvs35l6rg3YM7oSnuTojUqf4ySxVjLQzoXoJf4ifHn.fJYHq', 'kim@gmail.com', '7d3300dc2f13b53d9a399c0aa735add7', NULL, '2021-04-21 00:00:00', NULL, 'headteacher', 'Active', 'Nhi'),
-(4, 'Tùng', 'Phạm', 'http://localhost/pre-primaryschoolmanagementsystem/uploads/files/sfacl02xohud_y7.jpg', '10/01/1999', 'voi', '09872900827', 'tungg', '123', 'sdas@gmail.com', NULL, NULL, '2021-04-21 00:00:00', NULL, 'pupil', 'Active', NULL),
-(6, 'Phạm Xuân', 'Tùng', 'http://localhost/Nhi1/uploads/files/nh4o0wujkqtv8xl.jpg', '2003-01-01', '123', '121232', 'Tunghhh', '$2y$10$gZgk3pl2HJhEaDEcFaKbE.Kfvyt8tcyo6/4l8NT2I6Kc0CyGPXZF6', 'Tung290520009@gmail.com', NULL, NULL, '2021-04-21 00:00:00', NULL, 'pupils', 'Active', NULL),
-(10, 'Phạm Xuân', 'Tùng', 'http://localhost/Nhi1/uploads/files/xhagywo0bsjp7mz.jpg', '2025-04-15', '123', '1212321412', 'eeee', '$2y$10$AjmYXFTPIJxIdz/z4LTfOunPsy21Hy8eL7B8cMfunp848Lyj3haOy', 'Tung29052003@gmail.com', NULL, NULL, '2021-04-21 00:00:00', NULL, 'headteacher', 'Active', NULL),
-(11, 'Duy', 'Vũ', 'http://localhost/Nhi1/uploads/files/a_fxcr80l1nkqgo.png', '29-5-2003', '123', '1212321412', '1234567', '$2y$10$EK/ruo1O0ou0BZDNRyGuVOKdx/6kgMau91IdWGcKHzWMfGhNysD5m', 'Tung29ww052003@gmail.com', NULL, NULL, '2021-04-21 00:00:00', NULL, 'headteacher', 'Active', NULL),
-(12, 'Duy', 'Vũ', 'http://localhost/Nhi1/uploads/files/hina8yk50fobx6t.jpg', '2003-01-01', '123', '1212321412', '12345', '$2y$10$RAkcR2Es9uCYifZuGCsF5Oad/SedtLwX2Tx1s.cY69fP2OhG6eNyG', 'Tung29ww0jm52003@gmail.com', NULL, NULL, '2021-04-21 00:00:00', NULL, 'pupils', 'Pending', NULL);
+(4, 'Tùng', 'Phạm', 'http://localhost/pre-primaryschoolmanagementsystem/uploads/files/sfacl02xohud_y7.jpg', '10/01/1999', 'voi', '09872900827', 'tungg', '123', 'sdas@gmail.com', NULL, NULL, '2021-04-21 00:00:00', NULL, 'pupil', 'Active', 'Nhi'),
+(6, 'Phạm Xuân', 'Tùng', 'http://localhost/Nhi1/uploads/files/nh4o0wujkqtv8xl.jpg', '2003-01-01', '123', '121232', 'Tunghhh', '$2y$10$gZgk3pl2HJhEaDEcFaKbE.Kfvyt8tcyo6/4l8NT2I6Kc0CyGPXZF6', 'Tung290520009@gmail.com', 'fd30a1d65d481df1c9d9fdf42b24a587', NULL, '2021-04-21 00:00:00', NULL, 'pupils', 'Active', 'Nhi'),
+(10, 'Phạm Xuân', 'Tùng', 'http://localhost/Nhi1/uploads/files/xhagywo0bsjp7mz.jpg', '2025-04-15', '123', '1212321412', 'Liêm', '$2y$10$AjmYXFTPIJxIdz/z4LTfOunPsy21Hy8eL7B8cMfunp848Lyj3haOy', 'Tung29052003@gmail.com', NULL, NULL, '2021-04-21 00:00:00', NULL, 'headteacher', 'Active', 'Liêm'),
+(11, 'Duy', 'Vũ', 'http://localhost/Nhi1/uploads/files/a_fxcr80l1nkqgo.png', '29-5-2003', '123', '1212321412', 'Duy', '$2y$10$EK/ruo1O0ou0BZDNRyGuVOKdx/6kgMau91IdWGcKHzWMfGhNysD5m', 'Tung29ww052003@gmail.com', NULL, NULL, '2021-04-21 00:00:00', NULL, 'headteacher', 'Active', 'Duy'),
+(12, 'Duy', 'Vũ', 'http://localhost/Nhi1/uploads/files/hina8yk50fobx6t.jpg', '2003-01-01', '123', '1212321412', '12345', '$2y$10$RAkcR2Es9uCYifZuGCsF5Oad/SedtLwX2Tx1s.cY69fP2OhG6eNyG', 'Tung29ww0jm52003@gmail.com', NULL, NULL, '2021-04-21 00:00:00', NULL, 'pupils', 'Pending', 'Nhi'),
+(13, 'Tùng', 'hà', 'http://localhost/Nhi/uploads/files/hs6c9_z2f8ielrp.jpg', '2003-01-01', 'qưdawfawed', '0347875246', 'Tùng', '$2y$10$zVeEVGHwcVdTBjFjgTLSQObXU5b47F2gwF.y9oEdRgwKX09dFvuv2', 'vuduy300803@gmail.com', NULL, NULL, '2021-04-21 00:00:00', NULL, 'headteacher', 'Active', 'Tùng'),
+(14, 'Tùng', 'hà', 'http://localhost/Nhi/uploads/files/5hdfaksn9g1z7vm.png', '2025-05-07', 'qưdawfawed', '0347875246', 'Đạt', '$2y$10$MtZ5X5Z7GVnOgfoxO6bZh.P0DlsoGRYIF8ZWe4TwmGHxpw.0SSMR2', 'vuduy300803123123@gmail.com', NULL, NULL, '2021-04-21 00:00:00', NULL, 'headteacher', 'Active', 'Đạt'),
+(15, 'Tùng', 'hà', 'http://localhost/Nhi/uploads/files/zk6tvp2a3gwij1b.png', '2025-05-07', 'qưdawfawed', '0347875246', 'Quang', '$2y$10$RaPVrv.6JgsGUsTqtoHVNedwdx8Li8AvcIUDHVHPUh5wjxmZk3fve', 'vuduy30fdgsd3123123@gmail.com', NULL, NULL, '2021-04-21 00:00:00', NULL, 'headteacher', 'Active', 'Quang'),
+(16, 'Tùng', 'hà', 'http://localhost/Nhi/uploads/files/nka76tiqy4zpfu1.png', '2025-05-05', 'qưdawfawed', '0347875246', 'Hạnh', '$2y$10$dPyh.BUlRALKqocxW18PJOwMT.j0lmY52rrYgjayXAT6/piOAvs9S', 'agsdgasdf@gmail.com', NULL, NULL, '2021-04-21 00:00:00', NULL, 'headteacher', 'Active', 'Hạnh'),
+(17, 'Tùng', 'hà', 'http://localhost/Nhi/uploads/files/u2n3ojlhe46ip1v.png', '2025-05-08', 'qưdawfawed', '0347875246', 'Phương', '$2y$10$xT8e.AJLRikAbyejztcaIe9XfZig.s/Jl/ks991MmrDS3blxiORda', 'qqwersdf@gmail.com', NULL, NULL, '2021-04-21 00:00:00', NULL, 'headteacher', 'Active', 'Phương'),
+(19, 'Admin1', 'hà', 'http://localhost/Nhi/uploads/files/bw31m6fy2ovt59e.jpg', '1969-07-29', 'qưdawfawed', '0347875246', 'Admin1', '$2y$10$8JsWt1Rt0lnSqwWTeKMHYejHddIbmHQLxgYVs1JhVLzczZJpsSaqW', 'vudusdfsdfsy300803@gmail.com', '10991c949b271c302bb973a9da65553c', NULL, '2021-04-21 00:00:00', NULL, 'admin', 'Active', NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -406,13 +437,20 @@ ALTER TABLE `event`
 -- Chỉ mục cho bảng `health_care`
 --
 ALTER TABLE `health_care`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`);
 
 --
 -- Chỉ mục cho bảng `how_to_make_payment`
 --
 ALTER TABLE `how_to_make_payment`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `meal`
+--
+ALTER TABLE `meal`
+  ADD PRIMARY KEY (`id_meal`);
 
 --
 -- Chỉ mục cho bảng `messages`
@@ -460,19 +498,19 @@ ALTER TABLE `assignment`
 -- AUTO_INCREMENT cho bảng `attendance_log`
 --
 ALTER TABLE `attendance_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT cho bảng `class`
 --
 ALTER TABLE `class`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT cho bảng `class_detail`
 --
 ALTER TABLE `class_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT cho bảng `event`
@@ -484,13 +522,19 @@ ALTER TABLE `event`
 -- AUTO_INCREMENT cho bảng `health_care`
 --
 ALTER TABLE `health_care`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `how_to_make_payment`
 --
 ALTER TABLE `how_to_make_payment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `meal`
+--
+ALTER TABLE `meal`
+  MODIFY `id_meal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `messages`
@@ -502,7 +546,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT cho bảng `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT cho bảng `subject`
@@ -514,7 +558,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -531,6 +575,12 @@ ALTER TABLE `attendance_log`
 --
 ALTER TABLE `class_detail`
   ADD CONSTRAINT `fk_class_detail_student` FOREIGN KEY (`id_student`) REFERENCES `student` (`id`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `health_care`
+--
+ALTER TABLE `health_care`
+  ADD CONSTRAINT `health_care_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`);
 
 --
 -- Các ràng buộc cho bảng `messages`

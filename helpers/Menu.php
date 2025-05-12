@@ -46,7 +46,7 @@ class Menu{
 		
 		array(
 			'path' => 'class_detail', 
-			'label' => 'Chi tiết lớp', 
+			'label' => 'Điểm danh', 
 			'icon' => '<i class="material-icons mi-md">touch_app</i>'
 		),
 		
@@ -61,13 +61,16 @@ class Menu{
 			'label' => 'Sự kiện', 
 			'icon' => '<i class="material-icons mi-md">beenhere</i>'
 		),
-		
+		array(
+			'path' => 'meal', 
+			'label' => 'Thực đơn', 
+			'icon' => '<i class="material-icons mi-md">restaurant_menu</i>'
+		),	
 		array(
 			'path' => 'class', 
 			'label' => 'Thông tin lớp', 
 			'icon' => '<i class="material-icons mi-md">bubble_chart</i>'
 		),
-		
 		array(
 			'path' => 'health_care', 
 			'label' => 'Theo dõi sức khỏe', 
@@ -109,20 +112,38 @@ class Menu{
 		
 				public static $class = array(
 			array(
-				"value" => "Lớp 1 tuổi", 
-				"label" => "Lớp 1 tuổi", 
+				"value" => "Lớp 2A", 
+				"label" => "Lớp 2A", 
 			),
 			array(
-				"value" => "Lớp 2 tuổi", 
-				"label" => "Lớp 2 tuổi", 
+				"value" => "Lớp 2B", 
+				"label" => "Lớp 2B", 
 			),
 			array(
-				"value" => "Lớp 3 tuổi", 
-				"label" => "Lớp 3 tuổi", 
+				"value" => "Lớp 3A", 
+				"label" => "Lớp 3A", 
 			),
 			array(
-				"value" => "Lớp 4 tuổi", 
-				"label" => "Lớp 4 tuổi", 
+				"value" => "Lớp 3B", 
+				"label" => "Lớp 3B", 
+			),
+			
+			array(
+				"value" => "Lớp 4A", 
+				"label" => "Lớp 4A", 
+			),
+			array(
+				"value" => "Lớp 4B", 
+				"label" => "Lớp 4B", 
+			),
+			
+			array(
+				"value" => "Lớp 5A", 
+				"label" => "Lớp 5A", 
+			),
+			array(
+				"value" => "Lớp 5B", 
+				"label" => "Lớp 5B", 
 			),
 			);
 		

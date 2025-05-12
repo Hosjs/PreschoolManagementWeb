@@ -13,9 +13,9 @@ class ACL
 	 * Use "*" to grant all access right to particular user role
 	 * @var array
 	 */
-	public static $role_pages = array(
-			'headteacher' =>
-						array(
+	public static $role_pages = array( 	
+			'admin' =>
+					array(
 							'users' => array('list','view','userregister','accountedit','accountview','add','edit', 'editfield','delete','import_data'),
 							'student' => array('list','view','add','edit', 'editfield','delete','import_data'),
 							'announcement' => array('list','view','add','edit', 'editfield','delete','import_data'),
@@ -24,7 +24,21 @@ class ACL
 							'assignment' => array('list','view','add','edit', 'editfield','delete','import_data'),
 							'event' => array('list','view','add','edit', 'editfield','delete','import_data'),
 							'class' => array('list','view','add','edit', 'editfield','delete','import_data'),
-							'health_care' => array('list','view','add','edit', 'editfield','delete','import_data'),
+							'meal' => array('list','view','add'),
+							'health_care' => array('list','view_chart','add','edit', 'editfield','delete','import_data'),
+							'how_to_make_payment' => array('list','view','add','edit', 'editfield','delete'),
+							'message' => array('list','view','add','edit', 'editfield','delete','import_data','group'),
+						),
+			'headteacher' =>
+						array(
+							'student' => array('list','view','add','edit', 'editfield','delete','import_data'),
+							'announcement' => array('list','view','add','edit', 'editfield','delete','import_data'),
+							'subject' => array('list','view','add','edit', 'editfield','delete','import_data'),
+							'class_detail' => array('list','attendance_yes','attendance_no','mark_attendance'),
+							'assignment' => array('list','view','add','edit', 'editfield','delete','import_data'),
+							'event' => array('list','view','add','edit', 'editfield','delete','import_data'),
+							'meal' => array('list','view','add'),
+ 							'health_care' => array('list','view_chart','add','edit', 'editfield','delete','import_data'),
 							'how_to_make_payment' => array('list','view','add','edit', 'editfield','delete'),
 							'message' => array('list','view','add','edit', 'editfield','delete','import_data','group'),
 						),
@@ -36,6 +50,7 @@ class ACL
 							'class_detail' => array('list','add'),
 							'assignment' => array('list','view'),
 							'event' => array('list','view'),
+							'meal' => array('list','view','add'),
 							'how_to_make_payment' => array('list','add'),
 							'message' => array('list','view','add','edit', 'editfield','delete','import_data','group'),
 							'health_care' => array('list','view')

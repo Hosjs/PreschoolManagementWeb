@@ -18,12 +18,12 @@ class studentController extends SecureController{
 		$request = $this->request;
 		$db = $this->GetModel();
 		$tablename = $this->tablename;
-	
+		
 		$current_user = $this->get_current_user();
+	
+		// Nếu là headteacher → chỉ xem học sinh của mình
 		if($current_user && $current_user['role'] == 'headteacher'){
-			if(!empty($current_user['assigned_teacher'])){
-				$db->where("student.assigned_teacher", $current_user['assigned_teacher']);
-			}
+			$db->where("assigned_teacher", $current_user['assigned_teacher']);
 		}
 	
 		$fields = array("id", 
@@ -40,46 +40,40 @@ class studentController extends SecureController{
 			"father_contact", 
 			"mother_contact", 
 			"guardian_name", 
-			"guardian_contact",
+			"guardian_contact", 
 			"assigned_teacher"
 		);
-		$pagination = $this->get_pagination(MAX_RECORD_COUNT); 
 	
+		$pagination = $this->get_pagination(MAX_RECORD_COUNT);
+	
+		// Tìm kiếm
 		if(!empty($request->search)){
-			$text = trim($request->search); 
+			$text = "%" . trim($request->search) . "%";
 			$search_condition = "(
-				student.id LIKE ? OR 
-				student.pupils_full_name LIKE ? OR 
-				student.pupils_ID LIKE ? OR 
-				student.age LIKE ? OR 
-				student.class LIKE ? OR 
-				student.gender LIKE ? OR 
-				student.photo LIKE ? OR 
-				student.note LIKE ? OR 
-				student.special_need LIKE ? OR 
-				student.father_name LIKE ? OR 
-				student.mother_name LIKE ? OR 
-				student.father_contact LIKE ? OR 
-				student.mother_contact LIKE ? OR 
-				student.guardian_name LIKE ? OR 
-				student.guardian_contact LIKE ?
+				pupils_full_name LIKE ? OR 
+				pupils_ID LIKE ? OR 
+				age LIKE ? OR 
+				class LIKE ? OR 
+				gender LIKE ? OR 
+				note LIKE ? OR 
+				special_need LIKE ? OR 
+				father_name LIKE ? OR 
+				mother_name LIKE ? OR 
+				guardian_name LIKE ?
 			)";
-			$search_params = array_fill(0, 15, "%$text%");
+			$search_params = array_fill(0, 10, $text);
 			$db->where($search_condition, $search_params);
 			$this->view->search_template = "student/search.php";
 		}
 	
 		if(!empty($request->orderby)){
-			$orderby = $request->orderby;
-			$ordertype = (!empty($request->ordertype) ? $request->ordertype : ORDER_TYPE);
-			$db->orderBy($orderby, $ordertype);
-		}
-		else{
-			$db->orderBy("student.id", ORDER_TYPE);
+			$db->orderBy($request->orderby, (!empty($request->ordertype) ? $request->ordertype : ORDER_TYPE));
+		}else{
+			$db->orderBy("id", ORDER_TYPE);
 		}
 	
 		if($fieldname){
-			$db->where($fieldname , $fieldvalue); 
+			$db->where($fieldname , $fieldvalue);
 		}
 	
 		$tc = $db->withTotalCount();
@@ -88,6 +82,7 @@ class studentController extends SecureController{
 		$total_records = intval($tc->totalCount);
 		$page_limit = $pagination[1];
 		$total_pages = ceil($total_records / $page_limit);
+	
 		$data = new stdClass;
 		$data->records = $records;
 		$data->record_count = $records_count;
@@ -99,12 +94,7 @@ class studentController extends SecureController{
 		}
 	
 		$page_title = $this->view->page_title = "Học sinh";
-		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
-		$this->view->report_title = $page_title;
-		$this->view->report_layout = "report_layout.php";
-		$this->view->report_paper_size = "A4";
-		$this->view->report_orientation = "portrait";
-		$this->render_view("student/list.php", $data); 
+		$this->render_view("student/list.php", $data);
 	}
 	
 	/**
@@ -181,6 +171,7 @@ class studentController extends SecureController{
 			);
 	
 			$postdata = $this->format_request_data($formdata);
+	
 			$this->rules_array = array(
 				'pupils_full_name' => 'required',
 				'pupils_ID' => 'required',
@@ -199,66 +190,57 @@ class studentController extends SecureController{
 				'assigned_teacher' => 'notrequired'
 			);
 	
-			$this->sanitize_array = array(
-				'pupils_full_name' => 'sanitize_string',
-				'pupils_ID' => 'sanitize_string',
-				'age' => 'sanitize_string',
-				'photo' => 'sanitize_string',
-				'gender' => 'sanitize_string',
-				'class' => 'sanitize_string',
-				'note' => 'sanitize_string',
-				'father_name' => 'sanitize_string',
-				'mother_name' => 'sanitize_string',
-				'father_contact' => 'sanitize_string',
-				'mother_contact' => 'sanitize_string',
-				'special_need' => 'sanitize_string',
-				'guardian_name' => 'sanitize_string',
-				'guardian_contact' => 'sanitize_string',
-				'assigned_teacher' => 'sanitize_string'
-			);
-	
+			$this->sanitize_array = array_fill_keys($fields, 'sanitize_string');
 			$this->filter_vals = true;
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
 	
 			if($this->validated()){
-	
-				// BƯỚC QUAN TRỌNG NHẤT → Lấy assigned_teacher từ bảng class
+				// Lấy assigned_teacher từ bảng class (bắt buộc phải có để tránh NULL)
 				$class_name = $modeldata['class'];
-				$assigned_teacher = $db->rawQueryOne("SELECT assigned_teacher FROM class WHERE class_name = ?", [$class_name]);
+				$class_data = $db->rawQueryOne("SELECT * FROM class WHERE class_name = ?", [$class_name]);
 	
-				if($assigned_teacher){
-					$modeldata['assigned_teacher'] = $assigned_teacher['assigned_teacher'];
+				if ($class_data) {
+					$modeldata['assigned_teacher'] = $class_data['assigned_teacher'];
+				} else {
+					$modeldata['assigned_teacher'] = null; // nếu không có class thì là NULL
 				}
 	
-				$rec_id = $this->rec_id = $db->insert($tablename, $modeldata);
-				if($rec_id){
-	
-					// Fetch student again để insert vào class_detail
+				$rec_id = $db->insert($tablename, $modeldata);
+				if ($rec_id) {
 					$student = $db->rawQueryOne("SELECT * FROM student WHERE id = ?", [$rec_id]);
-	
+				
+					// Lấy assigned_teacher
+					$class_data = $db->rawQueryOne("SELECT assigned_teacher, id AS id_class FROM class WHERE class_name = ?", [$student['class']]);
+					$assigned_teacher = $class_data ? $class_data['assigned_teacher'] : null;
+					$id_class = $class_data ? $class_data['id_class'] : null;
+				
 					$class_detail_data = [
 						"id_student" => $student['id'],
 						"student_name" => $student['pupils_full_name'],
 						"gender" => $student['gender'],
 						"class" => $student['class'],
-						"assigned_teacher" => $student['assigned_teacher']
+						"note" => $student['note'],
+						"attendance" => "no", // mặc định là "no"
+						"assigned_teacher" => $assigned_teacher,
+						"id_class" => $id_class,
+						"year" => date("Y")
 					];
-	
+					// Nếu có bản NULL (tìm bằng id_student)
+					$db->where("id_student", $student['id']);
+					$db->where("(class IS NULL OR class = '')");
+					$db->delete("class_detail");
+
+					// Sau đó mới insert bản chính xác
 					$db->insert("class_detail", $class_detail_data);
-	
-					$this->set_flash_msg("Học sinh đã được thêm thành công", "success");
-					return $this->redirect("student");
+
 				}
-				else{
-					$this->set_page_error();
-				}
+				
 			}
 		}
 	
 		$page_title = $this->view->page_title = "Thêm học sinh";
 		$this->render_view("student/add.php");
-	}	
-	
+	}
 	
 	/**
      * Update table record with formdata

@@ -107,7 +107,7 @@ $show_pagination = $this->show_pagination;
         ?>
         <div  class="">
             <div class="container-fluid">
-                <div class="row ">
+                <div class="row ">              
                     <div class="col-md-12 comp-grid">
                         <?php $this :: display_page_errors(); ?>
                         <div  class=" animated fadeIn page-content">
@@ -117,10 +117,16 @@ $show_pagination = $this->show_pagination;
                                 ?>
                                 <div id="page-report-body">
                                     <div class="row sm-gutters page-data" id="page-data-<?php echo $page_element_id; ?>">
-                                        <!--record-->
+                                        <!--View students of the same class--> 
                                         <?php
                                         $counter = 0;
+                                        $current_user = $_SESSION[APP_ID . 'user_data'] ?? null;
                                         foreach($records as $data){
+                                            if ($current_user && $current_user['role'] == 'headteacher') {
+                                                if ($data['assigned_teacher'] !== $current_user['assigned_teacher']) {
+                                                    continue;
+                                                }
+                                            }
                                         $rec_id = (!empty($data['id']) ? urlencode($data['id']) : null);
                                         $counter++;
                                         ?>

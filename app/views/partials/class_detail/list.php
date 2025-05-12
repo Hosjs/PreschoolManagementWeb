@@ -22,7 +22,9 @@ $show_header = $this->show_header;
 $show_footer = $this->show_footer;
 $show_pagination = $this->show_pagination;
 ?>
+
 <section class="page" id="<?php echo $page_element_id; ?>" data-page-type="list"  data-display-type="grid" data-page-url="<?php print_link($current_page); ?>">
+    
     <?php
     if( $show_header == true ){
     ?>
@@ -99,20 +101,30 @@ $show_pagination = $this->show_pagination;
         ?>
 <div class="container">
     <div class="row">
-        <?php foreach ($records as $data): ?>
+        <?php 
+        $current_user = $_SESSION[APP_ID.'user_data'] ?? null;
+
+        foreach ($records as $data):
+            if ($current_user && $current_user['role'] == 'headteacher') {
+                if ($data['assigned_teacher'] !== $current_user['assigned_teacher']) {
+                    continue;
+                }
+            }            
+        ?>
+
         <div class="col-md-4 col-lg-3 mb-4">
             <div class="card shadow-sm h-100">
                 
                 <img src="<?= $data['photo'] ?? 'uploads/default-avatar.png' ?>" class="card-img-top" alt="Ảnh học sinh" style="height: 200px; object-fit: cover;">
                 <div class="card-body">
-                    <h5 class="card-title text-primary"><?= $data['first_name'] ?></h5>
-                    <p class="card-text">
-                        <strong>Lớp:</strong> <?= $data['class'] ?><br>
-                        <strong>Giới tính:</strong> <?= $data['gender'] ?><br>
-                        <strong>Năm sinh:</strong> <?= $data['year_of_birth'] ?><br>
-                        <strong>Ghi chú:</strong> <?= $data['note'] ?><br>
-                        <strong>Điểm danh:</strong> <?= $data['attendance_status'] == 'yes' ? 'Có mặt' : ($data['attendance_status'] == 'no' ? 'Vắng mặt' : 'Chưa điểm danh') ?>
-                    </p>
+                <h5 class="card-title text-primary"><?= $data['student_name'] ?? '' ?></h5>
+                <p class="card-text">
+                    <strong>Lớp:</strong> <?= $data['class'] ?? '' ?><br>
+                    <strong>Giới tính:</strong> <?= $data['gender'] ?? '' ?><br>
+                    <strong>Ghi chú:</strong> <?= $data['note'] ?? '' ?><br>
+                    <strong>Điểm danh:</strong> <?= $data['attendance'] == 'yes' ? 'Có mặt' : ($data['attendance'] == 'no' ? 'Vắng mặt' : 'Chưa điểm danh') ?>
+                </p>
+
                     <div class="d-flex justify-content-between">
                     <?php include(__DIR__ . "/yes.php"); ?>
                     <?php include(__DIR__ . "/no.php"); ?>
@@ -121,5 +133,6 @@ $show_pagination = $this->show_pagination;
             </div>
         </div>
         <?php endforeach; ?>
+
     </div>
 </div>
