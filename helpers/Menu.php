@@ -46,8 +46,13 @@ class Menu{
 		
 		array(
 			'path' => 'class_detail', 
+<<<<<<< HEAD
 			'label' => 'Chi tiết lớp', 
 			'icon' => '<i class="material-icons mi-md">archive</i>'
+=======
+			'label' => 'Điểm danh', 
+			'icon' => '<i class="material-icons mi-md">touch_app</i>'
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
 		),
 		
 		array(
@@ -61,7 +66,11 @@ class Menu{
 			'label' => 'Sự kiện', 
 			'icon' => '<i class="material-icons mi-md">event_note</i>'
 		),
-		
+		array(
+			'path' => 'meal', 
+			'label' => 'Thực đơn', 
+			'icon' => '<i class="material-icons mi-md">restaurant_menu</i>'
+		),	
 		array(
 			'path' => 'class', 
 			'label' => 'Thông tin lớp', 
@@ -127,6 +136,7 @@ class Menu{
 			"label" => "Blocked", 
 		),);
 		
+<<<<<<< HEAD
 			public static $class = array(
 		array(
 			"value" => "Lớp 1A1", 
@@ -148,6 +158,44 @@ class Menu{
 			"value" => "Lớp 5A1", 
 			"label" => "Lớp 5A1", 
 		),);
+=======
+				public static $class = array(
+			array(
+				"value" => "Lớp 2A", 
+				"label" => "Lớp 2A", 
+			),
+			array(
+				"value" => "Lớp 2B", 
+				"label" => "Lớp 2B", 
+			),
+			array(
+				"value" => "Lớp 3A", 
+				"label" => "Lớp 3A", 
+			),
+			array(
+				"value" => "Lớp 3B", 
+				"label" => "Lớp 3B", 
+			),
+			
+			array(
+				"value" => "Lớp 4A", 
+				"label" => "Lớp 4A", 
+			),
+			array(
+				"value" => "Lớp 4B", 
+				"label" => "Lớp 4B", 
+			),
+			
+			array(
+				"value" => "Lớp 5A", 
+				"label" => "Lớp 5A", 
+			),
+			array(
+				"value" => "Lớp 5B", 
+				"label" => "Lớp 5B", 
+			),
+			);
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
 		
 			public static $gender = array(
 		array(

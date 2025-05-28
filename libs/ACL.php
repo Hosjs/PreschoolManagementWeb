@@ -13,9 +13,15 @@ class ACL
 	 * Use "*" to grant all access right to particular user role
 	 * @var array
 	 */
+<<<<<<< HEAD
 	public static $role_pages = array(
 			'admin' =>
 						array(
+=======
+	public static $role_pages = array( 	
+			'admin' =>
+					array(
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
 							'users' => array('list','view','userregister','accountedit','accountview','add','edit', 'editfield','delete','import_data'),
 							'student' => array('list','view','add','edit', 'editfield','delete','import_data'),
 							'announcement' => array('list','view','add','edit', 'editfield','delete','import_data'),
@@ -39,9 +45,29 @@ class ACL
 							'class_detail' => array('list','attendance_yes','attendance_no','mark_attendance'),
 							'event' => array('list','view','add','edit', 'editfield','delete','import_data'),
 							'class' => array('list','view','add','edit', 'editfield','delete','import_data'),
+<<<<<<< HEAD
 							'health_care' => array('list','view','add','edit','editfield','delete','import_data','view_chart'),
 							'how_to_make_payment' => array('list','view','add','edit','editfield','delete','import_data'),
 							//'message' => array('list','view','add','edit', 'editfield','delete','import_data','group'),
+=======
+							'meal' => array('list','view','add'),
+							'health_care' => array('list','view_chart','add','edit', 'editfield','delete','import_data'),
+							'how_to_make_payment' => array('list','view','add','edit', 'editfield','delete'),
+							'message' => array('list','view','add','edit', 'editfield','delete','import_data','group'),
+						),
+			'headteacher' =>
+						array(
+							'student' => array('list','view','add','edit', 'editfield','delete','import_data'),
+							'announcement' => array('list','view','add','edit', 'editfield','delete','import_data'),
+							'subject' => array('list','view','add','edit', 'editfield','delete','import_data'),
+							'class_detail' => array('list','attendance_yes','attendance_no','mark_attendance'),
+							'assignment' => array('list','view','add','edit', 'editfield','delete','import_data'),
+							'event' => array('list','view','add','edit', 'editfield','delete','import_data'),
+							'meal' => array('list','view','add'),
+ 							'health_care' => array('list','view_chart','add','edit', 'editfield','delete','import_data'),
+							'how_to_make_payment' => array('list','view','add','edit', 'editfield','delete'),
+							'message' => array('list','view','add','edit', 'editfield','delete','import_data','group'),
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
 						),
 			'parents' =>
 						array(
@@ -63,6 +89,7 @@ class ACL
 							'subject' => array('list','view'),
 							'class_detail' => array('list','view'),
 							'event' => array('list','view'),
+<<<<<<< HEAD
 							'class' => array('list','view'),
 							'how_to_make_payment' => array('list','view','add','edit','editfield','delete','import_data'),
 						),
@@ -70,6 +97,13 @@ class ACL
 						array(
 							'meal' => array('list','view','add','edit','editfield','delete','import_data'),
 						),
+=======
+							'meal' => array('list','view','add'),
+							'how_to_make_payment' => array('list','add'),
+							'message' => array('list','view','add','edit', 'editfield','delete','import_data','group'),
+							'health_care' => array('list','view')
+						)
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
 		);
 
 	/**

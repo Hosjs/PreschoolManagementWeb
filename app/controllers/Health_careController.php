@@ -17,7 +17,11 @@ class Health_careController extends SecureController {
         $db->where("c.assigned_teacher", $current_user['assigned_teacher']);
     }
 
+<<<<<<< HEAD
     $db->orderBy("h.month", "DESC");
+=======
+    $db->orderBy("h.year", "DESC");
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
     $fields = "h.*, s.pupils_full_name AS student_name, s.class, s.photo, s.id AS student_id";
     $all = $db->get("health_care h", null, $fields);
 
@@ -43,14 +47,22 @@ class Health_careController extends SecureController {
         SELECT * FROM health_care 
         INNER JOIN student ON student.id = health_care.student_id 
         WHERE student.id = ?
+<<<<<<< HEAD
         ORDER BY month ASC
+=======
+        ORDER BY year ASC
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
     ", [$student_id]);
 
     $latest = $db->rawQueryOne("
         SELECT * FROM health_care 
         INNER JOIN student ON student.id = health_care.student_id 
         WHERE student.id = ?
+<<<<<<< HEAD
         ORDER BY month DESC
+=======
+        ORDER BY year DESC
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
         LIMIT 1
     ", [$student_id]);
 
@@ -69,12 +81,20 @@ function add($formdata = null){
 		$tablename = $this->tablename;
 		$request = $this->request;
 
+<<<<<<< HEAD
 		$fields = $this->fields = array("student_id", "month", "height", "weight", "eye_sight");
+=======
+		$fields = $this->fields = array("student_id", "year", "height", "weight", "eye_sight");
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
 		$postdata = $this->format_request_data($formdata);
 
 		$this->rules_array = array(
 			"student_id" => "required|numeric",
+<<<<<<< HEAD
 			"month" => "required|numeric",
+=======
+			"year" => "required|numeric",
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
 			"height" => "required|numeric",
 			"weight" => "required|numeric",
 			"eye_sight" => "required|numeric"
@@ -82,7 +102,11 @@ function add($formdata = null){
 
 		$this->sanitize_array = array(
 			"student_id" => "sanitize_string",
+<<<<<<< HEAD
 			"month" => "sanitize_string",
+=======
+			"year" => "sanitize_string",
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
 			"height" => "sanitize_string",
 			"weight" => "sanitize_string",
 			"eye_sight" => "sanitize_string"
@@ -105,6 +129,11 @@ function add($formdata = null){
 
 	$page_title = $this->view->page_title = "Thêm dữ liệu sức khỏe";
 	$this->render_view("health_care/add.php");
+<<<<<<< HEAD
+=======
+}
+
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
 }
 
 }

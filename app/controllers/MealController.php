@@ -40,7 +40,11 @@ class mealController extends SecureController{
 				meal.created_by LIKE ?
 			)";
 			$search_params = array(
+<<<<<<< HEAD
 				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
+=======
+				"%$text%","%$text%","%$text%","%$text%","%$text%"
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
 			);
 			//setting search conditions
 			$db->where($search_condition, $search_params);
@@ -133,6 +137,10 @@ class mealController extends SecureController{
 		$db = $this->GetModel();
 		$tablename = $this->tablename;
 		$request = $this->request;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
 		// Danh sách các trường hợp lệ
 		$fields = $this->fields = array(
 			"date", 
@@ -148,9 +156,12 @@ class mealController extends SecureController{
 		$this->rules_array = array(
 			'date' => 'required',
 			'lunch' => 'required',
+<<<<<<< HEAD
 			'lunch_img' => 'required',
 			'afternoon' => 'required',
 			'afternoon_img' => 'required',
+=======
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
 			'created_by' => 'required'
 		);
 
@@ -183,6 +194,7 @@ class mealController extends SecureController{
 	$page_title = $this->view->page_title = "Thêm thực đơn";
 	$this->render_view("meal/add.php");
 }
+<<<<<<< HEAD
 /**
  * Update record to the database table
  * @param $rec_id (select record by table primary key) 
@@ -351,3 +363,6 @@ function edit($rec_id = null, $formdata = null){
 		return	$this->redirect("meal");
 	}
 }
+=======
+}
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a

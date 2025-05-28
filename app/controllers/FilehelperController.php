@@ -38,8 +38,29 @@ class FilehelperController extends BaseController
 		} else {
 			render_error("Invalid Post Field Name", 400);
 		}
+		
 	}
+	function __construct() {
+        parent::__construct();
 
+        $this->file_upload_settings = array(
+            "lunch_img" => array(
+                "upload_dir" => UPLOAD_IMG_DIR,
+                "title" => "auto",
+                "extensions" => "jpg,png,jpeg,gif",
+                "limit" => 1,
+                "max_file_size" => 3000000, // 3MB
+                "returnfullpath" => true
+            ),
+            "afternoon_img" => array(
+                "upload_dir" => UPLOAD_IMG_DIR,
+                "title" => "auto",
+                "extensions" => "jpg,png,jpeg,gif",
+                "limit" => 1,
+                "max_file_size" => 3000000, // 3MB
+                "returnfullpath" => true
+            ),
+        );
 	function removefile()
 	{
 		if (!empty($this->post->filepath)) {

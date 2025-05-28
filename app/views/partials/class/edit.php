@@ -137,6 +137,7 @@ $redirect_to = $this->redirect_to;
                                                     placeholder="Giáo viên chủ nhiệm" required=""
                                                     name="assigned_teacher" class="form-control " />
                                             </div>
+<<<<<<< HEAD
                                         </div>
                                     </div>
                                 </div>
@@ -231,3 +232,92 @@ $redirect_to = $this->redirect_to;
         </div>
     </div>
 </section>
+=======
+                                                <div class="form-group ">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label class="control-label" for="number_of_pupil">number_of_pupil lớp <span class="text-danger">*</span></label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="">
+                                                                <input id="ctrl-number_of_pupil"  value="<?php  echo $data['number_of_pupil']; ?>" type="text" placeholder="Nhập sĩ số lớp"  required="" name="number_of_pupil"  class="form-control " />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                        <div class="form-group ">
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                    <label class="control-label" for="assistant">Trợ giảng <span class="text-danger">*</span></label>
+                                                                </div>
+                                                                <div class="col-sm-8">
+                                                                    <div class="">
+                                                                        <input id="ctrl-assistant"  value="<?php  echo $data['assistant']; ?>" type="text" placeholder="Trợ giảng"  required="" name="assistant"  class="form-control " />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <div class="row">
+                                                                    <div class="col-sm-4">
+                                                                        <label class="control-label" for="room">Phòng học <span class="text-danger">*</span></label>
+                                                                    </div>
+                                                                    <div class="col-sm-8">
+                                                                        <div class="">
+                                                                            <input id="ctrl-room"  value="<?php  echo $data['room']; ?>" type="text" placeholder="Phòng học"  required="" name="room"  class="form-control " />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group ">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-4">
+                                                                            <label class="control-label" for="class_score">Điểm thi đua <span class="text-danger">*</span></label>
+                                                                        </div>
+                                                                        <div class="col-sm-8">
+                                                                            <div class="">
+                                                                                <input id="ctrl-class_score"  value="<?php  echo $data['class_score']; ?>" type="text" placeholder="Điểm thi đua"  required="" name="class_score"  class="form-control " />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group ">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-4">
+                                                                                <label class="control-label" for="study_time">Thời gian học <span class="text-danger">*</span></label>
+                                                                            </div>
+                                                                            <div class="col-sm-8">
+                                                                                <div class="">
+                                                                                    <input id="ctrl-study_time"  value="<?php  echo $data['study_time']; ?>" type="text" placeholder="Thời gian học"  required="" name="study_time"  class="form-control " />
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group ">
+                                                                            <div class="row">
+                                                                                <div class="col-sm-4">
+                                                                                    <label class="control-label" for="note">Ghi chú <span class="text-danger">*</span></label>
+                                                                                </div>
+                                                                                <div class="col-sm-8">
+                                                                                    <div class="">
+                                                                                        <input id="ctrl-note"  value="<?php  echo $data['note']; ?>" type="text" placeholder="Ghi chú"  required="" name="note"  class="form-control " />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-ajax-status"></div>
+                                                                        <div class="form-group text-center">
+                                                                            <button class="btn btn-primary" type="submit">
+                                                                                Cập nhật
+                                                                                <i class="material-icons">send</i>
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a

@@ -23,9 +23,14 @@ $show_footer = $this->show_footer;
 $show_pagination = $this->show_pagination;
 ?>
 
+<<<<<<< HEAD
 <section class="page" id="<?php echo $page_element_id; ?>" data-page-type="list" data-display-type="grid"
     data-page-url="<?php print_link($current_page); ?>">
 
+=======
+<section class="page" id="<?php echo $page_element_id; ?>" data-page-type="list"  data-display-type="grid" data-page-url="<?php print_link($current_page); ?>">
+    
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
     <?php
     if( $show_header == true ){
     ?>
@@ -140,4 +145,47 @@ $show_pagination = $this->show_pagination;
             <?php endforeach; ?>
 
         </div>
+<<<<<<< HEAD
     </div>
+=======
+        <?php
+        }
+        ?>
+<div class="container">
+    <div class="row">
+        <?php 
+        $current_user = $_SESSION[APP_ID.'user_data'] ?? null;
+
+        foreach ($records as $data):
+            if ($current_user && $current_user['role'] == 'headteacher') {
+                if ($data['assigned_teacher'] !== $current_user['assigned_teacher']) {
+                    continue;
+                }
+            }            
+        ?>
+
+        <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card shadow-sm h-100">
+                
+                <img src="<?= $data['photo'] ?? 'uploads/default-avatar.png' ?>" class="card-img-top" alt="Ảnh học sinh" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                <h5 class="card-title text-primary"><?= $data['student_name'] ?? '' ?></h5>
+                <p class="card-text">
+                    <strong>Lớp:</strong> <?= $data['class'] ?? '' ?><br>
+                    <strong>Giới tính:</strong> <?= $data['gender'] ?? '' ?><br>
+                    <strong>Ghi chú:</strong> <?= $data['note'] ?? '' ?><br>
+                    <strong>Điểm danh:</strong> <?= $data['attendance'] == 'yes' ? 'Có mặt' : ($data['attendance'] == 'no' ? 'Vắng mặt' : 'Chưa điểm danh') ?>
+                </p>
+
+                    <div class="d-flex justify-content-between">
+                    <?php include(__DIR__ . "/yes.php"); ?>
+                    <?php include(__DIR__ . "/no.php"); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+
+    </div>
+</div>
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a

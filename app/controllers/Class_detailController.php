@@ -79,6 +79,10 @@ class class_detailController extends SecureController{
 		$current_user = $this->get_current_user();
 	
 		if ($current_user && $current_user['role'] == 'headteacher') {
+<<<<<<< HEAD
+=======
+			// Lấy danh sách các lớp giáo viên phụ trách
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
 			$teacher_name = $current_user['assigned_teacher'];
 			$class_list = $db->rawQuery("SELECT class_name FROM class WHERE assigned_teacher = ?", [$teacher_name]);
 			$class_names = array_column($class_list, "class_name");
@@ -91,7 +95,11 @@ class class_detailController extends SecureController{
 			$db->where("class_detail.class", null, "IS NOT NULL");
 		}
 		
+<<<<<<< HEAD
 		$fields = array("id AS id_class_detail", "id_student", "student_name","photo", "class", "gender", "assigned_teacher", "note", "attendance");
+=======
+		$fields = array("id AS id_class_detail", "id_student", "student_name", "class", "gender", "assigned_teacher", "note", "attendance");
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
 	
 		$pagination = $this->get_pagination(MAX_RECORD_COUNT);
 	

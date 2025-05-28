@@ -108,6 +108,7 @@ $show_pagination = $this->show_pagination;
     <?php
         }
         ?>
+<<<<<<< HEAD
     <div class="">
         <div class="container-fluid">
             <div class="row ">
@@ -126,6 +127,26 @@ $show_pagination = $this->show_pagination;
                                         $current_user = $_SESSION[APP_ID . 'user_data'] ?? null;
                                         foreach($records as $data){
                                             if ($current_user && $current_user['role'] == 'headteacher'|| $current_user && $current_user['role'] == 'parents') {
+=======
+        <div  class="">
+            <div class="container-fluid">
+                <div class="row ">              
+                    <div class="col-md-12 comp-grid">
+                        <?php $this :: display_page_errors(); ?>
+                        <div  class=" animated fadeIn page-content">
+                            <div id="student-list-records">
+                                <?php
+                                if(!empty($records)){
+                                ?>
+                                <div id="page-report-body">
+                                    <div class="row sm-gutters page-data" id="page-data-<?php echo $page_element_id; ?>">
+                                        <!--View students of the same class--> 
+                                        <?php
+                                        $counter = 0;
+                                        $current_user = $_SESSION[APP_ID . 'user_data'] ?? null;
+                                        foreach($records as $data){
+                                            if ($current_user && $current_user['role'] == 'headteacher') {
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
                                                 if ($data['assigned_teacher'] !== $current_user['assigned_teacher']) {
                                                     continue;
                                                 }

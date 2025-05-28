@@ -77,6 +77,7 @@ $show_export_btn = $this->show_export_btn;
                                             <span><?php echo $data['number_of_pupil']; ?></span>
                                         </td>
                                     </tr>
+<<<<<<< HEAD
                                     <tr class="td-assigned_teacher">
                                         <th class="title"> Giáo viên chủ nhiệm: </th>
                                         <td class="value">
@@ -84,6 +85,9 @@ $show_export_btn = $this->show_export_btn;
                                         </td>
                                     </tr>
                                     <tr class="td-assistant">
+=======
+                                    <tr  class="td-assistant">
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
                                         <th class="title"> Trợ giảng: </th>
                                         <td class="value">
                                             <span><?php echo $data['assistant']; ?></span>
@@ -107,7 +111,29 @@ $show_export_btn = $this->show_export_btn;
                                             <span><?php echo $data['study_time']; ?></span>
                                         </td>
                                     </tr>
+<<<<<<< HEAD
                                     <tr class="td-note">
+=======
+                                    <tr  class="td-assigned_teacher">
+                                        <th class="title"> Giáo viên đứng lớp </th>
+                                        <td class="value">
+                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['assigned_teacher']; ?>" 
+                                                data-pk="<?php echo $data['id'] ?>" 
+                                                data-url="<?php print_link("class/editfield/" . urlencode($data['id'])); ?>" 
+                                                data-name="assigned_teacher" 
+                                                data-title="Nhập GVDL" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="text" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" <?php } ?>>
+                                                <?php echo $data['assigned_teacher']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-note">
+>>>>>>> 6896a71640fa55073e62fe11deb607bd2aa6e09a
                                         <th class="title"> Ghi chú: </th>
                                         <td class="value">
                                             <span><?php echo $data['note']; ?></span>
