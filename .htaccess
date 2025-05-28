@@ -3,4 +3,6 @@ Options -Indexes
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?request_uri=$1 [NC,L,QSA,B]
-
+<IfModule mod_authz_core.c>
+    Require all granted
+</IfModule>

@@ -20,11 +20,12 @@ $show_edit_btn = $this->show_edit_btn;
 $show_delete_btn = $this->show_delete_btn;
 $show_export_btn = $this->show_export_btn;
 ?>
-<section class="page" id="<?php echo $page_element_id; ?>" data-page-type="view"  data-display-type="table" data-page-url="<?php print_link($current_page); ?>">
+<section class="page" id="<?php echo $page_element_id; ?>" data-page-type="view" data-display-type="table"
+    data-page-url="<?php print_link($current_page); ?>">
     <?php
     if( $show_header == true ){
     ?>
-    <div  class="bg-light p-3 mb-3">
+    <div class="bg-light p-3 mb-3">
         <div class="container">
             <div class="row ">
                 <div class="col ">
@@ -36,12 +37,12 @@ $show_export_btn = $this->show_export_btn;
     <?php
     }
     ?>
-    <div  class="">
+    <div class="">
         <div class="container">
             <div class="row ">
                 <div class="col-md-12 comp-grid">
                     <?php $this :: display_page_errors(); ?>
-                    <div  class="card animated fadeIn page-content">
+                    <div class="card animated fadeIn page-content">
                         <?php
                         $counter = 0;
                         if(!empty($data)){
@@ -52,116 +53,94 @@ $show_export_btn = $this->show_export_btn;
                             <table class="table table-hover table-borderless table-striped">
                                 <!-- Table Body Start -->
                                 <tbody class="page-data" id="page-data-<?php echo $page_element_id; ?>">
-                                    <tr  class="td-id">
+                                    <tr class="td-id">
                                         <th class="title"> Id: </th>
                                         <td class="value"> <?php echo $data['id']; ?></td>
                                     </tr>
-                                    <tr  class="td-fullname_of_depositor">
+                                    <tr class="td-fullname_of_depositor">
                                         <th class="title"> Tên tài khoản thụ hưởng: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['fullname_of_depositor']; ?>" 
-                                                data-pk="<?php echo $data['id'] ?>" 
-                                                data-url="<?php print_link("how_to_make_payment/editfield/" . urlencode($data['id'])); ?>" 
-                                                data-name="fullname_of_depositor" 
-                                                data-title="Enter Fullname Of Depositor" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="text" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['fullname_of_depositor']; ?> 
+                                            <span <?php if($can_edit){ ?>
+                                                data-value="<?php echo $data['fullname_of_depositor']; ?>"
+                                                data-pk="<?php echo $data['id'] ?>"
+                                                data-url="<?php print_link("how_to_make_payment/editfield/" . urlencode($data['id'])); ?>"
+                                                data-name="fullname_of_depositor"
+                                                data-title="Enter Fullname Of Depositor" data-placement="left"
+                                                data-toggle="click" data-type="text" data-mode="popover"
+                                                data-showbuttons="left" class="is-editable" <?php } ?>>
+                                                <?php echo $data['fullname_of_depositor']; ?>
                                             </span>
                                         </td>
                                     </tr>
-                                    <tr  class="td-payment_method">
+                                    <tr class="td-payment_method">
                                         <th class="title"> Phương thức thanh toán: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-source='<?php echo json_encode_quote(Menu :: $payment_method); ?>' 
-                                                data-value="<?php echo $data['payment_method']; ?>" 
-                                                data-pk="<?php echo $data['id'] ?>" 
-                                                data-url="<?php print_link("how_to_make_payment/editfield/" . urlencode($data['id'])); ?>" 
-                                                data-name="payment_method" 
-                                                data-title="Select a value ..." 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="select" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['payment_method']; ?> 
+                                            <span <?php if($can_edit){ ?>
+                                                data-source='<?php echo json_encode_quote(Menu :: $payment_method); ?>'
+                                                data-value="<?php echo $data['payment_method']; ?>"
+                                                data-pk="<?php echo $data['id'] ?>"
+                                                data-url="<?php print_link("how_to_make_payment/editfield/" . urlencode($data['id'])); ?>"
+                                                data-name="payment_method" data-title="Select a value ..."
+                                                data-placement="left" data-toggle="click" data-type="select"
+                                                data-mode="popover" data-showbuttons="left" class="is-editable"
+                                                <?php } ?>>
+                                                <?php echo $data['payment_method']; ?>
                                             </span>
                                         </td>
                                     </tr>
-                                    <tr  class="td-transaction_code">
+                                    <tr class="td-transaction_code">
                                         <th class="title"> Số tài khoản: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['transaction_code']; ?>" 
-                                                data-pk="<?php echo $data['id'] ?>" 
-                                                data-url="<?php print_link("how_to_make_payment/editfield/" . urlencode($data['id'])); ?>" 
-                                                data-name="transaction_code" 
-                                                data-title="Enter Transaction Code" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="text" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['transaction_code']; ?> 
+                                            <span <?php if($can_edit){ ?>
+                                                data-value="<?php echo $data['transaction_code']; ?>"
+                                                data-pk="<?php echo $data['id'] ?>"
+                                                data-url="<?php print_link("how_to_make_payment/editfield/" . urlencode($data['id'])); ?>"
+                                                data-name="transaction_code" data-title="Enter Transaction Code"
+                                                data-placement="left" data-toggle="click" data-type="text"
+                                                data-mode="popover" data-showbuttons="left" class="is-editable"
+                                                <?php } ?>>
+                                                <?php echo $data['transaction_code']; ?>
                                             </span>
                                         </td>
                                     </tr>
-                                    <tr  class="td-amount">
+                                    <tr class="td-amount">
                                         <th class="title"> Học phí: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['amount']; ?>" 
-                                                data-pk="<?php echo $data['id'] ?>" 
-                                                data-url="<?php print_link("how_to_make_payment/editfield/" . urlencode($data['id'])); ?>" 
-                                                data-name="amount" 
-                                                data-title="Enter Amount" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="text" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['amount']; ?> 
+                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['amount']; ?>"
+                                                data-pk="<?php echo $data['id'] ?>"
+                                                data-url="<?php print_link("how_to_make_payment/editfield/" . urlencode($data['id'])); ?>"
+                                                data-name="amount" data-title="Enter Amount" data-placement="left"
+                                                data-toggle="click" data-type="text" data-mode="popover"
+                                                data-showbuttons="left" class="is-editable" <?php } ?>>
+                                                <?php echo $data['amount']; ?>
                                             </span>
                                         </td>
                                     </tr>
-                                    <tr  class="td-transaction_date">
+                                    <tr class="td-transaction_date">
                                         <th class="title"> Hạn đóng học phí: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-flatpickr="{altFormat: 'Y-m-d', minDate: '', maxDate: ''}" 
-                                                data-value="<?php echo $data['transaction_date']; ?>" 
-                                                data-pk="<?php echo $data['id'] ?>" 
-                                                data-url="<?php print_link("how_to_make_payment/editfield/" . urlencode($data['id'])); ?>" 
-                                                data-name="transaction_date" 
-                                                data-title="Enter Transaction Date" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="flatdatetimepicker" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['transaction_date']; ?> 
+                                            <span <?php if($can_edit){ ?>
+                                                data-flatpickr="{altFormat: 'Y-m-d', minDate: '', maxDate: ''}"
+                                                data-value="<?php echo $data['transaction_date']; ?>"
+                                                data-pk="<?php echo $data['id'] ?>"
+                                                data-url="<?php print_link("how_to_make_payment/editfield/" . urlencode($data['id'])); ?>"
+                                                data-name="transaction_date" data-title="Enter Transaction Date"
+                                                data-placement="left" data-toggle="click" data-type="flatdatetimepicker"
+                                                data-mode="popover" data-showbuttons="left" class="is-editable"
+                                                <?php } ?>>
+                                                <?php echo $data['transaction_date']; ?>
                                             </span>
                                         </td>
                                     </tr>
-                                    <tr  class="td-comments">
+                                    <tr class="td-comments">
                                         <th class="title"> Ghi chú: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-pk="<?php echo $data['id'] ?>" 
-                                                data-url="<?php print_link("how_to_make_payment/editfield/" . urlencode($data['id'])); ?>" 
-                                                data-name="comments" 
-                                                data-title="Enter Comments" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="textarea" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['comments']; ?> 
+                                            <span <?php if($can_edit){ ?> data-pk="<?php echo $data['id'] ?>"
+                                                data-url="<?php print_link("how_to_make_payment/editfield/" . urlencode($data['id'])); ?>"
+                                                data-name="comments" data-title="Enter Comments" data-placement="left"
+                                                data-toggle="click" data-type="textarea" data-mode="popover"
+                                                data-showbuttons="left" class="is-editable" <?php } ?>>
+                                                <?php echo $data['comments']; ?>
                                             </span>
                                         </td>
                                     </tr>
@@ -171,57 +150,67 @@ $show_export_btn = $this->show_export_btn;
                         </div>
                         <div class="p-3 d-flex">
                             <div class="dropup export-btn-holder mx-1">
-                                <button class="btn btn-sm btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="material-icons">save</i> Export
+                                <button class="btn btn-sm btn-primary dropdown-toggle" type="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">save</i> Lưu & Xuất
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <?php $export_print_link = $this->set_current_page_link(array('format' => 'print')); ?>
-                                    <a class="dropdown-item export-link-btn" data-format="print" href="<?php print_link($export_print_link); ?>" target="_blank">
+                                    <a class="dropdown-item export-link-btn" data-format="print"
+                                        href="<?php print_link($export_print_link); ?>" target="_blank">
                                         <img src="<?php print_link('assets/images/print.png') ?>" class="mr-2" /> PRINT
-                                        </a>
-                                        <?php $export_pdf_link = $this->set_current_page_link(array('format' => 'pdf')); ?>
-                                        <a class="dropdown-item export-link-btn" data-format="pdf" href="<?php print_link($export_pdf_link); ?>" target="_blank">
-                                            <img src="<?php print_link('assets/images/pdf.png') ?>" class="mr-2" /> PDF
-                                            </a>
-                                            <?php $export_word_link = $this->set_current_page_link(array('format' => 'word')); ?>
-                                            <a class="dropdown-item export-link-btn" data-format="word" href="<?php print_link($export_word_link); ?>" target="_blank">
-                                                <img src="<?php print_link('assets/images/doc.png') ?>" class="mr-2" /> WORD
-                                                </a>
-                                                <?php $export_csv_link = $this->set_current_page_link(array('format' => 'csv')); ?>
-                                                <a class="dropdown-item export-link-btn" data-format="csv" href="<?php print_link($export_csv_link); ?>" target="_blank">
-                                                    <img src="<?php print_link('assets/images/csv.png') ?>" class="mr-2" /> CSV
-                                                    </a>
-                                                    <?php $export_excel_link = $this->set_current_page_link(array('format' => 'excel')); ?>
-                                                    <a class="dropdown-item export-link-btn" data-format="excel" href="<?php print_link($export_excel_link); ?>" target="_blank">
-                                                        <img src="<?php print_link('assets/images/xsl.png') ?>" class="mr-2" /> EXCEL
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <?php if($can_edit){ ?>
-                                                <a class="btn btn-sm btn-info"  href="<?php print_link("how_to_make_payment/edit/$rec_id"); ?>">
-                                                    <i class="material-icons">edit</i> Edit
-                                                </a>
-                                                <?php } ?>
-                                                <?php if($can_delete){ ?>
-                                                <a class="btn btn-sm btn-danger record-delete-btn mx-1"  href="<?php print_link("how_to_make_payment/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
-                                                    <i class="material-icons">clear</i> Delete
-                                                </a>
-                                                <?php } ?>
-                                            </div>
-                                            <?php
+                                    </a>
+                                    <?php $export_pdf_link = $this->set_current_page_link(array('format' => 'pdf')); ?>
+                                    <a class="dropdown-item export-link-btn" data-format="pdf"
+                                        href="<?php print_link($export_pdf_link); ?>" target="_blank">
+                                        <img src="<?php print_link('assets/images/pdf.png') ?>" class="mr-2" /> PDF
+                                    </a>
+                                    <?php $export_word_link = $this->set_current_page_link(array('format' => 'word')); ?>
+                                    <a class="dropdown-item export-link-btn" data-format="word"
+                                        href="<?php print_link($export_word_link); ?>" target="_blank">
+                                        <img src="<?php print_link('assets/images/doc.png') ?>" class="mr-2" /> WORD
+                                    </a>
+                                    <?php $export_csv_link = $this->set_current_page_link(array('format' => 'csv')); ?>
+                                    <a class="dropdown-item export-link-btn" data-format="csv"
+                                        href="<?php print_link($export_csv_link); ?>" target="_blank">
+                                        <img src="<?php print_link('assets/images/csv.png') ?>" class="mr-2" /> CSV
+                                    </a>
+                                    <?php $export_excel_link = $this->set_current_page_link(array('format' => 'excel')); ?>
+                                    <a class="dropdown-item export-link-btn" data-format="excel"
+                                        href="<?php print_link($export_excel_link); ?>" target="_blank">
+                                        <img src="<?php print_link('assets/images/xsl.png') ?>" class="mr-2" /> EXCEL
+                                    </a>
+                                </div>
+                            </div>
+                            <?php if($can_edit){ ?>
+                            <a class="btn btn-sm btn-info"
+                                href="<?php print_link("how_to_make_payment/edit/$rec_id"); ?>">
+                                <i class="material-icons">edit</i> Sửa
+                            </a>
+                            <?php } ?>
+                            <?php if($can_delete){ ?>
+                            <a class="btn btn-sm btn-danger record-delete-btn mx-1"
+                                href="<?php print_link("how_to_make_payment/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>"
+                                data-prompt-msg="Bạn có chắc chắn muốn xóa dữ liệu này không?"
+                                data-display-style="modal">
+                                <i class="material-icons">clear</i> Xóa
+                            </a>
+                            <?php } ?>
+                        </div>
+                        <?php
                                             }
                                             else{
                                             ?>
-                                            <!-- Empty Record Message -->
-                                            <div class="text-muted p-3">
-                                                <i class="material-icons">block</i> No Record Found
-                                            </div>
-                                            <?php
+                        <!-- Empty Record Message -->
+                        <div class="text-muted p-3">
+                            <i class="material-icons">block</i> Không tìm thấy dữ liệu
+                        </div>
+                        <?php
                                             }
                                             ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

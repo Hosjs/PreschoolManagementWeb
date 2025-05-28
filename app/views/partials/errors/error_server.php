@@ -3,31 +3,32 @@
 	
 ?>
 <div class="container">
-	<div class="bg-light p-4">
-		<h1 class="text-danger bold">Error 500 </h1>
-		<p class=" bold">Server Error</p>
-	</div>
-	<?php 
+    <div class="bg-light p-4">
+        <h1 class="text-danger bold">Error 500 </h1>
+        <p class=" bold">Server Error</p>
+    </div>
+    <?php 
 		if(DEVELOPMENT_MODE){
 	?>
-		<div class="">
-			<div class="py-4">
-				<h3 >Exception Traces</h3>
-                <small class="text-muted bold">This will only be displayed in DEVELOPMENT_MODE.</small>
-			</div>
-			<table class="table table-striped table-bordered">
-				<tr>
-					<th style="width:20%">Error Message</th>
-					<td><?php echo $exception->getMessage(); ?></td>
-				</tr>
-				<tr>
-					<th>File</th>
-					<td><?php echo $exception->getFile(); ?> <strong>On Line</strong> <?php echo $exception->getLine(); ?></td>
-				</tr>
-				<tr>
-					<th>Stack Trace</th>
-					<td>
-						<?php 
+    <div class="">
+        <div class="py-4">
+            <h3>Exception Traces</h3>
+            <small class="text-muted bold">This will only be displayed in DEVELOPMENT_MODE.</small>
+        </div>
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th style="width:20%">Error Message</th>
+                <td><?php echo $exception->getMessage(); ?></td>
+            </tr>
+            <tr>
+                <th>File</th>
+                <td><?php echo $exception->getFile(); ?> <strong>On Line</strong> <?php echo $exception->getLine(); ?>
+                </td>
+            </tr>
+            <tr>
+                <th>Stack Trace</th>
+                <td>
+                    <?php 
 							
 							$ret = "";
 							 $count = 1;
@@ -59,21 +60,22 @@
 							 }
 							 echo $ret;
 						?>
-					</td>
-				</tr>
-			</table>
-		</div>
-	<?php 
+                </td>
+            </tr>
+        </table>
+    </div>
+    <?php 
 		}
-	?>	
-	<div class="card card-body my-3">
-		<p class="lead bold">Please contact system administrator</p>
-		
-		<div>Tel:  <a href="tel:+233*********" class="bold">+233*********</a></div>
-		<div>Email: <a href="mailto:support@<?php echo SITE_NAME ?>.com" class="bold">support@<?php echo SITE_NAME ?>.com</a></div>
-	</div>
-	
-	<div class="text-center">
-		<a href="<?php print_link(HOME_PAGE); ?>" class="btn btn-primary">Go to Home Page</a>
-	</div>
+	?>
+    <div class="card card-body my-3">
+        <p class="lead bold">Please contact system administrator</p>
+
+        <div>Tel: <a href="tel:+233*********" class="bold">+233*********</a></div>
+        <div>Email: <a href="mailto:support@<?php echo SITE_NAME ?>.com"
+                class="bold">support@<?php echo SITE_NAME ?>.com</a></div>
+    </div>
+
+    <div class="text-center">
+        <a href="<?php print_link(HOME_PAGE); ?>" class="btn btn-primary">Go to Home Page</a>
+    </div>
 </div>

@@ -67,7 +67,7 @@ class AssignmentController extends SecureController{
 		if($db->getLastError()){
 			$this->set_page_error();
 		}
-		$page_title = $this->view->page_title = "Bài tập";
+		$page_title = $this->view->page_title = "Assignment";
 		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
 		$this->view->report_title = $page_title;
 		$this->view->report_layout = "report_layout.php";
@@ -99,7 +99,7 @@ class AssignmentController extends SecureController{
 		}
 		$record = $db->getOne($tablename, $fields );
 		if($record){
-			$page_title = $this->view->page_title = "Xem bài tập";
+			$page_title = $this->view->page_title = "View  Assignment";
 		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
 		$this->view->report_title = $page_title;
 		$this->view->report_layout = "report_layout.php";
@@ -154,7 +154,7 @@ class AssignmentController extends SecureController{
 				}
 			}
 		}
-		$page_title = $this->view->page_title = "Thêm bài tập";
+		$page_title = $this->view->page_title = "Add New Assignment";
 		$this->render_view("assignment/add.php");
 	}
 	/**
@@ -209,7 +209,7 @@ class AssignmentController extends SecureController{
 		}
 		$db->where("assignment.id", $rec_id);;
 		$data = $db->getOne($tablename, $fields);
-		$page_title = $this->view->page_title = "Sửa bài tập";
+		$page_title = $this->view->page_title = "Edit  Assignment";
 		if(!$data){
 			$this->set_page_error();
 		}

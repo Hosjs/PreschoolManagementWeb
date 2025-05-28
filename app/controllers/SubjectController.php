@@ -18,59 +18,78 @@ class subjectController extends SecureController{
 		$request = $this->request;
 		$db = $this->GetModel();
 		$tablename = $this->tablename;
-		$fields = array("id", 
+		$fields = array(
+			"id", 
 			"title", 
 			"content", 
-			"date");
+			"date", 
+			"terms",     
+			"fee"        
+		);
+		
 		$pagination = $this->get_pagination(MAX_RECORD_COUNT);
-		//search table record
+		// search table record
 		if(!empty($request->search)){
 			$text = trim($request->search); 
 			$search_condition = "(
 				subject.id LIKE ? OR 
 				subject.title LIKE ? OR 
 				subject.content LIKE ? OR 
-				subject.date LIKE ?
+				subject.date LIKE ? OR
+				subject.terms LIKE ? OR       
+				subject.fee LIKE ?            
 			)";
 			$search_params = array(
-				"%$text%","%$text%","%$text%","%$text%"
+				"%$text%",
+				"%$text%",
+				"%$text%",
+				"%$text%",
+				"%$text%", 
+				"%$text%"  
 			);
 			$db->where($search_condition, $search_params);
 			$this->view->search_template = "subject/search.php";
 		}
+
 		if(!empty($request->orderby)){
 			$orderby = $request->orderby;
 			$ordertype = (!empty($request->ordertype) ? $request->ordertype : ORDER_TYPE);
 			$db->orderBy($orderby, $ordertype);
-		}
-		else{
+		} else {
 			$db->orderBy("subject.id", ORDER_TYPE);
 		}
+
 		if($fieldname){
 			$db->where($fieldname , $fieldvalue);
 		}
+
 		$tc = $db->withTotalCount();
 		$records = $db->get($tablename, $pagination, $fields);
 		$records_count = count($records);
 		$total_records = intval($tc->totalCount);
 		$page_limit = $pagination[1];
 		$total_pages = ceil($total_records / $page_limit);
+
 		$data = new stdClass;
 		$data->records = $records;
 		$data->record_count = $records_count;
 		$data->total_records = $total_records;
 		$data->total_page = $total_pages;
+
 		if($db->getLastError()){
 			$this->set_page_error();
 		}
+
 		$page_title = $this->view->page_title = "Môn học";
 		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
 		$this->view->report_title = $page_title;
 		$this->view->report_layout = "report_layout.php";
 		$this->view->report_paper_size = "A4";
 		$this->view->report_orientation = "portrait";
+
 		$this->render_view("subject/list.php", $data);
 	}
+
 	/**
      * View record detail 
 	 * @param $rec_id (select record by table primary key) 
@@ -82,35 +101,41 @@ class subjectController extends SecureController{
 		$db = $this->GetModel();
 		$rec_id = $this->rec_id = urldecode($rec_id);
 		$tablename = $this->tablename;
-		$fields = array("id", 
+
+		$fields = array(
+			"id", 
 			"title", 
 			"content", 
-			"date");
+			"date", 
+			"terms",    
+			"fee"      
+		);
 		if($value){
 			$db->where($rec_id, urldecode($value));
 		}
 		else{
-			$db->where("subject.id", $rec_id);;
+			$db->where("subject.id", $rec_id);
 		}
-		$record = $db->getOne($tablename, $fields );
+		$record = $db->getOne($tablename, $fields);		
 		if($record){
 			$page_title = $this->view->page_title = "Xem môn học";
-		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
-		$this->view->report_title = $page_title;
-		$this->view->report_layout = "report_layout.php";
-		$this->view->report_paper_size = "A4";
-		$this->view->report_orientation = "portrait";
+			$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
+			$this->view->report_title = $page_title;
+			$this->view->report_layout = "report_layout.php";
+			$this->view->report_paper_size = "A4";
+			$this->view->report_orientation = "portrait";
 		}
 		else{
 			if($db->getLastError()){
 				$this->set_page_error();
 			}
 			else{
-				$this->set_page_error("No record found");
+				$this->set_page_error("Không tìm thấy dữ liệu");
 			}
 		}
 		return $this->render_view("subject/view.php", $record);
 	}
+
 	/**
      * Insert new record to the database table
 	 * @param $formdata array() from $_POST
@@ -121,25 +146,35 @@ class subjectController extends SecureController{
 			$db = $this->GetModel();
 			$tablename = $this->tablename;
 			$request = $this->request;
-			$fields = $this->fields = array("title","content","date");
+			$fields = $this->fields = array(
+				"title",
+				"content",
+				"date",
+				"terms",   
+				"fee"      
+			);
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
-				'title' => 'required',
-				'content' => 'required',
-				'date' => 'required',
+				"title" => "required",
+				"content" => "required",
+				"date" => "required",
+				"terms" => "required",        
+				"fee" => "required|numeric"  
 			);
 			$this->sanitize_array = array(
-				'title' => 'sanitize_string',
-				'content' => 'sanitize_string',
-				'date' => 'sanitize_string',
+				"title" => "sanitize_string",
+				"content" => "sanitize_string",
+				"date" => "sanitize_string",
+				"terms" => "sanitize_string",
+				"fee" => "sanitize_string" // hoặc sanitize_numbers
 			);
 			$this->filter_vals = true;
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
 			if($this->validated()){
 				$rec_id = $this->rec_id = $db->insert($tablename, $modeldata);
 				if($rec_id){
-					$this->set_flash_msg("Record added successfully", "success");
-					return	$this->redirect("subject");
+					$this->set_flash_msg("Thêm dữ liệu thành công", "success");
+					return $this->redirect("subject");
 				}
 				else{
 					$this->set_page_error();
@@ -149,6 +184,7 @@ class subjectController extends SecureController{
 		$page_title = $this->view->page_title = "Thêm môn học";
 		$this->render_view("subject/add.php");
 	}
+
 	/**
      * Update table record with formdata
 	 * @param $rec_id (select record by table primary key)
@@ -160,26 +196,30 @@ class subjectController extends SecureController{
 		$db = $this->GetModel();
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
-		$fields = $this->fields = array("id","title","content","date");
+		$fields = $this->fields = array("id", "title", "content", "date", "terms", "fee");
 		if($formdata){
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'title' => 'required',
 				'content' => 'required',
 				'date' => 'required',
+				'terms' => 'required',
+				'fee' => 'required|numeric'
 			);
 			$this->sanitize_array = array(
 				'title' => 'sanitize_string',
 				'content' => 'sanitize_string',
 				'date' => 'sanitize_string',
+				'terms' => 'sanitize_string',
+				'fee' => 'sanitize_string' 
 			);
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
 			if($this->validated()){
-				$db->where("subject.id", $rec_id);;
+				$db->where("subject.id", $rec_id);
 				$bool = $db->update($tablename, $modeldata);
 				$numRows = $db->getRowCount();
 				if($bool && $numRows){
-					$this->set_flash_msg("Record updated successfully", "success");
+					$this->set_flash_msg("Cập nhật dữ liệu thành công", "success");
 					return $this->redirect("subject");
 				}
 				else{
@@ -187,22 +227,24 @@ class subjectController extends SecureController{
 						$this->set_page_error();
 					}
 					elseif(!$numRows){
-						$page_error = "No record updated";
+						$page_error = "Không có dữ liệu nào được cập nhật";
 						$this->set_page_error($page_error);
 						$this->set_flash_msg($page_error, "warning");
-						return	$this->redirect("subject");
+						return $this->redirect("subject");
 					}
 				}
 			}
 		}
-		$db->where("subject.id", $rec_id);;
+		$db->where("subject.id", $rec_id);
 		$data = $db->getOne($tablename, $fields);
 		$page_title = $this->view->page_title = "Sửa môn học";
+
 		if(!$data){
 			$this->set_page_error();
 		}
 		return $this->render_view("subject/edit.php", $data);
 	}
+
 	/**
      * Update single field
 	 * @param $rec_id (select record by table primary key)
@@ -213,7 +255,7 @@ class subjectController extends SecureController{
 		$db = $this->GetModel();
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
-		$fields = $this->fields = array("id","title","content","date");
+		$fields = $this->fields = array("id", "title", "content", "date", "terms", "fee");
 		$page_error = null;
 		if($formdata){
 			$postdata = array();
@@ -225,32 +267,36 @@ class subjectController extends SecureController{
 				'title' => 'required',
 				'content' => 'required',
 				'date' => 'required',
+				'terms' => 'required',
+				'fee' => 'required|numeric'
 			);
 			$this->sanitize_array = array(
 				'title' => 'sanitize_string',
 				'content' => 'sanitize_string',
 				'date' => 'sanitize_string',
+				'terms' => 'sanitize_string',
+				'fee' => 'sanitize_string'
 			);
 			$this->filter_rules = true;
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
+
 			if($this->validated()){
-				$db->where("subject.id", $rec_id);;
+				$db->where("subject.id", $rec_id);
 				$bool = $db->update($tablename, $modeldata);
 				$numRows = $db->getRowCount();
+
 				if($bool && $numRows){
-					return render_json(
-						array(
-							'num_rows' =>$numRows,
-							'rec_id' =>$rec_id,
-						)
-					);
+					return render_json(array(
+						'num_rows' => $numRows,
+						'rec_id' => $rec_id,
+					));
 				}
 				else{
 					if($db->getLastError()){
 						$page_error = $db->getLastError();
 					}
 					elseif(!$numRows){
-						$page_error = "No record updated";
+						$page_error = "Không có dữ liệu nào được cập nhật";
 					}
 					render_error($page_error);
 				}
@@ -261,6 +307,7 @@ class subjectController extends SecureController{
 		}
 		return null;
 	}
+
 	/**
      * Delete record from the database
 	 * Support multi delete by separating record id by comma.
@@ -277,12 +324,19 @@ class subjectController extends SecureController{
 		$db->where("subject.id", $arr_rec_id, "in");
 		$bool = $db->delete($tablename);
 		if($bool){
-			$this->set_flash_msg("Record deleted successfully", "success");
+			$this->set_flash_msg("Xóa dữ liệu thành công", "success");
 		}
 		elseif($db->getLastError()){
 			$page_error = $db->getLastError();
 			$this->set_flash_msg($page_error, "danger");
 		}
 		return	$this->redirect("subject");
+	}
+	public function register($subject_id) {
+		$request = $this->request;
+		Csrf::cross_check();
+			$request = $this->request;
+			$this->set_flash_msg("Đã đăng ký môn học, chờ thông tin phê duyệt", "success");
+			return	$this->redirect("subject");
 	}
 }

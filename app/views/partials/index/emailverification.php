@@ -4,56 +4,62 @@
 	$status = $data["status"];
 ?>
 <div class="container">
-	<?php 
+    <?php 
 		if($status==true){
 			if(!empty($_GET['resend'])){
 				?>
-				<h4 class="text-info bold animated bounce"><i class="material-icons">email</i> Email verification has been resent</h4>
-				<?php
+    <h4 class="text-info bold animated bounce"><i class="material-icons">email</i> Xác minh email đã được gửi lại
+    </h4>
+    <?php
 			}
 			else{
 				?>
-				<h4 class="text-info bold"><i class="material-icons">email</i> Email verification link sent</h4>
-				<?php
+    <h4 class="text-info bold"><i class="material-icons">email</i> Đã gửi liên kết xác minh email</h4>
+    <?php
 			}
 		?>
-			<div class="text-muted">Please verify your email address by following the link in your mailbox</div>
-			<hr />
-			<div>
-				<a href="<?php print_link("index/send_verify_email_link/$user_email?resend=true") ?>" class="btn btn-primary"><i class="material-icons">email</i> Resend Email</a>
-			</div>
-			<?php
+    <div class="text-muted">Vui lòng xác minh địa chỉ email của bạn bằng cách nhấp vào liên kết trong hộp thư của bạn
+    </div>
+    <hr />
+    <div>
+        <a href="<?php print_link("index/send_verify_email_link/$user_email?resend=true") ?>" class="btn btn-primary"><i
+                class="material-icons">email</i> Gửi lại email</a>
+    </div>
+    <?php
 		}
 		else{
 			?>
-			<div><i class="material-icons">email</i> Please verify your email address by following the link in your mailbox</div>
-			<hr />
-			<div>
-				<a href="<?php print_link("index/send_verify_email_link/$user_email?resend=true") ?>" class="btn btn-primary"><i class="material-icons">email</i> Resend Email</a>
-			</div>
-			<?php
+    <div><i class="material-icons">email</i> Vui lòng xác minh địa chỉ email của bạn bằng cách nhấp vào liên kết trong
+        hộp thư của bạn
+    </div>
+    <hr />
+    <div>
+        <a href="<?php print_link("index/send_verify_email_link/$user_email?resend=true") ?>" class="btn btn-primary"><i
+                class="material-icons">email</i> Gửi lại email</a>
+    </div>
+    <?php
 		}
 	?>
-	<?php
+    <?php
 		if(DEVELOPMENT_MODE){
 			$mailbody = $this->view_data["mailbody"];
 			?>
-			<hr />
-			<div class="bg-light p-4 border">
-				<div class="text-danger">
-					<h3>
-						<b>Disclaimer:</b> You are seeing this because you published under development mode.
-						<br />We understand that sending email in localhost might be problematic.
-					</h3>
-					<div class="text-muted">To edit the email template, browse to :- <i>app/view/partials/index/emailverify_template.html</i></div>
-				</div>
-				<hr />
-				<?php  echo $mailbody; ?>
-			</div>
-			
-			<?php
+    <hr />
+    <div class="bg-light p-4 border">
+        <div class="text-danger">
+            <h3>
+                <b>Disclaimer:</b> You are seeing this because you published under development mode.
+                <br />We understand that sending email in localhost might be problematic.
+            </h3>
+            <div class="text-muted">To edit the email template, browse to :-
+                <i>app/view/partials/index/emailverify_template.html</i>
+            </div>
+        </div>
+        <hr />
+        <?php  echo $mailbody; ?>
+    </div>
+
+    <?php
 		}
 	?>
 </div>
-
-

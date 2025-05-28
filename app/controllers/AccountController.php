@@ -85,7 +85,7 @@ class AccountController extends SecureController{
 				$bool = $db->update($tablename, $modeldata);
 				$numRows = $db->getRowCount(); //number of affected rows. 0 = no record field updated
 				if($bool && $numRows){
-					$this->set_flash_msg("Record updated successfully", "success");
+					$this->set_flash_msg("Bản ghi được cập nhật thành công", "success");
 					$db->where ("id", $rec_id);
 					$user = $db->getOne($tablename , "*");
 					set_session("user_data", $user);// update session with new user data
@@ -97,7 +97,7 @@ class AccountController extends SecureController{
 					}
 					elseif(!$numRows){
 						//not an error, but no record was updated
-						$this->set_flash_msg("No record updated", "warning");
+						$this->set_flash_msg("Không có bản ghi nào được cập nhật", "warning");
 						return	$this->redirect("account");
 					}
 				}
@@ -124,13 +124,62 @@ class AccountController extends SecureController{
 			$db->where ("id", $rec_id);
 			$result = $db->update($tablename, array('email' => $email ));
 			if($result){
-				$this->set_flash_msg("Email address changed successfully", "success");
+				$this->set_flash_msg("Địa chỉ email đã thay đổi thành công", "success");
 				$this->redirect("account");
 			}
 			else{
-				$this->set_page_error("Email not changed");
+				$this->set_page_error("Email không thay đổi được");
 			}
 		}
 		return $this->render_view("account/change_email.php");
 	}
+
+		/**
+	 * Change account password
+	 * @return BaseView
+	 */
+	function change_password($formdata = null){
+		if($formdata){
+			$db = $this->GetModel();
+			$rec_id = $this->rec_id = USER_ID; // lấy user hiện tại
+			$current_password = trim($formdata['current_password']);
+			$new_password = trim($formdata['new_password']);
+			$confirm_password = trim($formdata['confirm_password']);
+
+			// Kiểm tra mật khẩu hiện tại có đúng không
+			$db->where("id", $rec_id);
+			$user = $db->getOne($this->tablename, array("password"));
+
+			if(!password_verify($current_password, $user['password'])){
+				$this->set_page_error("Mật khẩu hiện tại không đúng");
+				
+			}
+			elseif($current_password === $new_password){
+				$this->set_page_error("Mật khẩu mới không được giống mật khẩu hiện tại");
+			}
+			elseif($new_password !== $confirm_password){
+				$this->set_page_error("Mật khẩu mới và mật khẩu xác nhận không khớp");
+			}
+			elseif(strlen($new_password) < 6){
+				$this->set_page_error("Mật khẩu mới phải có ít nhất 6 ký tự");
+			}
+			else{
+				// Cập nhật mật khẩu
+				$password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+				$db->where("id", $rec_id);
+				$result = $db->update($this->tablename, array("password" => $password_hash));
+
+				if($result){
+					$this->set_flash_msg("Mật khẩu đã được thay đổi thành công", "success");
+					return $this->redirect("account");
+				}
+				else{
+					$this->set_page_error("Không thể cập nhật mật khẩu");
+				}
+			}
+		}
+		$this->view->page_title = "Đổi mật khẩu";
+		return $this->render_view("account/change_password.php");
+	}
+
 }

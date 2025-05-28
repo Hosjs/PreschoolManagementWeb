@@ -1,84 +1,110 @@
-<?php 
-/**
- * health_care Page Controller
- * @category  Controller
- */
-class health_careController extends SecureController{
-	function __construct(){
-		parent::__construct();
-		$this->tablename = "health_care";
-	}
-	/**
-     * List page records
-     * @param $fieldname (filter record by a field) 
-     * @param $fieldvalue (filter field value)
-     * @return BaseView
-     */
-	function index($fieldname = null , $fieldvalue = null){
-		$request = $this->request;
+<?php
+class Health_careController extends SecureController {
+
+    function __construct(){
+        parent::__construct();
+        $this->tablename = "health_care";
+    }
+
+    function index() {
+    $db = $this->GetModel();
+    $current_user = $_SESSION[APP_ID . 'user_data'] ?? null;
+
+    $db->join("student s", "h.student_id = s.id", "INNER");
+
+    if ($current_user && $current_user['role'] == 'headteacher') {
+        $db->join("class c", "s.class = c.class_name", "INNER");
+        $db->where("c.assigned_teacher", $current_user['assigned_teacher']);
+    }
+
+    $db->orderBy("h.month", "DESC");
+    $fields = "h.*, s.pupils_full_name AS student_name, s.class, s.photo, s.id AS student_id";
+    $all = $db->get("health_care h", null, $fields);
+
+    $students = [];
+    foreach ($all as $row) {
+        if (!isset($students[$row['student_id']])) {
+            $students[$row['student_id']] = $row;
+        }
+    }
+
+    $data = new stdClass();
+    $data->records = array_values($students);
+    $this->view->records = $data->records;
+
+    $this->render_view("health_care/list.php", $data);
+}
+
+
+    function view_chart($student_id = null){
+    $db = $this->GetModel();
+
+    $records = $db->rawQuery("
+        SELECT * FROM health_care 
+        INNER JOIN student ON student.id = health_care.student_id 
+        WHERE student.id = ?
+        ORDER BY month ASC
+    ", [$student_id]);
+
+    $latest = $db->rawQueryOne("
+        SELECT * FROM health_care 
+        INNER JOIN student ON student.id = health_care.student_id 
+        WHERE student.id = ?
+        ORDER BY month DESC
+        LIMIT 1
+    ", [$student_id]);
+
+    if ($records && $latest) {
+        $this->view->records = $records;
+        $this->view->student_name = $latest['pupils_full_name'];
+        $this->view->photo = $latest['photo'];
+    }
+
+    $this->render_view("health_care/view_chart.php");
+}
+
+function add($formdata = null){
+	if($formdata){
 		$db = $this->GetModel();
 		$tablename = $this->tablename;
-		$fields = array("id", 
-			"year", 
-			"class", 
-			"term", 
-			"name_of_pupil", 
-			"class_teacher_report", 
-			"comment", 
-			"date");
-		$pagination = $this->get_pagination(MAX_RECORD_COUNT); // get current pagination e.g array(page_number, page_limit)
-		//search table record
-		if(!empty($request->search)){
-			$text = trim($request->search); 
-			$search_condition = "(
-				health_care.id LIKE ? OR 
-				health_care.year LIKE ? OR 
-				health_care.class LIKE ? OR 
-				health_care.term LIKE ? OR 
-				health_care.name_of_pupil LIKE ? OR 
-				health_care.class_teacher_report LIKE ? OR 
-				health_care.comment LIKE ? OR 
-				health_care.date LIKE ?
-			)";
-			$search_params = array(
-				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
-			);
-			//setting search conditions
-			$db->where($search_condition, $search_params);
-			 //template to use when ajax search
-			$this->view->search_template = "health_care/search.php";
+		$request = $this->request;
+
+		$fields = $this->fields = array("student_id", "month", "height", "weight", "eye_sight");
+		$postdata = $this->format_request_data($formdata);
+
+		$this->rules_array = array(
+			"student_id" => "required|numeric",
+			"month" => "required|numeric",
+			"height" => "required|numeric",
+			"weight" => "required|numeric",
+			"eye_sight" => "required|numeric"
+		);
+
+		$this->sanitize_array = array(
+			"student_id" => "sanitize_string",
+			"month" => "sanitize_string",
+			"height" => "sanitize_string",
+			"weight" => "sanitize_string",
+			"eye_sight" => "sanitize_string"
+		);
+
+		$this->filter_vals = true;
+		$modeldata = $this->modeldata = $this->validate_form($postdata);
+
+		if($this->validated()){
+			$rec_id = $db->insert($tablename, $modeldata);
+			if($rec_id){
+				$this->set_flash_msg("Đã thêm dữ liệu sức khỏe thành công", "success");
+				return $this->redirect("health_care");
+			}
+			else{
+				$this->set_page_error();
+			}
 		}
-		if(!empty($request->orderby)){
-			$orderby = $request->orderby;
-			$ordertype = (!empty($request->ordertype) ? $request->ordertype : ORDER_TYPE);
-			$db->orderBy($orderby, $ordertype);
-		}
-		else{
-			$db->orderBy("health_care.id", ORDER_TYPE);
-		}
-		if($fieldname){
-			$db->where($fieldname , $fieldvalue); //filter by a single field name
-		}
-		$tc = $db->withTotalCount();
-		$records = $db->get($tablename, $pagination, $fields);
-		$records_count = count($records);
-		$total_records = intval($tc->totalCount);
-		$page_limit = $pagination[1];
-		$total_pages = ceil($total_records / $page_limit);
-		$data = new stdClass;
-		$data->records = $records;
-		$data->record_count = $records_count;
-		$data->total_records = $total_records;
-		$data->total_page = $total_pages;
-		if($db->getLastError()){
-			$this->set_page_error();
-		}
-		$page_title = $this->view->page_title = "Theo dõi sức khỏe";
-		$this->view->report_filename = date('Y-m-d') . '-' . $page_title;
-		$this->view->report_title = $page_title;
-		$this->view->report_layout = "report_layout.php";
-		$this->view->report_paper_size = "A4";
-		$this->view->report_orientation = "portrait";
-		$this->render_view("health_care/list.php", $data); //render the full page
 	}
+
+	$page_title = $this->view->page_title = "Thêm dữ liệu sức khỏe";
+	$this->render_view("health_care/add.php");
+}
+
 }

@@ -35,7 +35,7 @@ class IndexController extends BaseController{
 				//check if user account has been activated by administrator
 				$user_status = strtolower($user['account_status']);
 				if($user_status != "active"){
-					return $this->login_fail("Your account is not active. Please contact system administrator for more information");
+					return $this->login_fail("Tài khoản của bạn chưa được phép hoạt động. Vui lòng liên hệ với quản trị viên hệ thống để biết thêm thông tin");
 				}
         		unset($user['password']); //Remove user password. No need to store it in the session
 				set_session("user_data", $user); // Set active user data in a sessions
@@ -64,12 +64,12 @@ class IndexController extends BaseController{
 			else{
 				//password is not correct
 				// echo password_hash('kimtech' , PASSWORD_DEFAULT);
-				return $this->login_fail("Username or password not correct");
+				return $this->login_fail("Tên người dùng hoặc mật khẩu không chính xác");
 			}
 		}
 		else{
 			//user is not registered
-			return $this->login_fail("Username or password not correct");
+			return $this->login_fail("Tên người dùng hoặc mật khẩu không chính xác");
 		}
 	}
 	/**
@@ -113,7 +113,7 @@ class IndexController extends BaseController{
 			$cpassword = $postdata['confirm_password'];
 			$password = $postdata['password'];
 			if($cpassword != $password){
-				$this->view->page_error[] = "Your password confirmation is not consistent";
+				$this->view->page_error[] = "Mật khẩu xác nhận không khớp";
 			}
 			$this->rules_array = array(
 				'first_name' => 'required',

@@ -14,32 +14,62 @@ class ACL
 	 * @var array
 	 */
 	public static $role_pages = array(
-			'headteacher' =>
+			'admin' =>
 						array(
 							'users' => array('list','view','userregister','accountedit','accountview','add','edit', 'editfield','delete','import_data'),
 							'student' => array('list','view','add','edit', 'editfield','delete','import_data'),
 							'announcement' => array('list','view','add','edit', 'editfield','delete','import_data'),
+							'subject' => array('list','view','add','edit', 'editfield','delete','import_data','register'),
+							'class_detail' => array('list','attendance_yes','attendance_no','mark_attendance'),
+							'event' => array('list','view','add','edit', 'editfield','delete','import_data','register'),
+							'class' => array('list','view','add','edit', 'editfield','delete','import_data','register'),
+							'health_care' => array('list','view','add','edit','editfield','delete','import_data','view_chart'),
+							'how_to_make_payment' => array('list','view'),
+							'meal' => array('list','view','add','edit','editfield','delete','import_data'),
+							'assignment' => array('list','view','add','edit','editfield','delete','import_data'),
+							//'message' => array('list','view','add','edit', 'editfield','delete','import_data','group'),
+							//'bill' => array('list','view','add','edit','editfield','delete','import_data'),
+						),
+			'headteacher' =>
+						array(
+							'users' => array('userregister','accountedit','accountview','import_data'),
+							'student' => array('list','view','add','edit', 'editfield','delete','import_data'),
+							'announcement' => array('list','view','add','edit', 'editfield','delete','import_data'),
 							'subject' => array('list','view','add','edit', 'editfield','delete','import_data'),
 							'class_detail' => array('list','attendance_yes','attendance_no','mark_attendance'),
-							'assignment' => array('list','view','add','edit', 'editfield','delete','import_data'),
 							'event' => array('list','view','add','edit', 'editfield','delete','import_data'),
 							'class' => array('list','view','add','edit', 'editfield','delete','import_data'),
-							'health_care' => array('list','view','add','edit', 'editfield','delete','import_data'),
-							'how_to_make_payment' => array('list','view','add','edit', 'editfield','delete'),
-							'message' => array('list','view','add','edit', 'editfield','delete','import_data','group'),
+							'health_care' => array('list','view','add','edit','editfield','delete','import_data','view_chart'),
+							'how_to_make_payment' => array('list','view','add','edit','editfield','delete','import_data'),
+							//'message' => array('list','view','add','edit', 'editfield','delete','import_data','group'),
 						),
-		
-			'pupils' =>
+			'parents' =>
 						array(
 							'announcement' => array('list','view'),
 							'subject' => array('list','view'),
-							'class_detail' => array('list','add'),
+							'student' => array('list','view'),
+							'class_detail' => array('list','view'),
 							'assignment' => array('list','view'),
+							'event' => array('list','view','register','confirm_register'),
+							'class' => array('list','view','register'),
+							'health_care' => array('list','view','chart'),
+							'meal' => array('list','view'),
+							'how_to_make_payment' => array('list','view'),
+							//'message' => array('list','view','add','edit', 'editfield','delete','import_data','group'),
+						),
+			'accountant' =>
+						array(
+							'announcement' => array('list','view'),
+							'subject' => array('list','view'),
+							'class_detail' => array('list','view'),
 							'event' => array('list','view'),
-							'how_to_make_payment' => array('list','add'),
-							'message' => array('list','view','add','edit', 'editfield','delete','import_data','group'),
-							'health_care' => array('list','view')
-						)
+							'class' => array('list','view'),
+							'how_to_make_payment' => array('list','view','add','edit','editfield','delete','import_data'),
+						),
+			'kitchen_staff' =>
+						array(
+							'meal' => array('list','view','add','edit','editfield','delete','import_data'),
+						),
 		);
 
 	/**

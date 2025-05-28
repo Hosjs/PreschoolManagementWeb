@@ -191,6 +191,7 @@ class Router
 
 					$controller->set_route($route);
 
+					
 					if($controller->status == AUTHORIZED){
 						// Call Controller Class And Pass All Arguments to the Controller Action
 						call_user_func_array(array($controller, $action), $args);

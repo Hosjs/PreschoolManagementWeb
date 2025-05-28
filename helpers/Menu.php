@@ -12,66 +12,70 @@ class Menu{
 		array(
 			'path' => 'home', 
 			'label' => 'Home', 
-			'icon' => '<i class="material-icons ">dashboard</i>'
+			'icon' => '<i class="material-icons mi-md">dashboard</i>'
 		),
 		array(
 			'path' => 'Message', 
 			'label' => 'Tin nhắn', 
-			'icon' => '<i class="material-icons ">mail</i>'
+			'icon' => '<i class="material-icons mi-md">message</i>'
 		),
 		
 		array(
 			'path' => 'users', 
 			'label' => 'Users', 
-			'icon' => '<i class="material-icons mi-xxs">verified_user</i>'
+			'icon' => '<i class="material-icons mi-md">verified_user</i>'
 		),
 
 		array(
 			'path' => 'student', 
 			'label' => 'Học sinh', 
-			'icon' => '<i class="material-icons mi-sm">airline_seat_recline_extra</i>'
+			'icon' => '<i class="material-icons mi-md">face</i>'
 		),
 		
 		array(
 			'path' => 'announcement', 
 			'label' => 'Thông báo', 
-			'icon' => '<i class="material-icons mi-xs">rowing</i>'
+			'icon' => '<i class="material-icons mi-md">notifications</i>'
 		),
 		
 		array(
 			'path' => 'subject', 
 			'label' => 'Các môn học', 
-			'icon' => '<i class="material-icons mi-md">attach_file</i>'
+			'icon' => '<i class="material-icons mi-md">share</i>'
 		),
 		
 		array(
 			'path' => 'class_detail', 
 			'label' => 'Chi tiết lớp', 
-			'icon' => '<i class="material-icons mi-md">touch_app</i>'
+			'icon' => '<i class="material-icons mi-md">archive</i>'
 		),
 		
 		array(
 			'path' => 'assignment', 
 			'label' => 'Bài tập', 
-			'icon' => '<i class="material-icons mi-md">arrow_drop_down_circle</i>'
+			'icon' => '<i class="material-icons mi-md">trending_down</i>'
 		),
 		
 		array(
 			'path' => 'event', 
 			'label' => 'Sự kiện', 
-			'icon' => '<i class="material-icons mi-md">beenhere</i>'
+			'icon' => '<i class="material-icons mi-md">event_note</i>'
 		),
 		
 		array(
 			'path' => 'class', 
 			'label' => 'Thông tin lớp', 
-			'icon' => '<i class="material-icons mi-md">bubble_chart</i>'
+			'icon' => '<i class="material-icons mi-md">assignment_ind</i>'
 		),
-		
+		array(
+			'path' => 'meal', 
+			'label' => 'Thực đơn', 
+			'icon' => '<i class="material-icons mi-md">restaurant_menu</i>'
+		),
 		array(
 			'path' => 'health_care', 
 			'label' => 'Theo dõi sức khỏe', 
-			'icon' => '<i class="material-icons mi-md">call_merge</i>'
+			'icon' => '<i class="material-icons mi-md">assignment_turned_in</i>'
 		),
 		array(
 			'path' => 'rollcall', 
@@ -79,18 +83,34 @@ class Menu{
 			'icon' => '<i class="material-icons mi-md">call_merge</i>'
 		),
 		array(
+			'path' => 'bill', 
+			'label' => 'Hóa đơn', 
+			'icon' => '<i class="material-icons mi-md">attach_money</i>'
+		),
+		array(
 			'path' => 'how_to_make_payment', 
 			'label' => 'Cách thức thành toán', 
-			'icon' => '',
 		),);
 			public static $role = array(
+		array(
+			"value" => "admin", 
+			"label" => "Admin", 
+		),
 		array(
 			"value" => "headteacher", 
 			"label" => "Giáo viên", 
 		),
 		array(
-			"value" => "pupils", 
-			"label" => "Học sinh", 
+			"value" => "parents", 
+			"label" => "Phụ huynh", 
+		),
+		array(
+			"value" => "accountant", 
+			"label" => "Kế toán", 
+		),
+		array(
+			"value" => "kitchen_staff", 
+			"label" => "Nhân viên bếp ăn", 
 		),);
 		
 			public static $account_status = array(
@@ -107,32 +127,35 @@ class Menu{
 			"label" => "Blocked", 
 		),);
 		
-				public static $class = array(
-			array(
-				"value" => "Lớp 1 tuổi", 
-				"label" => "Lớp 1 tuổi", 
-			),
-			array(
-				"value" => "Lớp 2 tuổi", 
-				"label" => "Lớp 2 tuổi", 
-			),
-			array(
-				"value" => "Lớp 3 tuổi", 
-				"label" => "Lớp 3 tuổi", 
-			),
-			array(
-				"value" => "Lớp 4 tuổi", 
-				"label" => "Lớp 4 tuổi", 
-			),
-			);
+			public static $class = array(
+		array(
+			"value" => "Lớp 1A1", 
+			"label" => "Lớp 1A1", 
+		),
+		array(
+			"value" => "Lớp 2A1", 
+			"label" => "Lớp 2A1", 
+		),
+		array(
+			"value" => "Lớp 3A1", 
+			"label" => "Lớp 3A1", 
+		),
+		array(
+			"value" => "Lớp 4A1", 
+			"label" => "Lớp 4A1", 
+		),
+		array(
+			"value" => "Lớp 5A1", 
+			"label" => "Lớp 5A1", 
+		),);
 		
 			public static $gender = array(
 		array(
-			"value" => "Male", 
+			"value" => "Nam", 
 			"label" => "Nam", 
 		),
 		array(
-			"value" => "Female", 
+			"value" => "Nữ", 
 			"label" => "Nữ", 
 		),);
 		
@@ -158,43 +181,35 @@ class Menu{
 		
 			public static $class2 = array(
 		array(
-			"value" => "Lớp 1 tuổi", 
-			"label" => "Lớp 1 tuổi", 
+			"value" => "Lớp 1A1", 
+			"label" => "Lớp 1A1", 
 		),
 		array(
-			"value" => "Lớp 2 tuổi", 
-			"label" => "Lớp 2 tuổi", 
+			"value" => "Lớp 2A1", 
+			"label" => "Lớp 2A1", 
 		),
 		array(
-			"value" => "Lớp 3 tuổi", 
-			"label" => "Lớp 3 tuổi", 
+			"value" => "Lớp 3A1", 
+			"label" => "Lớp 3A1", 
 		),
 		array(
-			"value" => "Lớp 4 tuổi", 
-			"label" => "Lớp 4 tuổi", 
+			"value" => "Lớp 4A1", 
+			"label" => "Lớp 4A1", 
+		),
+		array(
+			"value" => "Lớp 5A1", 
+			"label" => "Lớp 5A1", 
 		),
 		);
 		
 			public static $assignment_type = array(
 		array(
-			"value" => "midterm", 
-			"label" => "Midterm", 
-		),
-		array(
-			"value" => "cat", 
-			"label" => "Cat", 
-		),
-		array(
-			"value" => "edterm", 
-			"label" => "Edterm", 
-		),
-		array(
-			"value" => "holyday assigment", 
+			"value" => "Bài tập ngày lễ", 
 			"label" => "Bài tập ngày lễ", 
 		),
 		array(
-			"value" => "others", 
-			"label" => "Khác", 
+			"value" => "Bài tập cuối tuần", 
+			"label" => "Bài tập cuối tuần", 
 		),);
 		
 			public static $author2 = array(
@@ -205,6 +220,52 @@ class Menu{
 		array(
 			"value" => "Giáo viên", 
 			"label" => "Giáo viên", 
+		),);
+			public static $terms = array(
+		array(
+			"value" => "Tất cả học sinh", 
+			"label" => "Tất cả học sinh", 
+		),
+		array(
+			"value" => "Lớp 1 tuổi",
+			"label" => "Lớp 1 tuổi",
+			),
+		array(	
+			"value" => "Lớp 2 tuổi",
+			"label" => "Lớp 2 tuổi",
+		),
+		array(
+			"value" => "Lớp 3 tuổi",
+			"label" => "Lớp 3 tuổi",
+		),
+		array(
+			"value" => "Lớp 4 tuổi",
+			"label" => "Lớp 4 tuổi",
+		),
+		array(
+			"value" => "Lớp 5 tuổi",
+			"label" => "Lớp 5 tuổi",
+		),);
+			public static $age = array(
+		array(
+			"value" => "Lớp 1 tuổi",
+			"label" => "Lớp 1 tuổi",
+			),
+		array(	
+			"value" => "Lớp 2 tuổi",
+			"label" => "Lớp 2 tuổi",
+		),
+		array(
+			"value" => "Lớp 3 tuổi",
+			"label" => "Lớp 3 tuổi",
+		),
+		array(
+			"value" => "Lớp 4 tuổi",
+			"label" => "Lớp 4 tuổi",
+		),
+		array(
+			"value" => "Lớp 5 tuổi",
+			"label" => "Lớp 5 tuổi",
 		),);
 		
 			public static $term = array(
@@ -241,7 +302,7 @@ class Menu{
 		
 			public static $payment_method = array(
 		array(
-			"value" => "m-pesa", 
+			"value" => "visa", 
 			"label" => "VISA", 
 		),
 		array(

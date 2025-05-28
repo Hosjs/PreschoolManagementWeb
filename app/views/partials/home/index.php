@@ -3,14 +3,11 @@ $page_id = null;
 $comp_model = new SharedController;
 $current_page = $this->set_current_page_link();
 ?>
-<div>
-    <div  class="bg-light p-3 mb-3">
-        <div class="container">
-            <div class="row ">
-                <div class="col-md-12 comp-grid">
-                    <h4 >Danh mục</h4>
-                </div>
-                <div class="col-md-3 col-sm-4 comp-grid">
+<div class="container py-4">
+    <h4 class="mb-4">Danh mục</h4>
+    <div class="row gy-3 gx-3">
+        <?php if(ACL::is_allowed("users/list")): ?>
+        <div class="col-md-3 col-sm-4 comp-grid">
                     <?php $rec_count = $comp_model->getcount_users();  ?>
                     <a class="animated zoomIn record-count card bg-warning text-white"  href="<?php print_link("users/") ?>">
                         <div class="row">
@@ -27,7 +24,10 @@ $current_page = $this->set_current_page_link();
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 col-sm-4 comp-grid">
+        <?php endif; ?>
+
+        <?php if(ACL::is_allowed("student/list")): ?>
+        <div class="col-md-3 col-sm-4 comp-grid">
                     <?php $rec_count = $comp_model->getcount_student();  ?>
                     <a class="animated rubberBand record-count card bg-success text-white"  href="<?php print_link("student/") ?>">
                         <div class="row">
@@ -44,7 +44,10 @@ $current_page = $this->set_current_page_link();
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 col-sm-4 comp-grid">
+        <?php endif; ?>
+
+        <?php if(ACL::is_allowed("message/list")): ?>
+        <div class="col-md-3 col-sm-4 comp-grid">
                     <?php $rec_count = $comp_model->getcount_student();  ?>
                     <a class="animated rubberBand record-count card bg-light text-dark"  href="<?php print_link("Message/") ?>">
                         <div class="row">
@@ -61,7 +64,10 @@ $current_page = $this->set_current_page_link();
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 col-sm-4 comp-grid">
+        <?php endif; ?>
+
+        <?php if(ACL::is_allowed("announcement/list")): ?>
+        <div class="col-md-3 col-sm-4 comp-grid">
                     <?php $rec_count = $comp_model->getcount_announcement();  ?>
                     <a class="animated rubberBand record-count card bg-light text-dark"  href="<?php print_link("announcement/") ?>">
                         <div class="row">
@@ -78,7 +84,10 @@ $current_page = $this->set_current_page_link();
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 col-sm-4 comp-grid">
+        <?php endif; ?>
+
+        <?php if(ACL::is_allowed("subject/list")): ?>
+        <div class="col-md-3 col-sm-4 comp-grid">
                     <?php $rec_count = $comp_model->getcount_feestructure();  ?>
                     <a class="animated rubberBand record-count alert alert-primary"  href="<?php print_link("subject/") ?>">
                         <div class="row">
@@ -95,7 +104,10 @@ $current_page = $this->set_current_page_link();
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 col-sm-4 comp-grid">
+        <?php endif; ?>
+
+        <?php if(ACL::is_allowed("class_detail/list")): ?>
+        <div class="col-md-3 col-sm-4 comp-grid">
                     <?php $rec_count = $comp_model->getcount_applyforstudent();  ?>
                     <a class="animated zoomIn record-count alert alert-info"  href="<?php print_link("class_detail/") ?>">
                         <div class="row">
@@ -112,7 +124,10 @@ $current_page = $this->set_current_page_link();
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 col-sm-4 comp-grid">
+        <?php endif; ?>
+
+        <?php if(ACL::is_allowed("event/list")): ?>
+        <div class="col-md-3 col-sm-4 comp-grid">
                     <?php $rec_count = $comp_model->getcount_event();  ?>
                     <a class="animated zoomIn record-count alert alert-primary"  href="<?php print_link("event/") ?>">
                         <div class="row">
@@ -129,7 +144,10 @@ $current_page = $this->set_current_page_link();
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 col-sm-4 comp-grid">
+        <?php endif; ?>
+
+        <?php if(ACL::is_allowed("assignment/list")): ?>
+        <div class="col-md-3 col-sm-4 comp-grid">
                     <?php $rec_count = $comp_model->getcount_assignment();  ?>
                     <a class="animated rubberBand record-count card bg-secondary text-white"  href="<?php print_link("assignment/") ?>">
                         <div class="row">
@@ -146,9 +164,10 @@ $current_page = $this->set_current_page_link();
                         </div>
                     </a>
                 </div>
-                <div class=" comp-grid">
-                </div>
-                <div class="col-md-3 col-sm-4 comp-grid">
+        <?php endif; ?>
+
+        <?php if(ACL::is_allowed("class/list")): ?>
+        <div class="col-md-3 col-sm-4 comp-grid">
                     <?php $rec_count = $comp_model->getcount_enrollment();  ?>
                     <a class="animated zoomIn record-count card bg-danger text-white"  href="<?php print_link("class/") ?>">
                         <div class="row">
@@ -165,7 +184,10 @@ $current_page = $this->set_current_page_link();
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 col-sm-4 comp-grid">
+        <?php endif; ?>
+
+        <?php if(ACL::is_allowed("how_to_make_payment/list")): ?>
+        <div class="col-md-3 col-sm-4 comp-grid">
                     <?php $rec_count = $comp_model->getcount_howtomakepayment();  ?>
                     <a class="animated rollIn record-count card bg-danger text-white"  href="<?php print_link("how_to_make_payment/") ?>">
                         <div class="row">
@@ -182,7 +204,10 @@ $current_page = $this->set_current_page_link();
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 col-sm-4 comp-grid">
+        <?php endif; ?>
+
+        <?php if(ACL::is_allowed("health_care/list")): ?>
+        <div class="col-md-3 col-sm-4 comp-grid">
                     <?php $rec_count = $comp_model->getcount_health_care();  ?>
                     <a class="animated slideInRight record-count card bg-info text-white card-white"  href="<?php print_link("health_care/") ?>">
                     <div class="row">
@@ -199,8 +224,26 @@ $current_page = $this->set_current_page_link();
                         </div>
                     </a>
                 </div>
-                
-            </div>
-        </div>
+        <?php endif; ?>
+
+        <?php if(ACL::is_allowed("meal/list")): ?>
+        <div class="col-md-3 col-sm-4 comp-grid">
+                    <?php $rec_count = $comp_model->getcount_health_care();  ?>
+                    <a class="animated slideInRight record-count card bg-info text-white card-white"  href="<?php print_link("meal/") ?>">
+                    <div class="row">
+                            <div class="col-2">
+                                <i class="material-icons mi-xxxlg">restaurant_menu</i>
+                            </div>
+                            <div class="col-10">
+                                <div class="flex-column justify-content align-center">
+                                    <div class="title">Thực đơn</div>
+                                    <small class=""></small>
+                                </div>
+                            </div>
+                            <h4 class="value"><strong><?php echo $rec_count; ?></strong></h4>
+                        </div>
+                    </a>
+                </div>
+        <?php endif; ?>
     </div>
 </div>

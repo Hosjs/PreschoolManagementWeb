@@ -129,7 +129,7 @@ class UsersController extends SecureController{
 				$this->set_page_error();
 			}
 			else{
-				$this->set_page_error("No record found");
+				$this->set_page_error("Không tìm thấy dữ liệu");
 			}
 		}
 		return $this->render_view("users/view.php", $record);
@@ -195,7 +195,7 @@ class UsersController extends SecureController{
 			if($this->validated()){
 				$rec_id = $this->rec_id = $db->insert($tablename, $modeldata);
 				if($rec_id){
-					$this->set_flash_msg("Record added successfully", "success");
+					$this->set_flash_msg("Thêm dữ liệu thành công", "success");
 					return	$this->redirect("users");
 				}
 				else{
@@ -256,7 +256,7 @@ class UsersController extends SecureController{
 				$bool = $db->update($tablename, $modeldata);
 				$numRows = $db->getRowCount(); //number of affected rows. 0 = no record field updated
 				if($bool && $numRows){
-					$this->set_flash_msg("Record updated successfully", "success");
+					$this->set_flash_msg("Cập nhật dữ liệu thành công", "success");
 					return $this->redirect("users");
 				}
 				else{
@@ -265,7 +265,7 @@ class UsersController extends SecureController{
 					}
 					elseif(!$numRows){
 						//not an error, but no record was updated
-						$page_error = "No record updated";
+						$page_error = "Không có dữ liệu nào được cập nhật";
 						$this->set_page_error($page_error);
 						$this->set_flash_msg($page_error, "warning");
 						return	$this->redirect("users");
@@ -348,7 +348,7 @@ class UsersController extends SecureController{
 						$page_error = $db->getLastError();
 					}
 					elseif(!$numRows){
-						$page_error = "No record updated";
+						$page_error = "Không có dữ liệu nào được cập nhật";
 					}
 					render_error($page_error);
 				}
@@ -375,7 +375,7 @@ class UsersController extends SecureController{
 		$db->where("users.id", $arr_rec_id, "in");
 		$bool = $db->delete($tablename);
 		if($bool){
-			$this->set_flash_msg("Record deleted successfully", "success");
+			$this->set_flash_msg("Xóa dữ liệu thành công", "success");
 		}
 		elseif($db->getLastError()){
 			$page_error = $db->getLastError();

@@ -282,129 +282,91 @@ class BaseView
 	 * Render Page From The Controller 
 	 * @return null
 	 */
-	public function render($view_name = null, $view_data = null, $layout = "main_layout.php")
-	{
-		$this->view_name = $view_name;
-		//passed data from controller to view
-		$this->view_data = $view_data;
-		$page_format = strtolower($this->format);
-		if ($page_format == "print") {
-			$this->force_print = true;
-			$report_body = $this->parse_report_html(); //get exportable content
-			echo $report_body;
-			return;
-		} 
-		elseif ($page_format == "pdf") {
-			$report_body = $this->parse_report_html(); //get exportable content
-			$filename = $this->report_filename;
-			$dompdf = new Dompdf();
-			$dompdf->loadHtml($report_body);
-			$dompdf->set_option('isRemoteEnabled', true); //allow to display external images
-			// (Optional) Setup the paper size and orientation
-			$dompdf->setPaper($this->report_paper_size, $this->report_orientation);
-			// Render the HTML as PDF
-			$dompdf->render();
-			// Output the generated PDF to Browser
-			$dompdf->stream("$filename.pdf");
-			return;
-		} 
-		elseif ($page_format == "word") {
-			$report_body = $this->parse_report_html(); //get exportable content
-			$filename = $this->report_filename;
-			$htd = new Html2Doc();
-			$htd->createDoc($report_body, "$filename.doc", true); //create and force download of the document
-			return;
-		} elseif ($page_format == "json") {
-			$report_data = $this->parse_report_records(); //get exportable content
-			return render_json($report_data);
-		} elseif ($page_format == "csv") {
-			$records = $this->parse_report_records(); //get exportable records
-			$csv_data = arr_to_csv($records);
-			$filename = $this->report_filename;
-			header("Content-Disposition: attachment; filename=$filename.csv");
-			header('Content-Type: text/plain'); // Don't use application/force-download - it's not a real MIME type, and the Content-Disposition header is sufficient
-			header('Content-Length: ' . strlen($csv_data));
-			header('Connection: close');
-			echo $csv_data;
-			return;
-		} elseif ($page_format == "excel") {
-			/* https://github.com/mk-j/PHP_XLSXWriter
-			Lightwight XLSX Excel Spreadsheet Writer in PHP
-			This library is designed to be lightweight, and have minimal memory usage.
-			 */
-			$filename = $this->report_filename . ".xlsx";
-			$sheet_name = $this->report_title;
-			//excel headers
-			header('Content-disposition: attachment; filename="' . XLSXWriter::sanitize_filename($filename) . '"');
-			header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-			header('Content-assistant-Encoding: binary');
-			header('Cache-Control: must-revalidate');
-			header('Pragma: public');
-			$records = $this->parse_report_records(); //get exportable records
-			//Simple/Advanced Cell Formats:
-			/* $header = array(
-				'created'=>'date',
-				'product_id'=>'integer',
-				'quantity'=>'#,##0',
-				'amount'=>'price',
-				'description'=>'string',
-				'tax'=>'[$$-1009]#,##0.00;[RED]-[$$-1009]#,##0.00',
-			  ); */
-			$arr_titles = array_keys(current($records));// get the table header from the record.
-			$headers = array_fill_keys($arr_titles, 'string'); //setting all headers to cell type of string
+public function render($view_name = null, $view_data = null, $layout = "main_layout.php")
+{
+	$this->view_name = $view_name;
+	$this->view_data = $view_data; // ✅ Gán dữ liệu vào $this->view_data
 
-			$writer = new XLSXWriter();
-			$writer->setAuthor(SITE_NAME);
-			$writer->writeSheetHeader($sheet_name, $headers);
-			foreach ($records as $row) {
-				$writer->writeSheetRow($sheet_name, $row);
-			}
-			$writer->writeToStdOut();
-			//$writer->writeToFile('example.xlsx');//to save locally
-			//echo $writer->writeToString();//to output to a variable
-			return;
-		}
+	$page_format = strtolower($this->format);
 
-		//continue to render page on the browser 
-		if (is_ajax()){
-			if(!empty($this->search_template) && file_exists(PAGES_DIR . $this->search_template)){
-				include(PAGES_DIR . $this->search_template);
-			}
-			else{
-				include(LAYOUTS_DIR . "ajax_layout.php"); 
-			}
+	if ($page_format == "print") {
+		$this->force_print = true;
+		echo $this->parse_report_html();
+		return;
+	} elseif ($page_format == "pdf") {
+		$report_body = $this->parse_report_html();
+		$filename = $this->report_filename;
+		$dompdf = new Dompdf();
+		$dompdf->loadHtml($report_body);
+		$dompdf->set_option('isRemoteEnabled', true);
+		$dompdf->setPaper($this->report_paper_size, $this->report_orientation);
+		$dompdf->render();
+		$dompdf->stream("$filename.pdf");
+		return;
+	} elseif ($page_format == "word") {
+		$report_body = mb_convert_encoding($this->parse_report_html(), 'HTML-ENTITIES', 'UTF-8');
+		$htd = new Html2Doc();
+		$htd->createDoc($report_body, $this->report_filename . ".doc", true);
+		return;
+	} elseif ($page_format == "json") {
+		return render_json($this->parse_report_records());
+	} elseif ($page_format == "csv") {
+		$csv_data = arr_to_csv($this->parse_report_records());
+		header("Content-Disposition: attachment; filename={$this->report_filename}.csv");
+		header('Content-Type: text/plain');
+		header('Content-Length: ' . strlen($csv_data));
+		header('Connection: close');
+		echo $csv_data;
+		return;
+	} elseif ($page_format == "excel") {
+		$filename = $this->report_filename . ".xlsx";
+		$sheet_name = $this->report_title;
+		$records = $this->parse_report_records();
+		$headers = array_fill_keys(array_keys(current($records)), 'string');
+		header('Content-disposition: attachment; filename="' . XLSXWriter::sanitize_filename($filename) . '"');
+		header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+		$writer = new XLSXWriter();
+		$writer->setAuthor(SITE_NAME);
+		$writer->writeSheetHeader($sheet_name, $headers);
+		foreach ($records as $row) {
+			$writer->writeSheetRow($sheet_name, $row);
 		}
-		elseif (!empty($layout) && $this->is_partial_view == false) {
-			// If force_layout is set, then use the layout.
-			// force layout can be set to render a view with different layout from another controller or view.
-			if (!empty($this->force_layout)) {
-				$layout = $this->force_layout;
-			}
-
-			if (file_exists(LAYOUTS_DIR . $layout)) {
-				include(LAYOUTS_DIR . $layout);
-			} else {
-				echo "The Layout Does not Exit;";
-			}
-		} 
-		else {
-			/* //Do not Include Layout if Render as a Partial View in another View
-				use the partial_view if it's set
-				Get View name from current page url if not passed from controller 
-			*/
-			if (!empty($this->partial_view)) {
-				$view_name = $this->partial_view;
-			} else if (empty($view_name)) {
-				$view_name = Router::$page_name . "/" . Router::$page_action . ".php";
-			}
-			if (file_exists(PAGES_DIR . $view_name)) {
-				include(PAGES_DIR . $view_name);
-			} else {
-				print_r($view_name);
-			}
-		}
-		return $this;
+		$writer->writeToStdOut();
+		return;
 	}
+
+	// ⚠️ Dưới đây là đoạn QUAN TRỌNG nhất cần sửa
+	if (is_ajax()) {
+		if (!empty($this->search_template) && file_exists(PAGES_DIR . $this->search_template)) {
+			include(PAGES_DIR . $this->search_template);
+		} else {
+			include(LAYOUTS_DIR . "ajax_layout.php");
+		}
+	} elseif (!empty($layout) && $this->is_partial_view == false) {
+		if (!empty($this->force_layout)) {
+			$layout = $this->force_layout;
+		}
+		if (file_exists(LAYOUTS_DIR . $layout)) {
+			include(LAYOUTS_DIR . $layout);
+		} else {
+			echo "The Layout Does not Exist";
+		}
+	} else {
+		if (!empty($this->partial_view)) {
+			$view_name = $this->partial_view;
+		} else if (empty($view_name)) {
+			$view_name = Router::$page_name . "/" . Router::$page_action . ".php";
+		}
+		$view_path = PAGES_DIR . $view_name;
+		if (file_exists($view_path)) {
+			$view_data = $this->view_data ?? [];  // ✅ Truyền biến xuống view
+			include($view_path);
+		} else {
+			echo "<b>⚠️ View file not found:</b> $view_path";
+		}
+	}
+	return $this;
+}
 
 
 	/**
@@ -412,30 +374,47 @@ class BaseView
 	 * @return null
 	 */
 	protected function render_body()
-	{
-		$view = PAGES_DIR . $this->view_name;
-		if (file_exists($view)) {
-			include($view);
-		} else {
-			echo "$view File Not Found";
-		}
-	}
+{
+    $view = PAGES_DIR . $this->view_name;
+
+    echo "<!-- Đường dẫn view: $view -->";
+
+    if (file_exists($view)) {
+        echo "<!-- View tồn tại -->";
+        echo "<!-- Dữ liệu view_data: " . print_r($this->view_data, true) . " -->";
+        include($view);
+    } else {
+        echo "<b>File not found: $view</b>";
+    }
+}
+
+
 
 	/**
 	 * Include View Onto A Page as A Partial View 
 	 * @example $this->render_view("components/bar_chart.php");
 	 * @return null
 	 */
-	protected function render_view($viewname, $args = null)
-	{
-		$this->view_args = $args;
-		$view = PAGES_DIR . $viewname;
-		if (file_exists($view)) {
-			include($view);
-		} else {
-			echo "$view File  Not Found";
-		}
-	}
+	/**
+ * Include View Onto A Page as A Partial View 
+ * @example $this->render_view("components/bar_chart.php");
+ * @return null
+ */
+protected function render_view($viewname, $args = null)
+{
+    if (is_array($args)) {
+        $this->view_data = $args;
+    }
+
+    $view = PAGES_DIR . $viewname;
+
+    if (file_exists($view)) {
+        $view_data = $this->view_data ?? [];
+        include($view);
+    } else {
+        echo "<b style='color:red'>⚠️ File not found: $view</b>";
+    }
+}
 
 
 	/**
@@ -492,131 +471,131 @@ class BaseView
 	/**
 	 * Get Form Input Value On POST BACK
 	 * @example <input type="radio" <?php echo set_field_value('gender','Male'); ?> />
-	 * @return  string
-	 */
-	public function set_field_value($fieldname, $default_value = null, $index = null)
-	{
-		$post =  filter_var_array($_REQUEST, FILTER_SANITIZE_STRING);
-		if (!empty($this->page_props[$fieldname])) {
-			return $this->page_props[$fieldname];
-		} elseif (!empty($post[$fieldname])) {
-			if ($index === null) {
-				return $post[$fieldname];
-			} else {
-				return $post["row$index"][$fieldname];
-			}
-		} else {
-			return $default_value;
-		}
-	}
+* @return string
+*/
+public function set_field_value($fieldname, $default_value = null, $index = null)
+{
+$post = filter_var_array($_REQUEST, FILTER_SANITIZE_STRING);
+if (!empty($this->page_props[$fieldname])) {
+return $this->page_props[$fieldname];
+} elseif (!empty($post[$fieldname])) {
+if ($index === null) {
+return $post[$fieldname];
+} else {
+return $post["row$index"][$fieldname];
+}
+} else {
+return $default_value;
+}
+}
 
-	/**
-	 * Get Form Radio || Checkbox Value On POST BACK
-	 * @example <input type="radio" <?php echo set_field_checked('gender','Male'); ?> />
-	 * @return  string
-	 */
-	public function set_field_checked($fieldname, $value, $default_value = null)
-	{
-		$post =  filter_var_array($_REQUEST, FILTER_SANITIZE_STRING);
-		$req_val = null;
-		if (!empty($this->page_props[$fieldname])) {
-			$req_val = $this->page_props[$fieldname];
-		} elseif (!empty($post[$fieldname])) {
-			$req_val = $post[$fieldname];
-		} else {
-			$req_val = $default_value;
-		}
+/**
+* Get Form Radio || Checkbox Value On POST BACK
+* @example <input type="radio" <?php echo set_field_checked('gender','Male'); ?> />
+* @return string
+*/
+public function set_field_checked($fieldname, $value, $default_value = null)
+{
+$post = filter_var_array($_REQUEST, FILTER_SANITIZE_STRING);
+$req_val = null;
+if (!empty($this->page_props[$fieldname])) {
+$req_val = $this->page_props[$fieldname];
+} elseif (!empty($post[$fieldname])) {
+$req_val = $post[$fieldname];
+} else {
+$req_val = $default_value;
+}
 
-		if (!empty($req_val)) {
-			if (is_array($req_val)) {
-				return (in_array($value, $req_val) ? 'checked' : null);
-			} elseif ($req_val == $value) {
-				return "checked";
-			}
-		}
-		return null;
-	}
+if (!empty($req_val)) {
+if (is_array($req_val)) {
+return (in_array($value, $req_val) ? 'checked' : null);
+} elseif ($req_val == $value) {
+return "checked";
+}
+}
+return null;
+}
 
-	/**
-	 * Get Form Radio || Checkbox Value On POST BACK
-	 * @example <input type="radio" <?php echo set_field_selected('gender','Male'); ?> />
-	 * @return  string
-	 */
-	public function set_field_selected($fieldname, $value, $default_value = 0)
-	{
-		$post =  filter_var_array($_REQUEST, FILTER_SANITIZE_STRING);
-		$req_val = null;
-		if (!empty($this->page_props[$fieldname])) {
-			$req_val = $this->page_props[$fieldname];
-		} elseif (!empty($post[$fieldname])) {
-			$req_val = $post[$fieldname];
-		} else {
-			$req_val = $default_value;
-		}
-		if (!empty($req_val)) {
-			if (is_array($req_val)) {
-				return (in_array($value, $req_val) ? 'selected' : null);
-			} elseif ($req_val == $value) {
-				return "selected";
-			}
-		}
-		return null;
-	}
+/**
+* Get Form Radio || Checkbox Value On POST BACK
+* @example <input type="radio" <?php echo set_field_selected('gender','Male'); ?> />
+* @return string
+*/
+public function set_field_selected($fieldname, $value, $default_value = 0)
+{
+$post = filter_var_array($_REQUEST, FILTER_SANITIZE_STRING);
+$req_val = null;
+if (!empty($this->page_props[$fieldname])) {
+$req_val = $this->page_props[$fieldname];
+} elseif (!empty($post[$fieldname])) {
+$req_val = $post[$fieldname];
+} else {
+$req_val = $default_value;
+}
+if (!empty($req_val)) {
+if (is_array($req_val)) {
+return (in_array($value, $req_val) ? 'selected' : null);
+} elseif ($req_val == $value) {
+return "selected";
+}
+}
+return null;
+}
 
-	/**
-	 * Get Form Checkbox Check Status On POST BACK
-	 * For a multi input /select control
-	 * @example <input type="checkbox" <?php echo check_form_field_checked('roles'); ?> />
-	 * @return  string
-	 */
-	public function check_form_field_checked($srcdata, $value)
-	{
-		if (!empty($srcdata)) {
-			$arr = explode(",", $srcdata);
-			if (in_array($value, $arr)) {
-				return "checked";
-			}
-		}
-		return null;
-	}
+/**
+* Get Form Checkbox Check Status On POST BACK
+* For a multi input /select control
+* @example <input type="checkbox" <?php echo check_form_field_checked('roles'); ?> />
+* @return string
+*/
+public function check_form_field_checked($srcdata, $value)
+{
+if (!empty($srcdata)) {
+$arr = explode(",", $srcdata);
+if (in_array($value, $arr)) {
+return "checked";
+}
+}
+return null;
+}
 
-	/**
-	 * Display Html Head Title
-	 * Set Title From Url If Present
-	 * @return Html
-	 */
-	public function get_page_title($title = null)
-	{
-		//title passed to the page view
-		if (!empty($this->page_title)) {
-			$title = $this->page_title;
-		} else {
-			$title = Router::$page_name;
-		}
-		return $title;
-	}
+/**
+* Display Html Head Title
+* Set Title From Url If Present
+* @return Html
+*/
+public function get_page_title($title = null)
+{
+//title passed to the page view
+if (!empty($this->page_title)) {
+$title = $this->page_title;
+} else {
+$title = Router::$page_name;
+}
+return $title;
+}
 
-	/**
-	 * Display page errors passed from the controller to the view
-	 * Can be single string or array
-	 * @return Html
-	 */
-	public function display_page_errors()
-	{
-		$page_errors = $this->page_error;
-		if (!empty($page_errors)) {
-			if (!is_array($page_errors)) {
+/**
+* Display page errors passed from the controller to the view
+* Can be single string or array
+* @return Html
+*/
+public function display_page_errors()
+{
+$page_errors = $this->page_error;
+if (!empty($page_errors)) {
+if (!is_array($page_errors)) {
 ?>
-				<div class="alert alert-danger animated shake">
-					<?php echo $page_errors; ?>
-				</div>
-				<?php
+<div class="alert alert-danger animated shake">
+    <?php echo $page_errors; ?>
+</div>
+<?php
 			} else {
 				foreach ($page_errors as $error) {
 				?>
-					<div class="alert alert-danger animated shake">
-						<?php echo $error; ?>
-					</div>
+<div class="alert alert-danger animated shake">
+    <?php echo $error; ?>
+</div>
 <?php
 				}
 			}
@@ -641,11 +620,15 @@ class BaseView
 		$page_html = str_replace('&', '&amp;', $page_html);
 		$page_html = str_replace(array('_lt_', '_gt_', '_amp_'), array('&lt;', '&gt;', '&amp;'), $page_html);
 		// Load DOM
-		$orignalLibEntityLoader = libxml_disable_entity_loader(true);
-		$doc = new \DOMDocument();
+		if (LIBXML_VERSION < 20900) {
+			$original = libxml_disable_entity_loader(true);
+		}
+				$doc = new \DOMDocument();
 		@$doc->loadHTML($page_html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD | LIBXML_NOEMPTYTAG);
-		libxml_disable_entity_loader($orignalLibEntityLoader);
-		//extract only the report part
+		if (LIBXML_VERSION < 20900) {
+			libxml_disable_entity_loader($original);
+		}
+				//extract only the report part
 		$page_body = $doc->getElementById("page-report-body");
 		if (!empty($page_body)) {
 			$xpath = new DOMXPath($page_body->ownerDocument);
@@ -676,6 +659,7 @@ class BaseView
 				}
 			}
 			$report_body =  $this->innerHTML($page_body);
+			$report_body = html_entity_decode($report_body, ENT_QUOTES | ENT_XML1, 'UTF-8');
 			//now we are done with manipulating the report body
 			//place the report body inside the report layout
 			$layout_body = $doc->getElementById("report-body");
@@ -736,12 +720,24 @@ class BaseView
 	 * @return string
 	 */
 	private function setInnerHTML($element, $html)
-	{
-		$html = htmlentities($html);
-		$fragment = $element->ownerDocument->createDocumentFragment();
-		$fragment->appendXML($html);
-		$clone = $element->cloneNode();
-		$clone->appendChild($fragment);
-		$element->parentNode->replaceChild($clone, $element);
+{
+	libxml_use_internal_errors(true); // tránh lỗi hiển thị
+	$fragment = $element->ownerDocument->createDocumentFragment();
+
+	// Chuyển mã UTF-8 & xử lý thực thể HTML đúng chuẩn
+	$html = html_entity_decode($html, ENT_QUOTES | ENT_XML1, 'UTF-8');
+
+	// Nếu không thể appendXML thì bỏ qua đoạn này
+	if (!$fragment->appendXML($html)) {
+		// Ghi log hoặc debug nếu cần
+		error_log("⚠️ appendXML() failed in setInnerHTML()");
+		return;
 	}
+	libxml_clear_errors();
+
+	$clone = $element->cloneNode();
+	$clone->appendChild($fragment);
+	$element->parentNode->replaceChild($clone, $element);
+}
+
 }

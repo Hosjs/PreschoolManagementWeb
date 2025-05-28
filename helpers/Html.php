@@ -454,9 +454,9 @@ class Html
 					<div class="d-inline-block p-2 card m-1" id="file-holder-<?php echo $i; ?>">
 						<?php
 						if ($is_img) {
-							self::page_img($src, 50, 50);
-							echo basename($src);
-						} else {
+							echo '<img src="' . $src . '" width="50" height="50" style="object-fit: cover;">';
+						}
+						 else {
 						?>
 							<a class="btn btn-sm btn-light" target="_blank" href="<?php print_link($src) ?>">
 								<?php echo basename($src); ?>

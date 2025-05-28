@@ -1,14 +1,14 @@
 Dropzone.autoDiscover = false;
-function initFormPlugins(){
-	$('textarea.htmleditor').each(function(){
+function initFormPlugins() {
+	$('textarea.htmleditor').each(function () {
 		var editor = $(this);
 		var numRows = parseInt(editor.attr("rows")) || 4;
 		var height = numRows * 25;
 		editor.summernote({
-		dialogsInBody: true,
+			dialogsInBody: true,
 			callbacks: {
-				onImageUpload: function(files) {
-					for(let i=0; i < files.length; i++) {
+				onImageUpload: function (files) {
+					for (let i = 0; i < files.length; i++) {
 						ajaxUploadFile(files[i]);
 					}
 				}
@@ -55,13 +55,13 @@ function initFormPlugins(){
 		}
 	});
 	$('.datepicker').flatpickr({
-		altInput: true, 
-		allowInput:true,
-		onReady: function(dateObj, dateStr, instance) {
+		altInput: true,
+		allowInput: true,
+		onReady: function (dateObj, dateStr, instance) {
 			var $cal = $(instance.calendarContainer);
 			if ($cal.find('.flatpickr-clear').length < 1) {
 				$cal.append('<button class="btn btn-light my-2 flatpickr-clear">Clear</button>');
-				$cal.find('.flatpickr-clear').on('click', function() {
+				$cal.find('.flatpickr-clear').on('click', function () {
 					instance.clear();
 					instance.close();
 				});
@@ -72,7 +72,7 @@ function initFormPlugins(){
 		}
 	});
 	Dropzone.autoDiscover = false;
-	$('.dropzone').each(function(){
+	$('.dropzone').each(function () {
 		let dropzoneControl = $(this)[0].dropzone;
 		if (dropzoneControl) {
 			dropzoneControl.destroy();
@@ -87,56 +87,56 @@ function initFormPlugins(){
 		var resizequality = $(this).attr('resizequality') || null;
 		var resizemethod = $(this).attr('resizemethod') || null;
 		var resizemimetype = $(this).attr('resizemimetype') || null;
-		var dropmsg = $(this).attr('dropmsg') || 'Choose files or drag and drop files to upload';
+		var dropmsg = $(this).attr('dropmsg') || 'Chọn tệp hoặc kéo và thả tệp để tải lên';
 		var autoSubmit = $(this).attr('autosubmit') || true;
 		var btntext = $(this).attr('btntext') || 'Choose file';
 		var fieldname = $(this).attr('fieldname') || "";
 		var input = $(this).attr('input');
 		$(this).dropzone({
-			url: uploadUrl ,
-			maxFilesize:size,
+			url: uploadUrl,
+			maxFilesize: size,
 			uploadMultiple: multiple,
-			parallelUploads:1,
-			paramName:'file',
-			maxFiles:limit,
+			parallelUploads: 1,
+			paramName: 'file',
+			maxFiles: limit,
 			resizeWidth: resizewidth,
 			resizeHeight: resizeheight,
 			resizeQuality: resizequality,
 			resizeMethod: resizemethod,
 			resizeMimeType: resizemimetype,
 			acceptedFiles: extensions,
-			addRemoveLinks:true,
-			params:{
-				csrf_token : csrfToken,
-				fieldname : fieldname,
+			addRemoveLinks: true,
+			params: {
+				csrf_token: csrfToken,
+				fieldname: fieldname,
 			},
-			init: function() {
-				this.on('addedfile', function(file) {
+			init: function () {
+				this.on('addedfile', function (file) {
 					//if allow multiple file upload is allowed, then validate maximum number of files
 					var inputFiles = $(input).val();
 					var inputFilesLen = 0;
-					if(inputFiles){
+					if (inputFiles) {
 						inputFilesLen = inputFiles.split(',').length;
 					}
 					var totalFiles = this.files.length + inputFilesLen;
-					if ( totalFiles  > limit) {
-						if(multiple){
+					if (totalFiles > limit) {
+						if (multiple) {
 							$(file.previewElement).closest('.dropzone').find('.dz-file-limit').text('Maximum upload limit reached');
 							this.removeFile(file);
 						}
-						else if(limit == 1){
-							if(!inputFiles){
+						else if (limit == 1) {
+							if (!inputFiles) {
 								this.removeFile(this.files[0]);
 							}
 						}
 					}
 				});
-				this.on("success", function(file, responseText) {
-					if(responseText){
-						if(limit == 1){
+				this.on("success", function (file, responseText) {
+					if (responseText) {
+						if (limit == 1) {
 							$(input).val(responseText);
 						}
-						else{
+						else {
 							var files = $(input).val();
 							files = files + ',' + responseText;
 							files = files.trim().trimLeft(',')
@@ -144,8 +144,8 @@ function initFormPlugins(){
 						}
 					}
 				});
-				this.on("removedfile", function(file) {
-					if(file.xhr){
+				this.on("removedfile", function (file) {
+					if (file.xhr) {
 						var filename = file.xhr.responseText;
 						var files = $(input).val();
 						var arrFiles = files.split(',');
@@ -155,18 +155,18 @@ function initFormPlugins(){
 						$(input).val(arrFiles.toString());
 						var remUrl = setPathLink('filehelper/removefile/')
 						$.ajax({
-							type:'POST',
+							type: 'POST',
 							url: remUrl,
-							data : {filepath: filename, csrf_token: csrfToken},
-							success : function (data) {
+							data: { filepath: filename, csrf_token: csrfToken },
+							success: function (data) {
 								console.log(data);
 							}
 						});
 					}
 					var inputFiles = $(input).val();
-					if(inputFiles){
+					if (inputFiles) {
 						var inputFilesLen = inputFiles.split(',').length;
-						if (  limit > inputFilesLen){
+						if (limit > inputFilesLen) {
 							$(input).closest('.dropzone').find('.dz-file-limit').text('');
 						}
 					}
@@ -180,25 +180,25 @@ function initFormPlugins(){
 		});
 	});
 }
-function loadPageData(ajaxPage, url){
+function loadPageData(ajaxPage, url) {
 	let pageType = ajaxPage.data('page-type');
-	if(pageType == "list"){
+	if (pageType == "list") {
 		ajaxPage.find(".ajax-page-load-indicator").first().show();
 		ajaxPage.find("table,.page-content").first().addClass("loading");
-		ajaxPage.find("table tbody .page-data,.page-content .page-data").first().load(url, function(){
+		ajaxPage.find("table tbody .page-data,.page-content .page-data").first().load(url, function () {
 			ajaxPage.find("table,.page-content").first().removeClass("loading");
 			ajaxPage.find(".ajax-page-load-indicator").first().hide();
 		});
 	}
-	else{
+	else {
 		ajaxPage.find(".ajax-page-load-indicator").first().show();
 		ajaxPage.find("table,.page-content").first().addClass("loading");
 		ajaxPage.load(url);
 	}
 }
-$(function() {
+$(function () {
 	initFormPlugins()
-	$('.ajax-pagination').each(function(){
+	$('.ajax-pagination').each(function () {
 		var pager = $(this);
 		var totalPage = parseInt(pager.data("total-page")) || 1;
 		var range = parseInt(pager.data("range")) || 5;
@@ -229,36 +229,36 @@ $(function() {
 		});;
 	});
 	$('.has-tooltip').tooltip();
-	$('[data-toggle="tooltip"]').tooltip({trigger: 'manual'}).tooltip('show');
+	$('[data-toggle="tooltip"]').tooltip({ trigger: 'manual' }).tooltip('show');
 	$(".switch-checkbox").bootstrapSwitch();
 	$('input.password-strength').passwordStrength();
 	/**
 	 * Ajax load popover content
 	 */
 	$('.open-page-popover').popover({
-		title : '<div class="clearfix"><a class="close" data-dismiss="alert">&times;</a></div>',
+		title: '<div class="clearfix"><a class="close" data-dismiss="alert">&times;</a></div>',
 		template: '<div class="popover inline-page" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>',
 		html: true,
 		container: 'body',
-		content: function(){
-			var divID =  "tmp-id-" + $.now();
+		content: function () {
+			var divID = "tmp-id-" + $.now();
 			var link = $(this).attr('href')
 			$.ajax({
 				url: link,
-				success: function(response){
+				success: function (response) {
 					$('#' + divID).html(response);
 				}
 			});
-			return '<div class="reset-grids" id="'+ divID +'">' + pageLoadingIndicator + '</div>';// + footer;
+			return '<div class="reset-grids" id="' + divID + '">' + pageLoadingIndicator + '</div>';// + footer;
 		}
 	});
 	$.fn.editableform.buttons = '<button type="submit" class="btn btn-sm btn-primary editable-submit">&check;</button><button type="button" class="btn btn-sm btn-secondary editable-cancel">&times;</button>';
-	$.fn.editable.defaults.ajaxOptions = {type: "post"};
-	$.fn.editable.defaults.params = {csrf_token : csrfToken};
+	$.fn.editable.defaults.ajaxOptions = { type: "post" };
+	$.fn.editable.defaults.params = { csrf_token: csrfToken };
 	$.fn.editable.defaults.emptytext = '...';
 	$.fn.editable.defaults.textFieldName = 'label';
 	$('.is-editable').editable();
-	$(document).on('click', '.inline-edit-btn', function(e){
+	$(document).on('click', '.inline-edit-btn', function (e) {
 		e.stopPropagation();
 		$(this).closest('td').find('.make-editable').editable('toggle');
 	});

@@ -39,12 +39,12 @@ class PasswordmanagerController extends BaseController{
 					$this->render_view("passwordmanager/password_reset_link_sent.php", $mailbody, "info_layout.php");
 				}
 				else{
-					$msg = "Error sending email. Please contact system administrator for more info";
+					$msg = "Lỗi gửi email. Vui lòng liên hệ với quản trị viên hệ thống để biết thêm thông tin";
 					$this->render_view("errors/error_general.php", $msg, "info_layout.php");
 				}
 			}
 			else{
-				$this->set_page_error("The email address is not registered on the system");
+				$this->set_page_error("Địa chỉ email chưa được đăng ký trên hệ thống");
 				$this->render_view("passwordmanager/index.php", null, "info_layout.php");
 			}
 		}
@@ -84,7 +84,7 @@ class PasswordmanagerController extends BaseController{
 							}
 						}
 						else{
-							$this->set_page_error("Your password confirmation is not consistent");
+							$this->set_page_error("Mật khẩu không khớp");
 							$this->render_view("passwordmanager/password_reset_form.php", null, "info_layout.php");
 						}
 					}
@@ -93,7 +93,7 @@ class PasswordmanagerController extends BaseController{
 					}
 				}
 				else{
-					$this->set_page_error("Password reset key has expired. Please start a new password request");
+					$this->set_page_error("Khóa đặt lại mật khẩu đã hết hạn. Vui lòng bắt đầu yêu cầu mật khẩu mới");
 					$this->render_view("passwordmanager/index.php", null, "info_layout.php");
 				}
 			}

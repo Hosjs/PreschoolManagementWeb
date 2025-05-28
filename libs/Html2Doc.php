@@ -56,19 +56,29 @@ class Html2Doc
 	 * @return boolean  
 	 */
 	function createDoc($html, $file, $download = true)
-	{
-		$this->setDocFileName($file);
-		if ($download) {
-			@header("Cache-Control: "); // leave blank to avoid IE errors 
-			@header("Pragma: "); // leave blank to avoid IE errors 
-			@header("Content-type: application/octet-stream");
-			@header("Content-Disposition: attachment; filename=\"$this->docFile\"");
-			echo $html;
-			return true;
-		} else {
-			return $this->write_file($this->docFile, $html);
-		}
-	}
+{
+    $this->setDocFileName($file);
+
+    // CHUYỂN HTML về UTF-8 đúng cách nếu chưa chắc chắn
+    $html = mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
+
+    // THÊM META ENCODING (nếu bị thiếu)
+    if (stripos($html, '<meta charset=') === false) {
+        $html = '<meta charset="UTF-8">' . $html;
+    }
+
+    if ($download) {
+        @header("Cache-Control: "); // tránh lỗi IE
+        @header("Pragma: ");
+        @header("Content-Type: application/msword; charset=UTF-8"); // ✅ MIME type chuẩn cho .doc
+        @header("Content-Disposition: attachment; filename=\"$this->docFile\"");
+        echo $html;
+        return true;
+    } else {
+        return $this->write_file($this->docFile, $html);
+    }
+}
+
 
 	/** 
 	 * Write the content in the file 
